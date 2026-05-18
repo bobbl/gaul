@@ -1,0 +1,197 @@
+Terminal,BT,BG,Cardinality,Datatype,Name
+BT,1,0,1,I,Invoice number
+BT,2,0,1,D,Invoice issue date
+BT,3,0,1,C,Invoice type code
+BT,5,0,1,C,Invoice currency code
+BT,6,0,?,C,VAT accounting currency code
+BT,7,0,?,D,Value added tax point date
+BT,8,0,?,C,Value added tax point date code
+BT,9,0,?,D,Payment due date
+BT,10,0,1,I,Buyer reference
+BT,11,0,?,I,Project reference
+BT,12,0,?,I,Contract reference
+BT,13,0,?,I,Purchase order reference
+BT,14,0,?,I,Sales order reference
+BT,15,0,?,I,Receiving advice reference
+BT,16,0,?,I,Despatch advice reference
+BT,17,0,?,I,Tender or lot reference
+BT,18,0,?,I,Invoiced object identifier
+BT,19,0,?,I,Buyer accounting reference
+BT,20,0,?,T,Payment terms
+BT,21,1,?,C,Invoice note subject code
+BT,22,1,*,T,Invoice note
+BT,23,2,1,I,Business process type
+BT,24,2,1,I,Specification identifier
+BT,25,3,?,I,Preceding Invoice reference
+BT,26,3,?,D,Preceding Invoice issue date
+BT,27,4,1,T,Seller name
+BT,28,4,?,T,Seller trading name
+BT,29,4,?,I,Seller identifier
+BT,30,4,?,I,Seller legal registration identifier
+BT,31,4,?,I,Seller VAT identifier
+BT,32,4,?,I,Seller tax registration identifier
+BT,33,4,?,T,Seller additional legal information
+BT,34,4,1,I,Seller electronic address
+BT,35,5,1,T,Seller address line 1
+BT,36,5,?,T,Seller address line 2
+BT,37,5,1,T,Seller city
+BT,38,5,1,T,Seller post code
+BT,39,5,?,T,Seller country subdivision
+BT,40,5,1,C,Seller country code
+BT,41,6,?,T,Seller contact point
+BT,42,6,?,T,Seller contact telephone number
+BT,43,6,?,T,Seller contact email address
+BT,44,7,1,T,Buyer name
+BT,45,7,?,T,Buyer trading name
+BT,46,7,?,I,Buyer identifier
+BT,47,7,?,I,Buyer legal registration identifier
+BT,48,7,?,I,Buyer VAT identifier
+BT,49,7,1,I,Buyer electronic address
+BT,50,8,1,T,Buyer address line 1
+BT,51,8,?,T,Buyer address line 2
+BT,52,8,1,T,Buyer city
+BT,53,8,1,T,Buyer post code
+BT,54,8,?,T,Buyer country subdivision
+BT,55,8,1,C,Buyer country code
+BT,56,9,?,T,Buyer contact point
+BT,57,9,?,T,Buyer contact telephone number
+BT,58,9,?,T,Buyer contact email address
+BT,59,10,?,T,Payee name
+BT,60,10,?,I,Payee identifier
+BT,61,10,?,I,Payee legal registration identifier
+BT,62,11,?,I,Seller tax representative VAT identifier
+BT,63,11,?,T,Seller tax representative name
+BT,64,12,?,T,Tax representative address line 1
+BT,65,12,?,T,Tax representative address line 2
+BT,66,12,?,T,Tax representative city
+BT,67,12,?,T,Tax representative post code
+BT,68,12,?,T,Tax representative country subdivision
+BT,69,12,?,C,Tax representative country code
+BT,70,13,?,T,Deliver to party name
+BT,71,13,?,I,Deliver to location identifier
+BT,72,13,?,D,Actual delivery date
+BT,73,14,?,D,Invoicing period start date
+BT,74,14,?,D,Invoicing period end date
+BT,75,15,?,T,Deliver to address line 1
+BT,76,15,?,T,Deliver to address line 2
+BT,77,15,1,T,Deliver to city
+BT,78,15,1,T,Deliver to post code
+BT,79,15,?,T,Deliver to country subdivision
+BT,80,15,1,C,Deliver to country code
+BT,81,16,1,C,Payment means type code
+BT,82,16,?,T,Payment means text
+BT,83,16,?,T,Remittance information
+BT,84,17,?,I,Payment account identifier
+BT,85,17,?,T,Payment account name
+BT,86,17,?,I,Payment service provider identifier
+BT,87,18,?,I,Payment card primary account number
+BT,88,18,?,T,Payment card holder name
+BT,89,19,?,I,Mandate reference identifier
+BT,90,19,?,I,Bank assigned creditor identifier
+BT,91,19,?,I,Debited account identifier
+BT,92,20,?,A,Document level allowance amount
+BT,93,20,?,A,Document level allowance base amount
+BT,94,20,?,P,Document level allowance percentage
+BT,95,20,?,C,Document level allowance VAT category code
+BT,96,20,?,P,Document level allowance VAT rate
+BT,97,20,?,T,Document level allowance reason
+BT,98,20,?,C,Document level allowance reason code
+BT,99,21,?,A,Document level charge amount
+BT,100,21,?,A,Document level charge base amount
+BT,101,21,?,P,Document level charge percentage
+BT,102,21,?,C,Document level charge VAT category code
+BT,103,21,?,P,Document level charge VAT rate
+BT,104,21,?,T,Document level charge reason
+BT,105,21,?,C,Document level charge reason code
+BT,106,22,1,A,Sum of Invoice line net amount
+BT,107,22,?,A,Sum of allowances on document level
+BT,108,22,?,A,Sum of charges on document level
+BT,109,22,1,A,Invoice total amount without VAT
+BT,110,22,1,A,Invoice total VAT amount
+BT,111,22,?,A,Invoice total VAT amount in accounting currency
+BT,112,22,1,A,Invoice total amount with VAT
+BT,113,22,?,A,Paid amount
+BT,114,22,?,A,Rounding amount
+BT,115,22,1,A,Amount due for payment
+BT,116,23,1,A,VAT category taxable amount
+BT,117,23,1,A,VAT category tax amount
+BT,118,23,1,C,VAT category code
+BT,119,23,?,P,VAT category rate
+BT,120,23,?,T,VAT exemption reason text
+BT,121,23,?,C,VAT exemption reason code
+BT,122,24,?,I,Supporting document reference
+BT,123,24,?,T,Supporting document description
+BT,124,24,?,I,External document location
+BT,125,24,?,B,Attached document
+BT,126,25,1,I,Invoice line identifier
+BT,127,25,?,T,Invoice line note
+BT,128,25,?,I,Invoice line object identifier
+BT,129,25,1,Q,Invoiced quantity
+BT,130,25,1,C,Invoiced quantity unit of measure code
+BT,131,25,1,A,Invoice line net amount
+BT,132,25,?,I,Referenced purchase order line reference
+BT,133,25,?,I,Invoice line Buyer accounting reference
+BT,134,26,?,D,Invoice line period start date
+BT,135,26,?,D,Invoice line period end date
+BT,136,27,?,A,Invoice line allowance amount
+BT,137,27,?,A,Invoice line allowance base amount
+BT,138,27,?,P,Invoice line allowance percentage
+BT,139,27,?,T,Invoice line allowance reason
+BT,140,27,?,C,Invoice line allowance reason code
+BT,141,28,?,A,Invoice line charge amount
+BT,142,28,?,A,Invoice line charge base amount
+BT,143,28,?,P,Invoice line charge percentage
+BT,144,28,?,T,Invoice line charge reason
+BT,145,28,?,C,Invoice line charge reason code
+BT,146,29,1,A,Item net price
+BT,147,29,?,A,Item price discount
+BT,148,29,1,A,Item gross price
+BT,149,29,?,Q,Item price base quantity
+BT,150,29,?,C,Item price base quantity unit of measure code
+BT,151,30,1,C,Invoiced item VAT category code
+BT,152,30,?,P,Invoiced item VAT rate
+BT,153,31,1,T,Item name
+BT,154,31,?,T,Item description
+BT,155,31,?,I,Item Sellers identifier
+BT,156,31,?,I,Item Buyers identifier
+BT,157,31,?,I,Item standard identifier
+BT,158,31,*,I,Item classification identifier
+BT,159,31,?,C,Item country of origin
+BT,160,32,1,T,Item attribute name
+BT,161,32,1,T,Item attribute value
+BT,162,5,?,T,Seller address line 3
+BT,163,8,?,T,Buyer address line 3
+BT,164,12,?,T,Tax representative address line 3
+BT,165,15,?,T,Deliver to address line 3
+BG,1,0,*,G,INVOICE NOTE
+BG,2,0,1,G,PROCESS CONTROL
+BG,3,0,*,G,PRECEDING INVOICE REFERENCE
+BG,4,0,1,G,SELLER
+BG,5,4,1,G,SELLER POSTAL ADDRESS
+BG,6,4,?,G,SELLER CONTACT
+BG,7,0,1,G,BUYER
+BG,8,7,1,G,BUYER POSTAL ADDRESS
+BG,9,7,?,G,BUYER CONTACT
+BG,10,0,?,G,PAYEE
+BG,11,0,?,G,SELLER TAX REPRESENTATIVE PARTY
+BG,12,11,1,G,SELLER TAX REPRESENTATIVE POSTAL ADDRESS
+BG,13,0,?,G,DELIVERY INFORMATION
+BG,14,13,?,G,INVOICING PERIOD
+BG,15,13,?,G,DELIVER TO ADDRESS
+BG,16,0,1,G,PAYMENT INSTRUCTIONS
+BG,17,16,*,G,CREDIT TRANSFER
+BG,18,16,?,G,PAYMENT CARD INFORMATION
+BG,19,16,?,G,DIRECT DEBIT
+BG,20,0,*,G,DOCUMENT LEVEL ALLOWANCES
+BG,21,0,*,G,DOCUMENT LEVEL CHARGES
+BG,22,0,1,G,DOCUMENT TOTALS
+BG,23,0,+,G,VAT BREAKDOWN
+BG,24,0,*,G,ADDITIONAL SUPPORTING DOCUMENTS
+BG,25,0,+,G,INVOICE LINE
+BG,26,25,?,G,INVOICE LINE PERIOD
+BG,27,25,*,G,INVOICE LINE ALLOWANCES
+BG,28,25,*,G,INVOICE LINE CHARGES
+BG,29,25,1,G,PRICE DETAILS
+BG,30,25,1,G,LINE VAT INFORMATION
+BG,31,25,1,G,ITEM INFORMATION
+BG,32,31,*,G,ITEM ATTRIBUTES
