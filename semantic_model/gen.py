@@ -72,6 +72,46 @@ def smx2btj_recurse(bgno: str, prefix: str, indent: str, bt, bg) -> str:
 
 
 
+
+def btj2smx_recurse(bgno: str, prefix: str, indent: str, bt, bg) -> str:
+    tag = smx_name(bg[bgno]['Name'])
+    head = f'{indent}<{tag} xr:id="BG-{bgno}">'
+    tail = f"{indent}</{tag}>\n"
+
+    # wrap in for-each loop if the group can appear more than once
+    if bg[bgno]['Cardinality'] in ["*", "+"]:
+        bgtag = f"{prefix}BG{bgno.zfill(3)}"
+        bgtag = prefix[:-1]
+        head = f"{indent}{{{{#{bgtag}}}}}\n" + head
+        tail = tail + f"{indent}{{{{/{bgtag}}}}}\n"
+        prefix = ""
+    elif bgno == "0":
+        # special case for root element
+        head = '<xr:invoice xmlns:xr="urn:ce.eu:en16931:2017:xoev-de:kosit:standard:xrechnung-1">'
+        tail = "</xr:invoice>"
+
+    indent += "  "
+    r = "\n"
+    for i, row in bt.items():
+        if row['BG'] == bgno:
+            xmltag = smx_name(row['Name'])
+            bttag = f"{prefix}BT{i.zfill(3)}"
+            r += f"""{indent}{{{{#{bttag}}}}}
+{indent}<{xmltag} xr:id="BT-{i}">{{{{{bttag}}}}}</{xmltag}>
+{indent}{{{{/{bttag}}}}}
+"""
+
+    for i, row in bg.items():
+        if row['BG'] == bgno:
+            r += btj2smx_recurse(i, f"{prefix}BG{i.zfill(3)}.", indent, bt, bg)
+    return head + r + tail
+
+
+
+
+
+
+
 def main():
 
     with open('bt_semantic_model.csv', newline='') as f:
@@ -128,8 +168,8 @@ def main():
 <xsl:template match="xr:invoice">
   <xsl:text>{
   "_meta": {
-    "format": "XRechnung Business Terms"
-    "version": "0.9"
+    "format": "XRechnung Business Terms",
+    "version": "0.9",
     "description": "XRechnung invoice condensed to business terms and encoded in JSON"
   },
   "invoice": {</xsl:text>""", file=f)
@@ -142,6 +182,16 @@ def main():
 </xsl:text>
 </xsl:template>
 </xsl:stylesheet>""", file=f)
+
+
+
+
+    # mustache script to convert JSON business terms to the KoSIT semantic model
+
+    with open("btj2smx.gen.mustache", "w") as f:
+        print('<?xml version="1.0" encoding="UTF-8"?>', file=f)
+
+        print(btj2smx_recurse("0", "invoice.", "", bt, bg), file=f)
 
 
 
