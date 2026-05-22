@@ -19,7 +19,7 @@ BT,18,0,?,I,Invoiced object identifier
 BT,19,0,?,I,Buyer accounting reference
 BT,20,0,?,T,Payment terms
 BT,21,1,?,C,Invoice note subject code
-BT,22,1,*,T,Invoice note
+BT,22,1,1,T,Invoice note
 BT,23,2,1,I,Business process type
 BT,24,2,1,I,Specification identifier
 BT,25,3,?,I,Preceding Invoice reference

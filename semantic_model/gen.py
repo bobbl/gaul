@@ -59,9 +59,30 @@ def smx2btj_recurse(bgno: str, prefix: str, indent: str, bt, bg) -> str:
     for i, row in bt.items():
         if row['BG'] == bgno:
             xpath = prefix + smx_name(row['Name'])
-            r += (f'{indent}  <xsl:if test="{xpath}">\n' +
-                  f'{indent}    "BT{i.zfill(3)}": "' +
-                  f'<xsl:value-of select="{xpath}" />",</xsl:if>\n')
+
+            if row['Cardinality'] in ["*", "+"]:
+                '''
+                r += f"""{indent}  <xsl:if test="{xpath}">
+{indent}    <xsl:text>
+{indent}    "BT{i.zfill(3)}": [</xsl:text>
+{indent}    <xsl:for-each select="{xpath}">
+{indent}      "<xsl:value-of select="." />",</xsl:for-each>
+{indent}    <xsl:text>
+{indent}    ],</xsl:text>
+{indent}  </xsl:if>
+"""
+                '''
+                r += f"""{indent}  <xsl:if test="{xpath}">
+{indent}    "BT{i.zfill(3)}": [<xsl:for-each select="{xpath}">
+{indent}      "<xsl:value-of select="." />",</xsl:for-each>
+{indent}    ],</xsl:if>
+"""
+
+
+            else:
+                r += (f'{indent}  <xsl:if test="{xpath}">\n' +
+                      f'{indent}    "BT{i.zfill(3)}": ')
+                r +=  f'"<xsl:value-of select="{xpath}" />",</xsl:if>\n'
 
     for i, row in bg.items():
         if row['BG'] == bgno:
@@ -73,29 +94,29 @@ def smx2btj_recurse(bgno: str, prefix: str, indent: str, bt, bg) -> str:
 
 
 
-def btj2smx_recurse(bgno: str, prefix: str, indent: str, bt, bg) -> str:
+def btj2smx_recurse(bgno: str, indent: str, bt, bg) -> str:
     tag = smx_name(bg[bgno]['Name'])
     head = f'{indent}<{tag} xr:id="BG-{bgno}">'
     tail = f"{indent}</{tag}>\n"
 
     # wrap in for-each loop if the group can appear more than once
     if bg[bgno]['Cardinality'] in ["*", "+"]:
-        bgtag = f"{prefix}BG{bgno.zfill(3)}"
-        bgtag = prefix[:-1]
+        bgtag = f"BG{bgno.zfill(3)}"
         head = f"{indent}{{{{#{bgtag}}}}}\n" + head
         tail = tail + f"{indent}{{{{/{bgtag}}}}}\n"
-        prefix = ""
     elif bgno == "0":
         # special case for root element
-        head = '<xr:invoice xmlns:xr="urn:ce.eu:en16931:2017:xoev-de:kosit:standard:xrechnung-1">'
-        tail = "</xr:invoice>"
+        head = '''{{#invoice}}
+<xr:invoice xmlns:xr="urn:ce.eu:en16931:2017:xoev-de:kosit:standard:xrechnung-1">'''
+        tail = '''</xr:invoice>
+{{/invoice}}'''
 
     indent += "  "
     r = "\n"
     for i, row in bt.items():
         if row['BG'] == bgno:
             xmltag = smx_name(row['Name'])
-            bttag = f"{prefix}BT{i.zfill(3)}"
+            bttag = f"BT{i.zfill(3)}"
             r += f"""{indent}{{{{#{bttag}}}}}
 {indent}<{xmltag} xr:id="BT-{i}">{{{{{bttag}}}}}</{xmltag}>
 {indent}{{{{/{bttag}}}}}
@@ -103,7 +124,7 @@ def btj2smx_recurse(bgno: str, prefix: str, indent: str, bt, bg) -> str:
 
     for i, row in bg.items():
         if row['BG'] == bgno:
-            r += btj2smx_recurse(i, f"{prefix}BG{i.zfill(3)}.", indent, bt, bg)
+            r += btj2smx_recurse(i, indent, bt, bg)
     return head + r + tail
 
 
@@ -190,8 +211,7 @@ def main():
 
     with open("btj2smx.gen.mustache", "w") as f:
         print('<?xml version="1.0" encoding="UTF-8"?>', file=f)
-
-        print(btj2smx_recurse("0", "invoice.", "", bt, bg), file=f)
+        print(btj2smx_recurse("0", "", bt, bg), file=f)
 
 
 
