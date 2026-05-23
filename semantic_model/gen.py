@@ -14,7 +14,7 @@ DATATYPE_NAME = {
     "A": "Amount       ",
     "B": "Binary object",
     "C": "Code         ",
-    "D": "Data         ",
+    "D": "Date         ",
     "I": "Identifier   ",
     "P": "Percentage   ",
     "Q": "Quantity     ",
@@ -26,6 +26,13 @@ DATATYPE_NAME = {
 
 # Transate the official semantic name to the form in the KoSIT XML format
 def smx_name(official_name: str) -> str:
+
+    # Bug in xrechnung-visualization:
+    # <xr:Item_price_base_quantity_unit_of_measure> is used as XML tag for
+    # BT-150, but in the XRechnung spec the full name has an additional "_code".
+    if official_name == "Item price base quantity unit of measure code":
+        official_name = "Item price base quantity unit of measure"
+
     n = official_name.replace(" ", "_")
     return f"xr:{n}"
 
@@ -61,28 +68,23 @@ def smx2btj_recurse(bgno: str, prefix: str, indent: str, bt, bg) -> str:
             xpath = prefix + smx_name(row['Name'])
 
             if row['Cardinality'] in ["*", "+"]:
-                '''
-                r += f"""{indent}  <xsl:if test="{xpath}">
-{indent}    <xsl:text>
-{indent}    "BT{i.zfill(3)}": [</xsl:text>
-{indent}    <xsl:for-each select="{xpath}">
-{indent}      "<xsl:value-of select="." />",</xsl:for-each>
-{indent}    <xsl:text>
-{indent}    ],</xsl:text>
-{indent}  </xsl:if>
-"""
-                '''
                 r += f"""{indent}  <xsl:if test="{xpath}">
 {indent}    "BT{i.zfill(3)}": [<xsl:for-each select="{xpath}">
 {indent}      "<xsl:value-of select="." />",</xsl:for-each>
 {indent}    ],</xsl:if>
 """
-
-
+            elif row['Datatype'] == 'B':
+                r += f"""{indent}  <xsl:if test="{xpath}">
+{indent}    "BT{i.zfill(3)}": {{
+{indent}      "mime": "<xsl:value-of select="{xpath}/@mime_code" />",
+{indent}      "filename": "<xsl:value-of select="{xpath}/@filename" />",
+{indent}      "base64": "<xsl:value-of select="{xpath}/." />"
+{indent}    }},</xsl:if>
+"""
             else:
-                r += (f'{indent}  <xsl:if test="{xpath}">\n' +
-                      f'{indent}    "BT{i.zfill(3)}": ')
-                r +=  f'"<xsl:value-of select="{xpath}" />",</xsl:if>\n'
+                r += f"""{indent}  <xsl:if test="{xpath}">
+{indent}    "BT{i.zfill(3)}": "<xsl:value-of select="{xpath}" />",</xsl:if>
+"""
 
     for i, row in bg.items():
         if row['BG'] == bgno:

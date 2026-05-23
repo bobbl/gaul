@@ -26,7 +26,7 @@ BT,25,3,?,I,Preceding Invoice reference
 BT,26,3,?,D,Preceding Invoice issue date
 BT,27,4,1,T,Seller name
 BT,28,4,?,T,Seller trading name
-BT,29,4,?,I,Seller identifier
+BT,29,4,*,I,Seller identifier
 BT,30,4,?,I,Seller legal registration identifier
 BT,31,4,?,I,Seller VAT identifier
 BT,32,4,?,I,Seller tax registration identifier
@@ -59,8 +59,8 @@ BT,58,9,?,T,Buyer contact email address
 BT,59,10,?,T,Payee name
 BT,60,10,?,I,Payee identifier
 BT,61,10,?,I,Payee legal registration identifier
-BT,62,11,?,I,Seller tax representative VAT identifier
-BT,63,11,?,T,Seller tax representative name
+BT,62,11,1,T,Seller tax representative name
+BT,63,11,1,I,Seller tax representative VAT identifier
 BT,64,12,?,T,Tax representative address line 1
 BT,65,12,?,T,Tax representative address line 2
 BT,66,12,?,T,Tax representative city
