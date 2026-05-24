@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import csv
+import os
 
 
 CARDINALITY_NAME = {
@@ -137,6 +138,8 @@ def btj2smx_recurse(bgno: str, indent: str, bt, bg) -> str:
 
 def main():
 
+    os.makedirs('gen', exist_ok=True)
+
     with open('bt_semantic_model.csv', newline='') as f:
         reader = csv.DictReader(f)
         sm_rows = []
@@ -161,7 +164,7 @@ def main():
 
     # Markdown table of the business terms
 
-    with open("bt_table.gen.md", "w") as f:
+    with open("gen/bt_table.md", "w") as f:
         print("| Name                                            | ID     | Container | Data type | Cardinality |", file=f)
         print("| ----------------------------------------------- | ------ | ----- | ------------- | ---- |", file=f)
         for row in sorted(sm_rows, key=lambda x: x['Name']):
@@ -176,7 +179,7 @@ def main():
 
     # XSLT script to convert the KoSIT semantic model XML to JSON business terms
 
-    with open("smx2btj.gen.xslt", "w") as f:
+    with open("gen/smx2btj.xslt", "w") as f:
         print("""<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
@@ -211,7 +214,7 @@ def main():
 
     # mustache script to convert JSON business terms to the KoSIT semantic model
 
-    with open("btj2smx.gen.mustache", "w") as f:
+    with open("gen/btj2smx.mustache", "w") as f:
         print('<?xml version="1.0" encoding="UTF-8"?>', file=f)
         print(btj2smx_recurse("0", "", bt, bg), file=f)
 
