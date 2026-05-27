@@ -79,7 +79,7 @@ copy_invoices () {
 check_dependencies
 fetch_git
 copy_invoices
-
+uv run to_smx.py
 
 
 # SPDX-License-Identifier: ISC
