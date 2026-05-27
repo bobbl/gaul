@@ -129,8 +129,14 @@ def btj2smx_recurse(bgno: str, indent: str, bt, bg) -> str:
         if row['BG'] == bgno:
             xmltag = smx_name(row['Name'])
             bttag = f"BT{i.zfill(3)}"
-            r += f"""{indent}{{{{#{bttag}}}}}
-{indent}<{xmltag} xr:id="BT-{i}">{{{{{bttag}}}}}</{xmltag}>
+            if row['Datatype'] == 'B':
+                r += f"""{indent}{{{{#{bttag}}}}}
+{indent}<{xmltag} xr:id="BT-{i}" mime_code="{{{{mime}}}}" filename="{{{{filename}}}}">{{{{base64}}}}</{xmltag}>
+{indent}{{{{/{bttag}}}}}
+"""
+            else:
+                r += f"""{indent}{{{{#{bttag}}}}}
+{indent}<{xmltag} xr:id="BT-{i}">{{{{.}}}}</{xmltag}>
 {indent}{{{{/{bttag}}}}}
 """
 

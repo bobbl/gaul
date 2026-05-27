@@ -5,7 +5,6 @@ cii2smx=download/xrechnung-visualization/src/xsl/cii-xr.xsl
 
 
 
-
 # Check if command exists. Otherwise offer installation with apt
 # $1 command name
 # §2 package name
@@ -38,7 +37,8 @@ try_git_clone () {
 
 # Check if package dependencies are installed
 check_dependencies () {
-    :
+    check_package xsltproc xsltproc
+    check_package xmllint libxml2
 }
 
 
@@ -62,6 +62,8 @@ copy_invoices () {
     cp download/xrechnung-testsuite/src/test/technical-cases/cius/*_uncefact.xml cii/
     cp download/xrechnung-testsuite/src/test/technical-cases/cvd/*_uncefact.xml cii/
     cp download/xrechnung-visualization/src/test/instances/*-uncefact.xml cii/
+    count_cii=$(ls cii/*.xml | wc -l)
+    echo "Found $count_cii CII invoices"
 
     mkdir -p ubl
     cp download/xrechnung-testsuite/src/test/business-cases/extension/*_ubl.xml ubl/
@@ -70,16 +72,76 @@ copy_invoices () {
     cp download/xrechnung-testsuite/src/test/technical-cases/cvd/*_ubl.xml ubl/
     cp download/xrechnung-visualization/src/test/instances/*_ubl.xml ubl/
     cp download/xrechnung-visualization/src/test/instances/*_creditnote.xml ubl/
+    count_ubl=$(ls ubl/*.xml | wc -l)
+    echo "Found $count_cii UBL invoices"
 }
 
 
+# Generate SMX with KoSIT XSLT 2.0 template
+kosit_smx () {
+    if [ -d smx ]
+    then
+        count_smx=$(ls smx/*.smx | wc -l)
+    else
+        count_smx=0
+    fi
+    if [ $count_smx -lt $count_cii ]
+    then
+        # For the XSLT 2.0 transformation it's easier to call SaxonC HE via Python
+        uv run to_smx.py
+
+        for f in smx/*.smx
+        do
+            # remove unnecessary additional attributes from the xr: tags
+            # FIXME: if the attribute names appear within content, they are also removed there
+            sed 's/xr:src="[^"]*"//; s/scheme_identifier="[^"]*"//; s/scheme_version_identifier="[^"]*"//' "$f" > tmp.noxrsrc
+
+            # pretty print for comparison
+            xmllint --format tmp.noxrsrc > smx/$(basename $f .xml.smx).smx
+            rm "$f"
+        done
+    fi
+}
+
+
+# Test 01: SMX -> BTJ -> SMX'
+test01_smx () {
+    mkdir -p btj
+    rm btj/*
+    mkdir -p smx2
+    rm smx2/*
+
+    for f in smx/*.smx
+    do
+        echo "SMX -> BTJ -> SMX': $f"
+        btj=btj/$(basename "$f" .smx).btj
+        smx2=smx2/$(basename "$f")
+
+        xsltproc ../templates/gen/smx2btj.xslt "$f" > "$btj"
+        mustache "$btj" ../templates/gen/btj2smx.mustache > "$smx2"
+        #diff "$f" "$smx2"
+    done
+}
 
 
 
 check_dependencies
 fetch_git
 copy_invoices
-uv run to_smx.py
+kosit_smx
+
+back=$(pwd)
+cd ../templates
+uv run gen.py
+cd "$back"
+
+test01_smx
+
+
+
+
+
+
 
 
 # SPDX-License-Identifier: ISC
