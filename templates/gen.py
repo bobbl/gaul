@@ -39,11 +39,24 @@ def smx_name(official_name: str) -> str:
 
 
 def smx2btj_recurse(bgno: str, prefix: str, indent: str, bt, bg) -> str:
-    head = ""
-    tail = ""
 
-    # Wrap in for-each loop if the group can appear more than once
-    if bg[bgno]['Cardinality'] in ["*", "+"]:
+    if bgno == "0":
+        head = ""
+        tail = ""
+
+    elif bg[bgno]['Cardinality'] in ["?", "1"]:
+        head = f"""
+{indent}  <xsl:if test="{prefix[:-1]}">
+{indent}    <xsl:text>
+{indent}    "BG{bgno.zfill(3)}": {{</xsl:text>"""
+        tail = f"""{indent}    <xsl:text>
+{indent}    }},</xsl:text>
+{indent}  </xsl:if>
+"""
+        indent += "  "
+
+    else:
+        # Wrap in for-each loop if the group can appear more than once
         head = f"""
 {indent}  <xsl:if test="{prefix[:-1]}">
 {indent}    <xsl:text>
@@ -52,7 +65,6 @@ def smx2btj_recurse(bgno: str, prefix: str, indent: str, bt, bg) -> str:
 {indent}      <xsl:text>
 {indent}      {{</xsl:text>"""
         tail = f"""{indent}    <xsl:text>
-{indent}        "_": "mask trailing comma"
 {indent}      }}</xsl:text>
 {indent}      <xsl:if test="position()!=last()">,</xsl:if>
 {indent}    </xsl:for-each>
@@ -73,14 +85,9 @@ def smx2btj_recurse(bgno: str, prefix: str, indent: str, bt, bg) -> str:
 {indent}    "BT{i.zfill(3)}": [<xsl:for-each select="{xpath}">
 {indent}      "<xsl:call-template name="escape-json">
 {indent}         <xsl:with-param name="text" select="."/>
-{indent}       </xsl:call-template>",</xsl:for-each>
+{indent}       </xsl:call-template>"<xsl:if test="position()!=last()">,</xsl:if></xsl:for-each>
 {indent}    ],</xsl:if>
-
-
-
 """
-
-
             elif row['Datatype'] == 'B':
                 r += f"""{indent}  <xsl:if test="{xpath}">
 {indent}    "BT{i.zfill(3)}": {{
@@ -111,17 +118,17 @@ def btj2smx_recurse(bgno: str, indent: str, bt, bg) -> str:
     head = f'{indent}<{tag} xr:id="BG-{bgno}">'
     tail = f"{indent}</{tag}>\n"
 
-    # wrap in for-each loop if the group can appear more than once
-    if bg[bgno]['Cardinality'] in ["*", "+"]:
-        bgtag = f"BG{bgno.zfill(3)}"
-        head = f"{indent}{{{{#{bgtag}}}}}\n" + head
-        tail = tail + f"{indent}{{{{/{bgtag}}}}}\n"
-    elif bgno == "0":
+    if bgno == "0":
         # special case for root element
         head = '''{{#invoice}}
 <xr:invoice xmlns:xr="urn:ce.eu:en16931:2017:xoev-de:kosit:standard:xrechnung-1">'''
         tail = '''</xr:invoice>
 {{/invoice}}'''
+    else:
+        # wrap in for-each loop anyway
+        bgtag = f"BG{bgno.zfill(3)}"
+        head = f"{indent}{{{{#{bgtag}}}}}\n" + head
+        tail = tail + f"{indent}{{{{/{bgtag}}}}}\n"
 
     indent += "  "
     r = "\n"
@@ -219,7 +226,6 @@ def main():
 
         print(smx2btj_recurse("0", "", "", bt, bg), file=f)
         print("""  <xsl:text>
-    "_": "mask trailing comma"
   }
 }
 </xsl:text>
