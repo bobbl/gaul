@@ -52,4 +52,57 @@
   </xsl:choose>
 </xsl:template>
 
+
+<xsl:template name="array">
+  <xsl:param name="xmltag"/>
+  <xsl:param name="bt"/>
+  <xsl:param name="indent"/>
+
+  <xsl:if test="$xmltag">
+    <xsl:text>&#10;</xsl:text>
+    <xsl:value-of select="$indent" />
+    <xsl:text>    "</xsl:text>
+    <xsl:value-of select="$bt" />
+    <xsl:text>": [</xsl:text>
+    <xsl:for-each select="$xmltag">
+      <xsl:text>&#10;</xsl:text>
+      <xsl:value-of select="$indent" />
+      <xsl:text>      "</xsl:text>
+      <xsl:call-template name="escape-json">
+        <xsl:with-param name="text" select="."/>
+      </xsl:call-template>
+      <xsl:text>"</xsl:text>
+      <xsl:if test="position()!=last()">,</xsl:if>
+    </xsl:for-each>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:value-of select="$indent" />
+    <xsl:text>    ],</xsl:text>
+  </xsl:if>
+</xsl:template>
+
+<!--
+            elif row['Datatype'] == 'B':
+                r += f"""
+{indent}  <xsl:if test="{xpath}">
+{indent}    <xsl:text>&#10;{indent}    "BT{i.zfill(3)}": {{&#10;{indent}      "mime": "</xsl:text>
+{indent}    <xsl:value-of select="{xpath}/@mime_code" />
+{indent}    <xsl:text>",&#10;{indent}      "filename": "</xsl:text>
+{indent}    <xsl:value-of select="{xpath}/@filename" />
+{indent}    <xsl:text>",&#10;{indent}      "base64": "</xsl:text>
+{indent}    <xsl:value-of select="{xpath}/." />
+{indent}    <xsl:text>"&#10;{indent}    }},</xsl:text>
+{indent}  </xsl:if>"""
+            else:
+                r += f"""
+{indent}  <xsl:if test="{xpath}">
+{indent}    <xsl:text>&#10;{indent}    "BT{i.zfill(3)}": "</xsl:text>
+{indent}    <xsl:call-template name="escape-json">
+{indent}      <xsl:with-param name="text" select="{xpath}" />
+{indent}    </xsl:call-template>
+{indent}    <xsl:text>",</xsl:text>
+{indent}  </xsl:if>"""
+
+-->
+
+
 </xsl:stylesheet>

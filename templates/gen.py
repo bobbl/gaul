@@ -28,7 +28,7 @@ DATATYPE_NAME = {
 # Transate the official semantic name to the form in the KoSIT XML format
 def smx_name(official_name: str) -> str:
 
-    # Bug in xrechnung-visualization:
+    # Deal with bug in xrechnung-visualization:
     # <xr:Item_price_base_quantity_unit_of_measure> is used as XML tag for
     # BT-150, but in the XRechnung spec the full name has an additional "_code".
     if official_name == "Item price base quantity unit of measure code":
@@ -39,6 +39,13 @@ def smx_name(official_name: str) -> str:
 
 
 def smx2btj_recurse(bgno: str, prefix: str, indent: str, bt, bg) -> str:
+
+    # Deal with bug in xrechnung-visualization:
+    # <xr:INVOICING_PERIOD> is a child of <xr:INVOICE> but in the XRechnung
+    # spec "INVOICE PERIOD" is a child of "DELIVERY INFORMATION", which is
+    # a child of "INVOICE"
+    if bgno == "14":
+        prefix = smx_name(bg[bgno]['Name']) + "/"
 
     if bgno == "0":
         head = ""
@@ -76,6 +83,15 @@ def smx2btj_recurse(bgno: str, prefix: str, indent: str, bt, bg) -> str:
 
             if row['Cardinality'] in ["*", "+"]:
                 r += f"""
+{indent}  <xsl:call-template name="array">
+{indent}    <xsl:with-param name="xmltag" select="{xpath}"/>
+{indent}    <xsl:with-param name="bt" select="'BT{i.zfill(3)}'"/>
+{indent}    <xsl:with-param name="indent" select="'{indent}'"/>
+{indent}  </xsl:call-template>"""
+
+
+                '''
+                r += f"""
 {indent}  <xsl:if test="{xpath}">
 {indent}    <xsl:text>&#10;{indent}    "BT{i.zfill(3)}": [</xsl:text>
 {indent}    <xsl:for-each select="{xpath}">
@@ -87,6 +103,8 @@ def smx2btj_recurse(bgno: str, prefix: str, indent: str, bt, bg) -> str:
 {indent}    <xsl:if test="position()!=last()">,</xsl:if></xsl:for-each>
 {indent}    <xsl:text>&#10;{indent}    ],</xsl:text>
 {indent}  </xsl:if>"""
+                '''
+
             elif row['Datatype'] == 'B':
                 r += f"""
 {indent}  <xsl:if test="{xpath}">
@@ -151,6 +169,24 @@ def btj2smx_recurse(bgno: str, indent: str, bt, bg) -> str:
 {indent}<{xmltag} xr:id="BT-{i}">{{{{.}}}}</{xmltag}>
 {indent}{{{{/{bttag}}}}}
 """
+
+
+
+    # Deal with bug in xrechnung-visualization:
+    # <xr:INVOICING_PERIOD> is a child of <xr:INVOICE> but in the XRechnung
+    # spec "INVOICE PERIOD" is a child of "DELIVERY INFORMATION", which is
+    # a child of "INVOICE"
+    #
+    # Solution: when in BT-13 recurse only in BT-15 and append BT-14 after the
+    #           end tag of BT-13
+    if bgno == "13":   # BG-13 DELIVERY_INFORMATION
+        r += btj2smx_recurse("15", indent, bt, bg) # BG-15 DELIVER_TO_ADDRESS
+        appendix = btj2smx_recurse("14", indent, bt, bg)
+        print(f"[{indent}]")
+        return (head + r + tail +
+            "  {{#BG013}}\n" +
+            btj2smx_recurse("14", "  ", bt, bg) +  # BG-14 INVOICE_PERIOD
+            "  {{/BG013}}\n")
 
     for i, row in bg.items():
         if row['BG'] == bgno:
