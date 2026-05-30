@@ -28,7 +28,7 @@ DATATYPE_NAME = {
 # Transate the official semantic name to the form in the KoSIT XML format
 def smx_name(official_name: str) -> str:
 
-    # Deal with bug in xrechnung-visualization:
+    # Deal with bug 1 in xrechnung-visualization:
     # <xr:Item_price_base_quantity_unit_of_measure> is used as XML tag for
     # BT-150, but in the XRechnung spec the full name has an additional "_code".
     if official_name == "Item price base quantity unit of measure code":
@@ -40,9 +40,9 @@ def smx_name(official_name: str) -> str:
 
 def smx2btj_recurse(bgno: str, prefix: str, indent: str, bt, bg) -> str:
 
-    # Deal with bug in xrechnung-visualization:
+    # Deal with bug 2 in xrechnung-visualization:
     # <xr:INVOICING_PERIOD> is a child of <xr:INVOICE> but in the XRechnung
-    # spec "INVOICE PERIOD" is a child of "DELIVERY INFORMATION", which is
+    # spec "INVOICING PERIOD" is a child of "DELIVERY INFORMATION", which is
     # a child of "INVOICE"
     if bgno == "14":
         prefix = smx_name(bg[bgno]['Name']) + "/"
@@ -52,8 +52,15 @@ def smx2btj_recurse(bgno: str, prefix: str, indent: str, bt, bg) -> str:
         tail = ""
 
     elif bg[bgno]['Cardinality'] in ["?", "1"]:
+
+        # bug 2 workaround
+        if bgno == "13":
+            bg13exception = " or xr:INVOICING_PERIOD"
+        else:
+            bg13exception = ""
+
         head = f"""
-{indent}  <xsl:if test="{prefix[:-1]}">
+{indent}  <xsl:if test="{prefix[:-1]}{bg13exception}">
 {indent}    <xsl:text>&#10;{indent}    "BG{bgno.zfill(3)}": {{</xsl:text>"""
         tail = f"""
 {indent}    <xsl:text>&#10;{indent}    }},</xsl:text>
@@ -174,7 +181,7 @@ def btj2smx_recurse(bgno: str, indent: str, bt, bg) -> str:
 
     # Deal with bug in xrechnung-visualization:
     # <xr:INVOICING_PERIOD> is a child of <xr:INVOICE> but in the XRechnung
-    # spec "INVOICE PERIOD" is a child of "DELIVERY INFORMATION", which is
+    # spec "INVOIING PERIOD" is a child of "DELIVERY INFORMATION", which is
     # a child of "INVOICE"
     #
     # Solution: when in BT-13 recurse only in BT-15 and append BT-14 after the
@@ -182,7 +189,6 @@ def btj2smx_recurse(bgno: str, indent: str, bt, bg) -> str:
     if bgno == "13":   # BG-13 DELIVERY_INFORMATION
         r += btj2smx_recurse("15", indent, bt, bg) # BG-15 DELIVER_TO_ADDRESS
         appendix = btj2smx_recurse("14", indent, bt, bg)
-        print(f"[{indent}]")
         return (head + r + tail +
             "  {{#BG013}}\n" +
             btj2smx_recurse("14", "  ", bt, bg) +  # BG-14 INVOICE_PERIOD

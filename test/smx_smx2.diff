@@ -1,0 +1,31 @@
+diff smx/01.07a-INVOICE_uncefact.smx smx2/01.07a-INVOICE_uncefact.smx
+56a57,58
+>   <xr:DELIVERY_INFORMATION xr:id="BG-13">
+>   </xr:DELIVERY_INFORMATION>
+diff smx/01.09a-INVOICE_uncefact.smx smx2/01.09a-INVOICE_uncefact.smx
+82c82
+<       <xr:Item_name xr:id="BT-153">Paketierung der Anwendung "Kofax 10.2" für 180 Geräte</xr:Item_name>
+---
+>       <xr:Item_name xr:id="BT-153">Paketierung der Anwendung &quot;Kofax 10.2&quot; für 180 Geräte</xr:Item_name>
+diff smx/03.01a-INVOICE_uncefact.smx smx2/03.01a-INVOICE_uncefact.smx
+44a45,46
+>   <xr:DELIVERY_INFORMATION xr:id="BG-13">
+>   </xr:DELIVERY_INFORMATION>
+diff smx/03.04a-INVOICE_uncefact.smx smx2/03.04a-INVOICE_uncefact.smx
+43a44,45
+>   <xr:DELIVERY_INFORMATION xr:id="BG-13">
+>   </xr:DELIVERY_INFORMATION>
+diff smx/03.05a-INVOICE_uncefact.smx smx2/03.05a-INVOICE_uncefact.smx
+43a44,45
+>   <xr:DELIVERY_INFORMATION xr:id="BG-13">
+>   </xr:DELIVERY_INFORMATION>
+diff smx/wrong-date-with-text-uncefact.smx smx2/wrong-date-with-text-uncefact.smx
+4c4
+<   <xr:Invoice_issue_date xr:id="BT-2">ILLEGAL DATE FORMAT of "Dies ist kein Datum".</xr:Invoice_issue_date>
+---
+>   <xr:Invoice_issue_date xr:id="BT-2">ILLEGAL DATE FORMAT of &quot;Dies ist kein Datum&quot;.</xr:Invoice_issue_date>
+diff smx/wrong-date-with-zeros-uncefact.smx smx2/wrong-date-with-zeros-uncefact.smx
+4c4
+<   <xr:Invoice_issue_date xr:id="BT-2">ILLEGAL DATE FORMAT of "00000000".</xr:Invoice_issue_date>
+---
+>   <xr:Invoice_issue_date xr:id="BT-2">ILLEGAL DATE FORMAT of &quot;00000000&quot;.</xr:Invoice_issue_date>

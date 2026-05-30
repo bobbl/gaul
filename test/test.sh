@@ -1,8 +1,12 @@
 #!/bin/sh
+# Run several tests to check if conversion templates work
 
-cii2smx=download/xrechnung-visualization/src/xsl/cii-xr.xsl
 
-
+esc_white="\033[1;37m"
+esc_green="\033[32m"
+esc_red="\033[31m"
+esc_orange="\033[33m"
+esc="\033[0m"
 
 
 # Check if command exists. Otherwise offer installation with apt
@@ -121,6 +125,13 @@ test01_smx () {
         mustache "$btj" ../templates/gen/btj2smx.mustache > "$smx2"
         #diff "$f" "$smx2"
     done
+    diff smx/ smx2/ > tmp.diff
+    if diff --color tmp.diff smx_smx2.diff
+    then
+        echo "${esc_white}Acceptable differences${esc} (&quot; and empty <xr:DELIVERY_INFORMATION>)"
+    else
+        echo "${esc_red}NOT OK${esc}"
+    fi
 }
 
 
