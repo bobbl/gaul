@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
+
 <!-- Apply JSON escape sequences to an XML string -->
 <xsl:template name="escape-json">
   <xsl:param name="text"/>
@@ -53,16 +54,17 @@
 </xsl:template>
 
 
+<!-- Output JSON key and list of strings -->
 <xsl:template name="array">
   <xsl:param name="xmltag"/>
-  <xsl:param name="bt"/>
+  <xsl:param name="jsonkey"/>
   <xsl:param name="indent"/>
 
   <xsl:if test="$xmltag">
     <xsl:text>&#10;</xsl:text>
     <xsl:value-of select="$indent" />
     <xsl:text>    "</xsl:text>
-    <xsl:value-of select="$bt" />
+    <xsl:value-of select="$jsonkey" />
     <xsl:text>": [</xsl:text>
     <xsl:for-each select="$xmltag">
       <xsl:text>&#10;</xsl:text>
@@ -80,29 +82,55 @@
   </xsl:if>
 </xsl:template>
 
-<!--
-            elif row['Datatype'] == 'B':
-                r += f"""
-{indent}  <xsl:if test="{xpath}">
-{indent}    <xsl:text>&#10;{indent}    "BT{i.zfill(3)}": {{&#10;{indent}      "mime": "</xsl:text>
-{indent}    <xsl:value-of select="{xpath}/@mime_code" />
-{indent}    <xsl:text>",&#10;{indent}      "filename": "</xsl:text>
-{indent}    <xsl:value-of select="{xpath}/@filename" />
-{indent}    <xsl:text>",&#10;{indent}      "base64": "</xsl:text>
-{indent}    <xsl:value-of select="{xpath}/." />
-{indent}    <xsl:text>"&#10;{indent}    }},</xsl:text>
-{indent}  </xsl:if>"""
-            else:
-                r += f"""
-{indent}  <xsl:if test="{xpath}">
-{indent}    <xsl:text>&#10;{indent}    "BT{i.zfill(3)}": "</xsl:text>
-{indent}    <xsl:call-template name="escape-json">
-{indent}      <xsl:with-param name="text" select="{xpath}" />
-{indent}    </xsl:call-template>
-{indent}    <xsl:text>",</xsl:text>
-{indent}  </xsl:if>"""
 
--->
+<!-- Output JSON key and object for binary data -->
+<xsl:template name="binary_object">
+  <xsl:param name="xmltag"/>
+  <xsl:param name="jsonkey"/>
+  <xsl:param name="indent"/>
+
+  <xsl:if test="$xmltag">
+    <xsl:text>&#10;</xsl:text>
+    <xsl:value-of select="$indent" />
+    <xsl:text>    "</xsl:text>
+    <xsl:value-of select="$jsonkey" />
+    <xsl:text>": {&#10;</xsl:text>
+    <xsl:value-of select="$indent" />
+    <xsl:text>      "mime": "</xsl:text>
+    <xsl:value-of select="$xmltag/@mime_code" />
+    <xsl:text>",&#10;</xsl:text>
+    <xsl:value-of select="$indent" />
+    <xsl:text>      "filename": "</xsl:text>
+    <xsl:value-of select="$xmltag/@filename" />
+    <xsl:text>",&#10;</xsl:text>
+    <xsl:value-of select="$indent" />
+    <xsl:text>      "base64": "</xsl:text>
+    <xsl:value-of select="$xmltag/." />
+    <xsl:text>"&#10;</xsl:text>
+    <xsl:value-of select="$indent" />
+    <xsl:text>    },</xsl:text>
+  </xsl:if>
+</xsl:template>
+
+
+<!-- Output JSON key and value -->
+<xsl:template name="string">
+  <xsl:param name="xmltag"/>
+  <xsl:param name="jsonkey"/>
+  <xsl:param name="indent"/>
+
+  <xsl:if test="$xmltag">
+    <xsl:text>&#10;</xsl:text>
+    <xsl:value-of select="$indent" />
+    <xsl:text>    "</xsl:text>
+    <xsl:value-of select="$jsonkey" />
+    <xsl:text>": "</xsl:text>
+    <xsl:call-template name="escape-json">
+      <xsl:with-param name="text" select="$xmltag" />
+    </xsl:call-template>
+    <xsl:text>",</xsl:text>
+  </xsl:if>
+</xsl:template>
 
 
 </xsl:stylesheet>

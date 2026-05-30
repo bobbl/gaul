@@ -89,49 +89,18 @@ def smx2btj_recurse(bgno: str, prefix: str, indent: str, bt, bg) -> str:
             xpath = prefix + smx_name(row['Name'])
 
             if row['Cardinality'] in ["*", "+"]:
-                r += f"""
-{indent}  <xsl:call-template name="array">
+                template_name = "array"
+            elif row['Datatype'] == 'B':
+                template_name = "binary_object"
+            else:
+                template_name = "string"
+            r += f"""
+{indent}  <xsl:call-template name="{template_name}">
 {indent}    <xsl:with-param name="xmltag" select="{xpath}"/>
-{indent}    <xsl:with-param name="bt" select="'BT{i.zfill(3)}'"/>
+{indent}    <xsl:with-param name="jsonkey" select="'BT{i.zfill(3)}'"/>
 {indent}    <xsl:with-param name="indent" select="'{indent}'"/>
 {indent}  </xsl:call-template>"""
 
-
-                '''
-                r += f"""
-{indent}  <xsl:if test="{xpath}">
-{indent}    <xsl:text>&#10;{indent}    "BT{i.zfill(3)}": [</xsl:text>
-{indent}    <xsl:for-each select="{xpath}">
-{indent}      <xsl:text>&#10;{indent}      "</xsl:text>
-{indent}      <xsl:call-template name="escape-json">
-{indent}        <xsl:with-param name="text" select="."/>
-{indent}      </xsl:call-template>
-{indent}    <xsl:text>"</xsl:text>
-{indent}    <xsl:if test="position()!=last()">,</xsl:if></xsl:for-each>
-{indent}    <xsl:text>&#10;{indent}    ],</xsl:text>
-{indent}  </xsl:if>"""
-                '''
-
-            elif row['Datatype'] == 'B':
-                r += f"""
-{indent}  <xsl:if test="{xpath}">
-{indent}    <xsl:text>&#10;{indent}    "BT{i.zfill(3)}": {{&#10;{indent}      "mime": "</xsl:text>
-{indent}    <xsl:value-of select="{xpath}/@mime_code" />
-{indent}    <xsl:text>",&#10;{indent}      "filename": "</xsl:text>
-{indent}    <xsl:value-of select="{xpath}/@filename" />
-{indent}    <xsl:text>",&#10;{indent}      "base64": "</xsl:text>
-{indent}    <xsl:value-of select="{xpath}/." />
-{indent}    <xsl:text>"&#10;{indent}    }},</xsl:text>
-{indent}  </xsl:if>"""
-            else:
-                r += f"""
-{indent}  <xsl:if test="{xpath}">
-{indent}    <xsl:text>&#10;{indent}    "BT{i.zfill(3)}": "</xsl:text>
-{indent}    <xsl:call-template name="escape-json">
-{indent}      <xsl:with-param name="text" select="{xpath}" />
-{indent}    </xsl:call-template>
-{indent}    <xsl:text>",</xsl:text>
-{indent}  </xsl:if>"""
 
     for i, row in bg.items():
         if row['BG'] == bgno:
