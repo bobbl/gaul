@@ -54,7 +54,13 @@
 </xsl:template>
 
 
-<!-- Output JSON key and list of strings -->
+<!-- Output JSON key and list of strings
+    "BT158": [
+      "1001",
+      "1002",
+      "1003"
+    ],
+-->
 <xsl:template name="array">
   <xsl:param name="xmltag"/>
   <xsl:param name="jsonkey"/>
@@ -83,7 +89,13 @@
 </xsl:template>
 
 
-<!-- Output JSON key and object for binary data -->
+<!-- Output JSON key and object for binary data 
+    "BT125": {
+      "mime": "",
+      "filename": "",
+      "base64": ""
+    },
+-->
 <xsl:template name="binary_object">
   <xsl:param name="xmltag"/>
   <xsl:param name="jsonkey"/>
@@ -113,7 +125,45 @@
 </xsl:template>
 
 
-<!-- Output JSON key and value -->
+<!-- Output JSON key and date object
+    "BT002": {
+      "YYYY": "1990",
+      "MM": "10",
+      "DD": "03"
+    },
+-->
+<xsl:template name="date_from_iso8601">
+  <xsl:param name="xmltag"/>
+  <xsl:param name="jsonkey"/>
+  <xsl:param name="indent"/>
+
+  <xsl:if test="$xmltag">
+    <xsl:text>&#10;</xsl:text>
+    <xsl:value-of select="$indent" />
+    <xsl:text>    "</xsl:text>
+    <xsl:value-of select="$jsonkey" />
+    <xsl:text>": {&#10;</xsl:text>
+    <xsl:value-of select="$indent" />
+    <xsl:text>      "YYYY": "</xsl:text>
+    <xsl:value-of select="substring($xmltag, 1, 4)" />
+    <xsl:text>",&#10;</xsl:text>
+    <xsl:value-of select="$indent" />
+    <xsl:text>      "MM": "</xsl:text>
+    <xsl:value-of select="substring($xmltag, 6, 2)" />
+    <xsl:text>",&#10;</xsl:text>
+    <xsl:value-of select="$indent" />
+    <xsl:text>      "DD": "</xsl:text>
+    <xsl:value-of select="substring($xmltag, 9, 2)" />
+    <xsl:text>"&#10;</xsl:text>
+    <xsl:value-of select="$indent" />
+    <xsl:text>    },</xsl:text>
+  </xsl:if>
+</xsl:template>
+
+
+<!-- Output JSON key and value
+    "BT001": "123"
+ -->
 <xsl:template name="string">
   <xsl:param name="xmltag"/>
   <xsl:param name="jsonkey"/>

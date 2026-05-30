@@ -92,6 +92,8 @@ def smx2btj_recurse(bgno: str, prefix: str, indent: str, bt, bg) -> str:
                 template_name = "array"
             elif row['Datatype'] == 'B':
                 template_name = "binary_object"
+            elif row['Datatype'] == 'D':
+                template_name = "date_from_iso8601"
             else:
                 template_name = "string"
             r += f"""
@@ -135,17 +137,18 @@ def btj2smx_recurse(bgno: str, indent: str, bt, bg) -> str:
         if row['BG'] == bgno:
             xmltag = smx_name(row['Name'])
             bttag = f"BT{i.zfill(3)}"
-            if row['Datatype'] == 'B':
-                r += f"""{indent}{{{{#{bttag}}}}}
-{indent}<{xmltag} xr:id="BT-{i}" mime_code="{{{{mime}}}}" filename="{{{{filename}}}}">{{{{base64}}}}</{xmltag}>
-{indent}{{{{/{bttag}}}}}
-"""
-            else:
-                r += f"""{indent}{{{{#{bttag}}}}}
-{indent}<{xmltag} xr:id="BT-{i}">{{{{.}}}}</{xmltag}>
-{indent}{{{{/{bttag}}}}}
-"""
 
+            if row['Datatype'] == 'B':
+                content = f' mime_code="{{{{mime}}}}" filename="{{{{filename}}}}">{{{{base64}}}}'
+            elif row['Datatype'] == 'D':
+                content = f'>{{{{YYYY}}}}-{{{{MM}}}}-{{{{DD}}}}'
+            else:
+                content = f'>{{{{.}}}}'
+
+            r += f"""{indent}{{{{#{bttag}}}}}
+{indent}<{xmltag} xr:id="BT-{i}"{content}</{xmltag}>
+{indent}{{{{/{bttag}}}}}
+"""
 
 
     # Deal with bug in xrechnung-visualization:

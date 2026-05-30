@@ -23,9 +23,9 @@ diff smx/wrong-date-with-text-uncefact.smx smx2/wrong-date-with-text-uncefact.sm
 4c4
 <   <xr:Invoice_issue_date xr:id="BT-2">ILLEGAL DATE FORMAT of "Dies ist kein Datum".</xr:Invoice_issue_date>
 ---
->   <xr:Invoice_issue_date xr:id="BT-2">ILLEGAL DATE FORMAT of &quot;Dies ist kein Datum&quot;.</xr:Invoice_issue_date>
+>   <xr:Invoice_issue_date xr:id="BT-2">ILLE-AL-DA</xr:Invoice_issue_date>
 diff smx/wrong-date-with-zeros-uncefact.smx smx2/wrong-date-with-zeros-uncefact.smx
 4c4
 <   <xr:Invoice_issue_date xr:id="BT-2">ILLEGAL DATE FORMAT of "00000000".</xr:Invoice_issue_date>
 ---
->   <xr:Invoice_issue_date xr:id="BT-2">ILLEGAL DATE FORMAT of &quot;00000000&quot;.</xr:Invoice_issue_date>
+>   <xr:Invoice_issue_date xr:id="BT-2">ILLE-AL-DA</xr:Invoice_issue_date>
