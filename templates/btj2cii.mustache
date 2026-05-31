@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 {{! mustache template to generate a CII invoice from a JSON file with business terms }}
 {{#invoice}}
-<rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100"
-                          xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100"
-                          xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100"
-                          xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+<rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
   <rsm:ExchangedDocumentContext>
     <ram:BusinessProcessSpecifiedDocumentContextParameter>
-      <ram:ID>{{BT023}}</ram:ID>
+      <ram:ID>{{BG002.BT023}}</ram:ID>
     </ram:BusinessProcessSpecifiedDocumentContextParameter>
     <ram:GuidelineSpecifiedDocumentContextParameter>
-      <ram:ID>{{BT024}}</ram:ID>
+      <ram:ID>{{BG002.BT024}}</ram:ID>
     </ram:GuidelineSpecifiedDocumentContextParameter>
   </rsm:ExchangedDocumentContext>
   <rsm:ExchangedDocument>
     <ram:ID>{{BT001}}</ram:ID>
     <ram:TypeCode>{{BT003}}</ram:TypeCode>
+    {{#BT002}}
     <ram:IssueDateTime>
-      <udt:DateTimeString format="102">{{BT002_CCYYMMDD}}</udt:DateTimeString>
+      <udt:DateTimeString format="102">{{YYYY}}{{MM}}{{DD}}</udt:DateTimeString>
     </ram:IssueDateTime>
+    {{/BT002}}
     {{#BG001}}
     <ram:IncludedNote>
-      <ram:Content>{{BT022}}</ram:Content>
-      <ram:SubjectCode>{{BT021}}</ram:SubjectCode>
+      {{#BT022}}
+      <ram:Content>{{.}}</ram:Content>
+      {{/BT022}}
+      {{#BT021}}
+      <ram:SubjectCode>{{.}}</ram:SubjectCode>
+      {{/BT021}}
     </ram:IncludedNote>
     {{/BG001}}
   </rsm:ExchangedDocument>
@@ -37,6 +40,7 @@
         </ram:IncludedNote>
         {{/BT127}}
       </ram:AssociatedDocumentLineDocument>
+      {{#BG031}}
       <ram:SpecifiedTradeProduct>
         {{#BT157}}
         <ram:GlobalID>{{.}}</ram:GlobalID>
@@ -68,63 +72,126 @@
         </ram:OriginTradeCountry>
         {{/BT159}}
       </ram:SpecifiedTradeProduct>
+      {{/BG031}}
       <ram:SpecifiedLineTradeAgreement>
         {{#BT132}}
         <ram:BuyerOrderReferencedDocument>
           <ram:LineID>{{.}}</ram:LineID>
         </ram:BuyerOrderReferencedDocument>
         {{/BT132}}
-        <ram:GrossPriceProductTradePrice>
+        {{!
+
+
+            GrossPriceProductTradePrice is often empty, therefore use cascading
+            tests to check if there is at least one valid child
+        }}
+        {{#BG029}}
           {{#BT148}}
+        <ram:GrossPriceProductTradePrice>
           <ram:ChargeAmount>{{.}}</ram:ChargeAmount>
-          {{/BT148}}
-          {{#BT149}}
+            {{#BT149}}
           <ram:BasisQuantity {{#BT150}}unitCode="{{.}}"{{/BT150}}>{{.}}</ram:BasisQuantity>
-          {{/BT149}}
-          {{#BT147}}
+            {{/BT149}}
+            {{#BT147}}
           <ram:AppliedTradeAllowanceCharge>
             <ram:ChargeIndicator>
               <udt:Indicator>false</udt:Indicator>
             </ram:ChargeIndicator>
             <ram:ActualAmount>{{.}}</ram:ActualAmount>
           </ram:AppliedTradeAllowanceCharge>
-          {{/BT147}}
+            {{/BT147}}
         </ram:GrossPriceProductTradePrice>
+          {{/BT148}}
+          {{^BT148}}
+            {{#BT149}}
+        <ram:GrossPriceProductTradePrice>
+          <ram:BasisQuantity {{#BT150}}unitCode="{{.}}"{{/BT150}}>{{.}}</ram:BasisQuantity>
+              {{#BT147}}
+          <ram:AppliedTradeAllowanceCharge>
+            <ram:ChargeIndicator>
+              <udt:Indicator>false</udt:Indicator>
+            </ram:ChargeIndicator>
+            <ram:ActualAmount>{{.}}</ram:ActualAmount>
+          </ram:AppliedTradeAllowanceCharge>
+              {{/BT147}}
+        </ram:GrossPriceProductTradePrice>
+            {{/BT149}}
+            {{^BT149}}
+              {{#BT147}}
+        <ram:GrossPriceProductTradePrice>
+          <ram:AppliedTradeAllowanceCharge>
+            <ram:ChargeIndicator>
+              <udt:Indicator>false</udt:Indicator>
+            </ram:ChargeIndicator>
+            <ram:ActualAmount>{{.}}</ram:ActualAmount>
+          </ram:AppliedTradeAllowanceCharge>
+        </ram:GrossPriceProductTradePrice>
+              {{/BT147}}
+            {{/BT149}}
+          {{/BT148}}
+        {{/BG029}}
+        {{#BG029}}
+        {{#BT146}}
         <ram:NetPriceProductTradePrice>
-          <ram:ChargeAmount>{{BT146}}</ram:ChargeAmount>
+          <ram:ChargeAmount>{{.}}</ram:ChargeAmount>
+          {{#BT149}}
+          <ram:BasisQuantity {{#BT150}}unitCode="{{.}}"{{/BT150}}>{{.}}</ram:BasisQuantity>
+          {{/BT149}}
         </ram:NetPriceProductTradePrice>
+        {{/BT146}}
+        {{/BG029}}
+        {{! end
+
+
+        }}
       </ram:SpecifiedLineTradeAgreement>
       <ram:SpecifiedLineTradeDelivery>
         <ram:BilledQuantity unitCode="{{BT130}}">{{BT129}}</ram:BilledQuantity>
       </ram:SpecifiedLineTradeDelivery>
       <ram:SpecifiedLineTradeSettlement>
+        {{#BG030}}
         <ram:ApplicableTradeTax>
           <ram:TypeCode>VAT</ram:TypeCode>
           <ram:CategoryCode>{{BT151}}</ram:CategoryCode>
-          <ram:RateApplicablePercent>{{BT152}}</ram:RateApplicablePercent>
+          {{#BT152}}
+          <ram:RateApplicablePercent>{{.}}</ram:RateApplicablePercent>
+          {{/BT152}}
         </ram:ApplicableTradeTax>
+        {{/BG030}}
+        {{#BG026}}
         <ram:BillingSpecifiedPeriod>
-          {{#BT134_CCYYMMDD}}
+          {{#BT134}}
           <ram:StartDateTime>
-            <udt:DateTimeString format="102">{{.}}</udt:DateTimeString>
+            <udt:DateTimeString format="102">{{YYYY}}{{MM}}{{DD}}</udt:DateTimeString>
           </ram:StartDateTime>
-          {{/BT134_CCYYMMDD}}
-          {{#BT135_CCYYMMDD}}
+          {{/BT134}}
+          {{#BT135}}
           <ram:EndDateTime>
-            <udt:DateTimeString format="102">{{.}}</udt:DateTimeString>
+            <udt:DateTimeString format="102">{{YYYY}}{{MM}}{{DD}}</udt:DateTimeString>
           </ram:EndDateTime>
-          {{/BT135_CCYYMMDD}}
+          {{/BT135}}
         </ram:BillingSpecifiedPeriod>
+        {{/BG026}}
         {{#BG028}}
         <ram:SpecifiedTradeAllowanceCharge>
           <ram:ChargeIndicator>
             <udt:Indicator>true</udt:Indicator>
           </ram:ChargeIndicator>
-          <ram:CalculationPercent>{{BT143}}</ram:CalculationPercent>
-          <ram:BasisAmount>{{BT142}}</ram:BasisAmount>
-          <ram:ActualAmount>{{BT141}}</ram:ActualAmount>
-          <ram:ReasonCode>{{BT145}}</ram:ReasonCode>
-          <ram:Reason>{{BT144}}</ram:Reason>
+          {{#BT143}}
+          <ram:CalculationPercent>{{.}}</ram:CalculationPercent>
+          {{/BT143}}
+          {{#BT142}}
+          <ram:BasisAmount>{{.}}</ram:BasisAmount>
+          {{/BT142}}
+          {{#BT141}}
+          <ram:ActualAmount>{{.}}</ram:ActualAmount>
+          {{/BT141}}
+          {{#BT145}}
+          <ram:ReasonCode>{{.}}</ram:ReasonCode>
+          {{/BT145}}
+          {{#BT144}}
+          <ram:Reason>{{.}}</ram:Reason>
+          {{/BT144}}
         </ram:SpecifiedTradeAllowanceCharge>
         {{/BG028}}
         {{#BG027}}
@@ -132,11 +199,21 @@
           <ram:ChargeIndicator>
             <udt:Indicator>false</udt:Indicator>
           </ram:ChargeIndicator>
-          <ram:CalculationPercent>{{BT138}}</ram:CalculationPercent>
-          <ram:BasisAmount>{{BT137}}</ram:BasisAmount>
-          <ram:ActualAmount>{{BT136}}</ram:ActualAmount>
-          <ram:ReasonCode>{{BT140}}</ram:ReasonCode>
-          <ram:Reason>{{BT139}}</ram:Reason>
+          {{#BT138}}
+          <ram:CalculationPercent>{{.}}</ram:CalculationPercent>
+          {{/BT138}}
+          {{#BT137}}
+          <ram:BasisAmount>{{.}}</ram:BasisAmount>
+          {{/BT137}}
+          {{#BT136}}
+          <ram:ActualAmount>{{.}}</ram:ActualAmount>
+          {{/BT136}}
+          {{#BT140}}
+          <ram:ReasonCode>{{.}}</ram:ReasonCode>
+          {{/BT140}}
+          {{#BT139}}
+          <ram:Reason>{{.}}</ram:Reason>
+          {{/BT139}}
         </ram:SpecifiedTradeAllowanceCharge>
         {{/BG027}}
         {{#BT131}}
@@ -148,7 +225,6 @@
         <ram:AdditionalReferencedDocument>
           <ram:IssuerAssignedID>{{.}}</ram:IssuerAssignedID>
           <ram:TypeCode>130</ram:TypeCode>
-            <!-- BT-128-1 -->
           <ram:ReferenceTypeCode>ABZ</ram:ReferenceTypeCode>
         </ram:AdditionalReferencedDocument>
         {{/BT128}}
@@ -162,16 +238,33 @@
     {{/BG025}}
     <ram:ApplicableHeaderTradeAgreement>
       <ram:BuyerReference>{{BT010}}</ram:BuyerReference>
+      {{#BG004}}
       <ram:SellerTradeParty>
         {{#BT029}}
         <ram:ID>{{.}}</ram:ID>
         {{/BT029}}
-        <ram:Name>{{BT027}}</ram:Name>
-        <ram:Description>{{BT033}}</ram:Description>
+        {{#BT027}}
+        <ram:Name>{{.}}</ram:Name>
+        {{/BT027}}
+        {{#BT033}}
+        <ram:Description>{{.}}</ram:Description>
+        {{/BT033}}
+        {{#BT030}}
         <ram:SpecifiedLegalOrganization>
-          <ram:ID schemeID="0088">{{BT030}}</ram:ID>
-          <ram:TradingBusinessName>{{BT028}}</ram:TradingBusinessName>
+          <ram:ID>{{.}}</ram:ID>
+          {{#BT028}}
+          <ram:TradingBusinessName>{{.}}</ram:TradingBusinessName>
+          {{/BT028}}
         </ram:SpecifiedLegalOrganization>
+        {{/BT030}}
+        {{^BT030}}
+          {{#BT028}}
+        <ram:SpecifiedLegalOrganization>
+          <ram:TradingBusinessName>{{.}}</ram:TradingBusinessName>
+        </ram:SpecifiedLegalOrganization>
+          {{/BT028}}
+        {{/BT030}}
+        {{#BG006}}
         <ram:DefinedTradeContact>
           <ram:PersonName>{{BT041}}</ram:PersonName>
           <ram:TelephoneUniversalCommunication>
@@ -181,74 +274,162 @@
             <ram:URIID>{{BT043}}</ram:URIID>
           </ram:EmailURIUniversalCommunication>
         </ram:DefinedTradeContact>
+        {{/BG006}}
+        {{#BG005}}
         <ram:PostalTradeAddress>
-          <ram:PostcodeCode>{{BT038}}</ram:PostcodeCode>
-          <ram:LineOne>{{BT035}}</ram:LineOne>
-          <ram:LineTwo>{{BT036}}</ram:LineTwo>
-          <ram:LineThree>{{BT162}}</ram:LineThree>
-          <ram:CityName>{{BT037}}</ram:CityName>
-          <ram:CountryID>{{BT040}}</ram:CountryID>
-          <ram:CountrySubDivisionName>{{BT039}}</ram:CountrySubDivisionName>
+          {{#BT038}}
+          <ram:PostcodeCode>{{.}}</ram:PostcodeCode>
+          {{/BT038}}
+          {{#BT035}}
+          <ram:LineOne>{{.}}</ram:LineOne>
+          {{/BT035}}
+          {{#BT036}}
+          <ram:LineTwo>{{.}}</ram:LineTwo>
+          {{/BT036}}
+          {{#BT162}}
+          <ram:LineThree>{{.}}</ram:LineThree>
+          {{/BT162}}
+          {{#BT037}}
+          <ram:CityName>{{.}}</ram:CityName>
+          {{/BT037}}
+          {{#BT040}}
+          <ram:CountryID>{{.}}</ram:CountryID>
+          {{/BT040}}
+          {{#BT039}}
+          <ram:CountrySubDivisionName>{{.}}</ram:CountrySubDivisionName>
+          {{/BT039}}
         </ram:PostalTradeAddress>
+        {{/BG005}}
+        {{#BT034}}
         <ram:URIUniversalCommunication>
-          <ram:URIID schemeID="EM">{{BT034}}</ram:URIID>
+          <ram:URIID schemeID="EM">{{.}}</ram:URIID>
         </ram:URIUniversalCommunication>
+        {{/BT034}}
+        {{#BT031}}
         <ram:SpecifiedTaxRegistration>
-          <ram:ID schemeID="VA">{{BT031}}</ram:ID>
+          <ram:ID schemeID="VA">{{.}}</ram:ID>
         </ram:SpecifiedTaxRegistration>
+        {{/BT031}}
+        {{#BT032}}
         <ram:SpecifiedTaxRegistration>
-          <ram:ID schemeID="FC">{{BT032}}</ram:ID>
+          <ram:ID schemeID="FC">{{.}}</ram:ID>
         </ram:SpecifiedTaxRegistration>
+        {{/BT032}}
       </ram:SellerTradeParty>
+      {{/BG004}}
+      {{#BG007}}
       <ram:BuyerTradeParty>
-        <ram:ID>{{BT046}}</ram:ID>
-        <ram:Name>{{BT044}}</ram:Name>
+        {{#BT046}}
+        <ram:ID>{{.}}</ram:ID>
+        {{/BT046}}
+        {{#BT044}}
+        <ram:Name>{{.}}</ram:Name>
+        {{/BT044}}
+        {{#BT047}}
+        {{! display outer tag only if one of the inner tags is present }}
         <ram:SpecifiedLegalOrganization>
-          <ram:ID schemeID="0204">{{BT047}}</ram:ID>
-          <ram:TradingBusinessName>{{BT045}}</ram:TradingBusinessName>
+          <ram:ID schemeID="0204">{{.}}</ram:ID>
+          {{#BT045}}
+          <ram:TradingBusinessName>{{.}}</ram:TradingBusinessName>
+          {{/BT045}}
         </ram:SpecifiedLegalOrganization>
+        {{/BT047}}
+        {{^BT047}}
+        {{#BT045}}
+        <ram:SpecifiedLegalOrganization>
+          <ram:TradingBusinessName>{{.}}</ram:TradingBusinessName>
+        </ram:SpecifiedLegalOrganization>
+        {{/BT045}}
+        {{/BT047}}
+        {{#BG009}}
         <ram:DefinedTradeContact>
-          <ram:PersonName>{{BT056}}</ram:PersonName>
+          {{#BT056}}
+          <ram:PersonName>{{.}}</ram:PersonName>
+          {{/BT056}}
+          {{#BT057}}
           <ram:TelephoneUniversalCommunication>
-            <ram:CompleteNumber>{{BT057}}</ram:CompleteNumber>
+            <ram:CompleteNumber>{{.}}</ram:CompleteNumber>
           </ram:TelephoneUniversalCommunication>
+          {{/BT057}}
+          {{#BT058}}
           <ram:EmailURIUniversalCommunication>
-            <ram:URIID>{{BT058}}</ram:URIID>
+            <ram:URIID>{{.}}</ram:URIID>
           </ram:EmailURIUniversalCommunication>
+          {{/BT058}}
         </ram:DefinedTradeContact>
+        {{/BG009}}
+        {{#BG008}}
         <ram:PostalTradeAddress>
-          <ram:PostcodeCode>{{BT053}}</ram:PostcodeCode>
-          <ram:LineOne>{{BT050}}</ram:LineOne>
-          <ram:LineTwo>{{BT051}}</ram:LineTwo>
-          <ram:LineThree>{{BT163}}</ram:LineThree>
-          <ram:CityName>{{BT052}}</ram:CityName>
-          <ram:CountryID>{{BT055}}</ram:CountryID>
-          <ram:CountrySubDivisionName>{{BT054}}</ram:CountrySubDivisionName>
+          {{#BT053}}
+          <ram:PostcodeCode>{{.}}</ram:PostcodeCode>
+          {{/BT053}}
+          {{#BT050}}
+          <ram:LineOne>{{.}}</ram:LineOne>
+          {{/BT050}}
+          {{#BT051}}
+          <ram:LineTwo>{{.}}</ram:LineTwo>
+          {{/BT051}}
+          {{#BT163}}
+          <ram:LineThree>{{.}}</ram:LineThree>
+          {{/BT163}}
+          {{#BT052}}
+          <ram:CityName>{{.}}</ram:CityName>
+          {{/BT052}}
+          {{#BT055}}
+          <ram:CountryID>{{.}}</ram:CountryID>
+          {{/BT055}}
+          {{#BT054}}
+          <ram:CountrySubDivisionName>{{.}}</ram:CountrySubDivisionName>
+          {{/BT054}}
         </ram:PostalTradeAddress>
+        {{/BG008}}
+        {{#BT049}}
         <ram:URIUniversalCommunication>
-          <ram:URIID schemeID="EM">{{BT049}}</ram:URIID>
+          <ram:URIID schemeID="EM">{{.}}</ram:URIID>
         </ram:URIUniversalCommunication>
+        {{/BT049}}
+        {{#BT048}}
         <ram:SpecifiedTaxRegistration>
-          <ram:ID schemeID="VA">{{BT048}}</ram:ID>
+          <ram:ID schemeID="VA">{{.}}</ram:ID>
         </ram:SpecifiedTaxRegistration>
+        {{/BT048}}
       </ram:BuyerTradeParty>
+      {{/BG007}}
+      {{#BG011}}
       <ram:SellerTaxRepresentativeTradeParty>
         <ram:Name>{{BT062}}</ram:Name>
+        {{#BG012}}
         <ram:PostalTradeAddress>
-          <ram:PostcodeCode>{{BT067}}</ram:PostcodeCode>
-          <ram:LineOne>{{BT064}}</ram:LineOne>
-          <ram:LineTwo>{{BT065}}</ram:LineTwo>
-          <ram:LineThree>{{BT164}}</ram:LineThree>
-          <ram:CityName>{{BT066}}</ram:CityName>
-          <ram:CountryID>{{BT069}}</ram:CountryID>
-          <ram:CountrySubDivisionName>{{BT068}}</ram:CountrySubDivisionName>
+          {{#BT067}}
+          <ram:PostcodeCode>{{.}}</ram:PostcodeCode>
+          {{/BT067}}
+          {{#BT064}}
+          <ram:LineOne>{{.}}</ram:LineOne>
+          {{/BT064}}
+          {{#BT065}}
+          <ram:LineTwo>{{.}}</ram:LineTwo>
+          {{/BT065}}
+          {{#BT164}}
+          <ram:LineThree>{{.}}</ram:LineThree>
+          {{/BT164}}
+          {{#BT066}}
+          <ram:CityName>{{.}}</ram:CityName>
+          {{/BT066}}
+          {{#BT069}}
+          <ram:CountryID>{{.}}</ram:CountryID>
+          {{/BT069}}
+          {{#BT068}}
+          <ram:CountrySubDivisionName>{{.}}</ram:CountrySubDivisionName>
+          {{/BT068}}
         </ram:PostalTradeAddress>
+        {{/BG012}}
         {{#BT063}}
         <ram:SpecifiedTaxRegistration>
           <ram:ID schemeID="VA">{{.}}</ram:ID>
         </ram:SpecifiedTaxRegistration>
         {{/BT063}}
       </ram:SellerTaxRepresentativeTradeParty>
+      {{/BG011}}
       {{#BT014}}
       <ram:SellerOrderReferencedDocument>
         <ram:IssuerAssignedID>{{.}}</ram:IssuerAssignedID>
@@ -264,7 +445,6 @@
         <ram:IssuerAssignedID>{{.}}</ram:IssuerAssignedID>
       </ram:ContractReferencedDocument>
       {{/BT012}}
-
       {{#BG024}}
       <ram:AdditionalReferencedDocument>
         <ram:IssuerAssignedID>{{BT122}}</ram:IssuerAssignedID>
@@ -300,24 +480,48 @@
       {{/BT011}}
     </ram:ApplicableHeaderTradeAgreement>
     <ram:ApplicableHeaderTradeDelivery>
+      {{#BG013}}
       <ram:ShipToTradeParty>
-        <ram:ID>{{BT071}}</ram:ID>
-        <ram:Name>{{BT070}}</ram:Name>
+        {{#BT071}}
+        <ram:ID>{{.}}</ram:ID>
+        {{/BT071}}
+        {{#BT070}}
+        <ram:Name>{{.}}</ram:Name>
+        {{/BT070}}
+        {{#BG015}}
         <ram:PostalTradeAddress>
-          <ram:PostcodeCode>{{BT078}}</ram:PostcodeCode>
-          <ram:LineOne>{{BT075}}</ram:LineOne>
-          <ram:LineTwo>{{BT076}}</ram:LineTwo>
-          <ram:LineThree>{{BT165}}</ram:LineThree>
-          <ram:CityName>{{BT077}}</ram:CityName>
-          <ram:CountryID>{{BT080}}</ram:CountryID>
-          <ram:CountrySubDivisionName>{{BT079}}</ram:CountrySubDivisionName>
+          {{#BT078}}
+          <ram:PostcodeCode>{{.}}</ram:PostcodeCode>
+          {{/BT078}}
+          {{#BT075}}
+          <ram:LineOne>{{.}}</ram:LineOne>
+          {{/BT075}}
+          {{#BT076}}
+          <ram:LineTwo>{{.}}</ram:LineTwo>
+          {{/BT076}}
+          {{#BT165}}
+          <ram:LineThree>{{.}}</ram:LineThree>
+          {{/BT165}}
+          {{#BT077}}
+          <ram:CityName>{{.}}</ram:CityName>
+          {{/BT077}}
+          {{#BT080}}
+          <ram:CountryID>{{.}}</ram:CountryID>
+          {{/BT080}}
+          {{#BT079}}
+          <ram:CountrySubDivisionName>{{.}}</ram:CountrySubDivisionName>
+          {{/BT079}}
         </ram:PostalTradeAddress>
+        {{/BG015}}
       </ram:ShipToTradeParty>
+      {{#BT072}}
       <ram:ActualDeliverySupplyChainEvent>
         <ram:OccurrenceDateTime>
-          <udt:DateTimeString format="102">{{BT072_CCYYMMDD}}</udt:DateTimeString>
+          <udt:DateTimeString format="102">{{YYYY}}{{MM}}{{DD}}</udt:DateTimeString>
         </ram:OccurrenceDateTime>
       </ram:ActualDeliverySupplyChainEvent>
+      {{/BT072}}
+      {{/BG013}}
       {{#BT016}}
       <ram:DespatchAdviceReferencedDocument>
         <ram:IssuerAssignedID>{{.}}</ram:IssuerAssignedID>
@@ -329,31 +533,116 @@
       </ram:ReceivingAdviceReferencedDocument>
       {{/BT015}}
     </ram:ApplicableHeaderTradeDelivery>
-
     <ram:ApplicableHeaderTradeSettlement>
-      <ram:PaymentReference>{{BT083}}</ram:PaymentReference>
-      <ram:TaxCurrencyCode>{{BT006}}</ram:TaxCurrencyCode>
-      <ram:InvoiceCurrencyCode>{{BT005}}</ram:InvoiceCurrencyCode>            
+      {{#BG016}}
+      {{#BG019}}
+      <ram:CreditorReferenceID>{{BT090}}</ram:CreditorReferenceID>
+      {{/BG019}}
+      {{#BT083}}
+      <ram:PaymentReference>{{.}}</ram:PaymentReference>
+      {{/BT083}}
+      {{/BG016}}
+      {{#BT006}}
+      <ram:TaxCurrencyCode>{{.}}</ram:TaxCurrencyCode>
+      {{/BT006}}
+      {{#BT005}}
+      <ram:InvoiceCurrencyCode>{{.}}</ram:InvoiceCurrencyCode>
+      {{/BT005}}
+      {{#BG010}}
       <ram:PayeeTradeParty>
-        <ram:ID>{{BT060}}</ram:ID>
-        <ram:Name>{{BT059}}</ram:Name>
+        {{#BT060}}
+        <ram:ID>{{.}}</ram:ID>
+        {{/BT060}}
+        {{#BT059}}
+        <ram:Name>{{.}}</ram:Name>
+        {{/BT059}}
+        {{#BT061}}
         <ram:SpecifiedLegalOrganization>
-          <ram:ID>{{BT061}}</ram:ID>
+          <ram:ID>{{.}}</ram:ID>
         </ram:SpecifiedLegalOrganization>
+        {{/BT061}}
       </ram:PayeeTradeParty>
+      {{/BG010}}
+      {{#BG016}}
       {{#BG017}}
       <ram:SpecifiedTradeSettlementPaymentMeans>
-        <ram:TypeCode>{{BT081}}</ram:TypeCode>
-        <ram:Information>{{BT082}}</ram:Information>
+        {{#BT081}}
+        <ram:TypeCode>{{.}}</ram:TypeCode>
+        {{/BT081}}
+        {{#BT082}}
+        <ram:Information>{{.}}</ram:Information>
+        {{/BT082}}
         <ram:PayeePartyCreditorFinancialAccount>
-          <ram:IBANID>{{BT084}}</ram:IBANID>
-          <ram:AccountName>{{BT085}}</ram:AccountName>
+          {{#BT084}}
+          <ram:IBANID>{{.}}</ram:IBANID>
+          {{/BT084}}
+          {{#BT085}}
+          <ram:AccountName>{{.}}</ram:AccountName>
+          {{/BT085}}
         </ram:PayeePartyCreditorFinancialAccount>
+        {{#BT086}}
         <ram:PayeeSpecifiedCreditorFinancialInstitution>
-          <ram:BICID>{{BT086}}</ram:BICID>
+          <ram:BICID>{{.}}</ram:BICID>
         </ram:PayeeSpecifiedCreditorFinancialInstitution>
-      </ram:SpecifiedTradeSettlementPaymentMeans>   
+        {{/BT086}}
+      </ram:SpecifiedTradeSettlementPaymentMeans>
       {{/BG017}}
+      {{#BG018}}
+      <ram:SpecifiedTradeSettlementPaymentMeans>
+        {{#BT081}}
+        <ram:TypeCode>{{.}}</ram:TypeCode>
+        {{/BT081}}
+        {{#BT082}}
+        <ram:Information>{{.}}</ram:Information>
+        {{/BT082}}
+        <ram:ApplicableTradeSettlementFinancialCard>
+          {{#BT087}}
+          <ram:ID>{{.}}</ram:ID>
+          {{/BT087}}
+          {{#BT088}}
+          <ram:CardholderName>{{.}}</ram:CardholderName>
+          {{/BT088}}
+        </ram:ApplicableTradeSettlementFinancialCard>
+      </ram:SpecifiedTradeSettlementPaymentMeans>
+      {{/BG018}}
+      {{#BG019}}
+      <ram:SpecifiedTradeSettlementPaymentMeans>
+        {{#BT081}}
+        <ram:TypeCode>{{.}}</ram:TypeCode>
+        {{/BT081}}
+        {{#BT082}}
+        <ram:Information>{{.}}</ram:Information>
+        {{/BT082}}
+        {{#BT091}}
+        <ram:PayerPartyDebtorFinancialAccount>
+          <ram:IBANID>{{.}}</ram:IBANID>
+        </ram:PayerPartyDebtorFinancialAccount>
+        {{/BT091}}
+      </ram:SpecifiedTradeSettlementPaymentMeans>
+      {{/BG019}}
+      {{!
+
+
+            special case if BG-16 has neither BG-17, BG-18 nor BG-19,
+            because BT-81 is mandatory
+      }}
+      {{^BG017}}
+        {{^BG018}}
+          {{^BG019}}
+      <ram:SpecifiedTradeSettlementPaymentMeans>
+        <ram:TypeCode>{{BT081}}</ram:TypeCode>
+            {{#BT082}}
+        <ram:Information>{{.}}</ram:Information>
+            {{/BT082}}
+      </ram:SpecifiedTradeSettlementPaymentMeans>
+          {{/BG019}}
+        {{/BG018}}
+      {{/BG017}}
+      {{! end
+
+
+      }}
+      {{/BG016}}
       {{#BG023}}
       <ram:ApplicableTradeTax>
         <ram:CalculatedAmount>{{BT117}}</ram:CalculatedAmount>
@@ -361,39 +650,61 @@
         {{#BT120}}
         <ram:ExemptionReason>{{.}}</ram:ExemptionReason>
         {{/BT120}}
+        <ram:BasisAmount>{{BT116}}</ram:BasisAmount>
+        <ram:CategoryCode>{{BT118}}</ram:CategoryCode>
         {{#BT121}}
         <ram:ExemptionReasonCode>{{.}}</ram:ExemptionReasonCode>
         {{/BT121}}
-        <ram:BasisAmount>{{BT116}}</ram:BasisAmount>
-        <ram:CategoryCode>{{BT118}}</ram:CategoryCode>
+        {{#BT007}}
         <ram:TaxPointDate>
-          <udt:DateString format="102">{{BT007_CCYYMMDD}}</udt:DateString>
+          <udt:DateString format="102">{{YYYY}}{{MM}}{{DD}}</udt:DateString>
         </ram:TaxPointDate>
+        {{/BT007}}
         <ram:RateApplicablePercent>{{BT119}}</ram:RateApplicablePercent>
       </ram:ApplicableTradeTax>
       {{/BG023}}
+      {{#BG013}}
+      {{#BG014}}
       <ram:BillingSpecifiedPeriod>
+        {{#BT073}}
         <ram:StartDateTime>
-          <udt:DateTimeString format="102">{{BT073_CCYYMMDD}}</udt:DateTimeString>
+          <udt:DateTimeString format="102">{{YYYY}}{{MM}}{{DD}}</udt:DateTimeString>
         </ram:StartDateTime>
+        {{/BT073}}
+        {{#BT074}}
         <ram:EndDateTime>
-          <udt:DateTimeString format="102">{{BT074_CCYYMMDD}}</udt:DateTimeString>
+          <udt:DateTimeString format="102">{{YYYY}}{{MM}}{{DD}}</udt:DateTimeString>
         </ram:EndDateTime>
+        {{/BT074}}
       </ram:BillingSpecifiedPeriod>
+      {{/BG014}}
+      {{/BG013}}
       {{#BG021}}
       <ram:SpecifiedTradeAllowanceCharge>
         <ram:ChargeIndicator>
           <udt:Indicator>true</udt:Indicator>
         </ram:ChargeIndicator>
-        <ram:CalculationPercent>{{BT101}}</ram:CalculationPercent>
-        <ram:BasisAmount>{{BT100}}</ram:BasisAmount>
-        <ram:ActualAmount>{{BT099}}</ram:ActualAmount>
-        <ram:ReasonCode>{{BT105}}</ram:ReasonCode>
-        <ram:Reason>{{BT104}}</ram:Reason>
+        {{#BT101}}
+        <ram:CalculationPercent>{{.}}</ram:CalculationPercent>
+        {{/BT101}}
+        {{#BT100}}
+        <ram:BasisAmount>{{.}}</ram:BasisAmount>
+        {{/BT100}}
+        {{#BT099}}
+        <ram:ActualAmount>{{.}}</ram:ActualAmount>
+        {{/BT099}}
+        {{#BT105}}
+        <ram:ReasonCode>{{.}}</ram:ReasonCode>
+        {{/BT105}}
+        {{#BT104}}
+        <ram:Reason>{{.}}</ram:Reason>
+        {{/BT104}}
         <ram:CategoryTradeTax>
           <ram:TypeCode>VAT</ram:TypeCode>
           <ram:CategoryCode>{{BT102}}</ram:CategoryCode>
-          <ram:RateApplicablePercent>{{BT103}}</ram:RateApplicablePercent>
+          {{#BT103}}
+          <ram:RateApplicablePercent>{{.}}</ram:RateApplicablePercent>
+          {{/BT103}}
         </ram:CategoryTradeTax>
       </ram:SpecifiedTradeAllowanceCharge>
       {{/BG021}}
@@ -402,42 +713,87 @@
         <ram:ChargeIndicator>
           <udt:Indicator>false</udt:Indicator>
         </ram:ChargeIndicator>
-        <ram:CalculationPercent>{{BT094}}</ram:CalculationPercent>
-        <ram:BasisAmount>{{BT093}}</ram:BasisAmount>
-        <ram:ActualAmount>{{BT092}}</ram:ActualAmount>
-        <ram:ReasonCode>{{BT098}}</ram:ReasonCode>
-        <ram:Reason>{{BT097}}</ram:Reason>
+        {{#BT094}}
+        <ram:CalculationPercent>{{.}}</ram:CalculationPercent>
+        {{/BT094}}
+        {{#BT093}}
+        <ram:BasisAmount>{{.}}</ram:BasisAmount>
+        {{/BT093}}
+        {{#BT092}}
+        <ram:ActualAmount>{{.}}</ram:ActualAmount>
+        {{/BT092}}
+        {{#BT098}}
+        <ram:ReasonCode>{{.}}</ram:ReasonCode>
+        {{/BT098}}
+        {{#BT097}}
+        <ram:Reason>{{.}}</ram:Reason>
+        {{/BT097}}
         <ram:CategoryTradeTax>
           <ram:TypeCode>VAT</ram:TypeCode>
           <ram:CategoryCode>{{BT095}}</ram:CategoryCode>
-          <ram:RateApplicablePercent>{{BT096}}</ram:RateApplicablePercent>
+          {{#BT096}}
+          <ram:RateApplicablePercent>{{.}}</ram:RateApplicablePercent>
+          {{/BT096}}
         </ram:CategoryTradeTax>
       </ram:SpecifiedTradeAllowanceCharge>
       {{/BG020}}
       <ram:SpecifiedTradePaymentTerms>
-        <ram:Description>{{BT020}}</ram:Description>
+        {{#BT020}}
+        <ram:Description>{{.}}</ram:Description>
+        {{/BT020}}
+        {{#BT009}}
         <ram:DueDateDateTime>
-          <udt:DateTimeString format="102">{{BT009_CCYYMMDD}}</udt:DateTimeString>
+          <udt:DateTimeString format="102">{{YYYY}}{{MM}}{{DD}}</udt:DateTimeString>
         </ram:DueDateDateTime>
+        {{/BT009}}
+        {{#BG016}}
+        {{#BG019}}
+        <ram:DirectDebitMandateID>{{BT089}}</ram:DirectDebitMandateID>
+        {{/BG019}}
+        {{/BG016}}
       </ram:SpecifiedTradePaymentTerms>
+      {{#BG022}}
       <ram:SpecifiedTradeSettlementHeaderMonetarySummation>
-        <ram:LineTotalAmount>{{BT106}}</ram:LineTotalAmount>
-        <ram:ChargeTotalAmount>{{BT108}}</ram:ChargeTotalAmount>
-        <ram:AllowanceTotalAmount>{{BT107}}</ram:AllowanceTotalAmount>
-        <ram:TaxBasisTotalAmount>{{BT109}}</ram:TaxBasisTotalAmount>
-        <ram:TaxTotalAmount currencyID="{{BT005}}">{{BT110}}</ram:TaxTotalAmount>
-        <ram:TaxTotalAmount currencyID="{{BT006}}">{{BT111}}</ram:TaxTotalAmount>
-        <ram:RoundingAmount>{{BT114}}</ram:RoundingAmount>
-        <ram:GrandTotalAmount>{{BT112}}</ram:GrandTotalAmount>
-        <ram:TotalPrepaidAmount>{{BT113}}</ram:TotalPrepaidAmount>
-        <ram:DuePayableAmount>{{BT115}}</ram:DuePayableAmount>
+        {{#BT106}}
+        <ram:LineTotalAmount>{{.}}</ram:LineTotalAmount>
+        {{/BT106}}
+        {{#BT108}}
+        <ram:ChargeTotalAmount>{{.}}</ram:ChargeTotalAmount>
+        {{/BT108}}
+        {{#BT107}}
+        <ram:AllowanceTotalAmount>{{.}}</ram:AllowanceTotalAmount>
+        {{/BT107}}
+        {{#BT109}}
+        <ram:TaxBasisTotalAmount>{{.}}</ram:TaxBasisTotalAmount>
+        {{/BT109}}
+        {{#BT110}}
+        <ram:TaxTotalAmount currencyID="{{BT005}}">{{.}}</ram:TaxTotalAmount>
+        {{/BT110}}
+        {{#BT111}}
+        <ram:TaxTotalAmount currencyID="{{BT006}}">{{.}}</ram:TaxTotalAmount>
+        {{/BT111}}
+        {{#BT114}}
+        <ram:RoundingAmount>{{.}}</ram:RoundingAmount>
+        {{/BT114}}
+        {{#BT112}}
+        <ram:GrandTotalAmount>{{.}}</ram:GrandTotalAmount>
+        {{/BT112}}
+        {{#BT113}}
+        <ram:TotalPrepaidAmount>{{.}}</ram:TotalPrepaidAmount>
+        {{/BT113}}
+        {{#BT115}}
+        <ram:DuePayableAmount>{{.}}</ram:DuePayableAmount>
+        {{/BT115}}
       </ram:SpecifiedTradeSettlementHeaderMonetarySummation>
+      {{/BG022}}
       {{#BG003}}
       <ram:InvoiceReferencedDocument>
         <ram:IssuerAssignedID>{{BT025}}</ram:IssuerAssignedID>
+        {{#BT026}}
         <ram:FormattedIssueDateTime>
-          <qdt:DateTimeString format="102">{{BT026_CCYYMMDD}}</qdt:DateTimeString>
+          <qdt:DateTimeString format="102">{{YYYY}}{{MM}}{{DD}}</qdt:DateTimeString>
         </ram:FormattedIssueDateTime>
+        {{/BT026}}
       </ram:InvoiceReferencedDocument>
       {{/BG003}}
       {{#BT019}}
@@ -448,5 +804,4 @@
     </ram:ApplicableHeaderTradeSettlement>
   </rsm:SupplyChainTradeTransaction>
 </rsm:CrossIndustryInvoice>
-
 {{/invoice}}

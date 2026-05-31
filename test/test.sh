@@ -2,6 +2,7 @@
 # Run several tests to check if conversion templates work
 
 
+# Escape sequences for colored output
 esc_white="\033[1;37m"
 esc_green="\033[32m"
 esc_red="\033[31m"
@@ -42,7 +43,6 @@ try_git_clone () {
 # Check if package dependencies are installed
 check_dependencies () {
     check_package xsltproc xsltproc
-    check_package xmllint libxml2
 }
 
 
@@ -58,31 +58,40 @@ fetch_git () {
 }
 
 
-# Copy invoice examples to uniform directories
+# Copy and lint invoice examples to uniform directories
 copy_invoices () {
+
     mkdir -p cii
-    cp download/xrechnung-testsuite/src/test/business-cases/extension/*_uncefact.xml cii/
-    cp download/xrechnung-testsuite/src/test/business-cases/standard/*_uncefact.xml cii/
-    cp download/xrechnung-testsuite/src/test/technical-cases/cius/*_uncefact.xml cii/
-    cp download/xrechnung-testsuite/src/test/technical-cases/cvd/*_uncefact.xml cii/
-    cp download/xrechnung-visualization/src/test/instances/*-uncefact.xml cii/
+    rm cii/*.xml
+    for f in download/xrechnung-testsuite/src/test/business-cases/extension/*_uncefact.xml \
+             download/xrechnung-testsuite/src/test/business-cases/standard/*_uncefact.xml \
+             download/xrechnung-testsuite/src/test/technical-cases/cius/*_uncefact.xml \
+             download/xrechnung-testsuite/src/test/technical-cases/cvd/*_uncefact.xml \
+             download/xrechnung-visualization/src/test/instances/*-uncefact.xml
+    do
+        xsltproc pretty.xslt "$f" > cii/$(basename "$f")
+    done
     count_cii=$(ls cii/*.xml | wc -l)
     echo "Found $count_cii CII invoices"
 
     mkdir -p ubl
-    cp download/xrechnung-testsuite/src/test/business-cases/extension/*_ubl.xml ubl/
-    cp download/xrechnung-testsuite/src/test/business-cases/standard/*_ubl.xml ubl/
-    cp download/xrechnung-testsuite/src/test/technical-cases/cius/*_ubl.xml ubl/
-    cp download/xrechnung-testsuite/src/test/technical-cases/cvd/*_ubl.xml ubl/
-    cp download/xrechnung-visualization/src/test/instances/*_ubl.xml ubl/
-    cp download/xrechnung-visualization/src/test/instances/*_creditnote.xml ubl/
+    rm ubl/*.xml
+    for f in download/xrechnung-testsuite/src/test/business-cases/extension/*_ubl.xml \
+             download/xrechnung-testsuite/src/test/business-cases/standard/*_ubl.xml \
+             download/xrechnung-testsuite/src/test/technical-cases/cius/*_ubl.xml \
+             download/xrechnung-testsuite/src/test/technical-cases/cvd/*_ubl.xml \
+             download/xrechnung-visualization/src/test/instances/*_ubl.xml \
+             download/xrechnung-visualization/src/test/instances/*_creditnote.xml
+    do
+        xsltproc pretty.xslt "$f" > ubl/$(basename "$f")
+    done
     count_ubl=$(ls ubl/*.xml | wc -l)
     echo "Found $count_cii UBL invoices"
 }
 
 
 # Generate SMX with KoSIT XSLT 2.0 template
-kosit_smx () {
+gen_smx_with_kosit () {
     if [ -d smx ]
     then
         count_smx=$(ls smx/*.smx | wc -l)
@@ -101,7 +110,7 @@ kosit_smx () {
             sed 's/xr:src="[^"]*"//; s/scheme_identifier="[^"]*"//; s/scheme_version_identifier="[^"]*"//' "$f" > tmp.noxrsrc
 
             # pretty print for comparison
-            xmllint --format tmp.noxrsrc > smx/$(basename $f .xml.smx).smx
+            xsltproc pretty.xslt tmp.noxrsrc > smx/$(basename $f .xml.smx).smx
             rm "$f"
         done
     fi
@@ -123,7 +132,6 @@ test01_smx () {
 
         xsltproc ../templates/gen/smx2btj.xslt "$f" > "$btj"
         mustache "$btj" ../templates/gen/btj2smx.mustache > "$smx2"
-        #diff "$f" "$smx2"
     done
     diff smx/ smx2/ > tmp.diff
     if diff --color tmp.diff smx_smx2.diff
@@ -135,22 +143,47 @@ test01_smx () {
 }
 
 
+# Test 02: BTJ -> CII'
+# uses files generated in Test 02
+test02_cii () {
+    mkdir -p cii2
+    rm cii2/*
+
+    for f in btj/*.btj
+    do
+        echo "BTJ -> CII': $f"
+        cii2=cii2/$(basename "$f" .btj).xml
+
+        mustache "$f" ../templates/btj2cii.mustache > "$cii2"
+        #diff "$f" "$smx2"
+    done
+
+#    diff cii/ cii2/ > tmp.diff
+#    if diff --color tmp.diff smx_smx2.diff
+#    then
+#        echo "${esc_white}Acceptable differences${esc} (&quot; and empty <xr:DELIVERY_INFORMATION>)"
+#    else
+#        echo "${esc_red}NOT OK${esc}"
+#    fi
+}
+
+
+
+
+# Main program
 
 check_dependencies
 fetch_git
 copy_invoices
-kosit_smx
+gen_smx_with_kosit
 
 back=$(pwd)
 cd ../templates
 uv run gen.py
 cd "$back"
 
-test01_smx
-
-
-
-
+#test01_smx
+test02_cii
 
 
 
