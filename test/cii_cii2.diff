@@ -1,0 +1,405 @@
+diff cii/01.01a-INVOICE_uncefact.xml cii2/01.01a-INVOICE_uncefact.xml
+35c35
+<           <ram:ClassCode listID="IB">0721-880X</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">0721-880X</ram:ClassCode>
+diff cii/01.01_comprehensive_test_uncefact.xml cii2/01.01_comprehensive_test_uncefact.xml
+35c35
+<         <ram:GlobalID schemeID="0088">123456789</ram:GlobalID>
+---
+>         <ram:GlobalID>123456789</ram:GlobalID>
+73a74
+>           <ram:BasisQuantity unitCode="XPP">1</ram:BasisQuantity>
+177c178
+<         <ram:GlobalID schemeID="0088">987654321</ram:GlobalID>
+---
+>         <ram:ID>987654321</ram:ID>
+181c182
+<           <ram:ID schemeID="0088">123456789</ram:ID>
+---
+>           <ram:ID>123456789</ram:ID>
+329c330
+<           <ram:ID schemeID="0204">90000000-03083-72</ram:ID>
+---
+>           <ram:ID>90000000-03083-72</ram:ID>
+344a346
+>         <ram:Information>[Payment means text]</ram:Information>
+369a372,374
+>         <ram:TaxPointDate>
+>           <udt:DateString format="102">20180413</udt:DateString>
+>         </ram:TaxPointDate>
+diff cii/01.02a-INVOICE_uncefact.xml cii2/01.02a-INVOICE_uncefact.xml
+114a115,116
+>       <ram:ShipToTradeParty>
+>       </ram:ShipToTradeParty>
+diff cii/01.02_comprehensive_test_uncefact.xml cii2/01.02_comprehensive_test_uncefact.xml
+31c31
+<         <ram:GlobalID schemeID="0088">123456789</ram:GlobalID>
+---
+>         <ram:GlobalID>123456789</ram:GlobalID>
+62a63
+>           <ram:BasisQuantity unitCode="XPP">1</ram:BasisQuantity>
+148c149
+<           <ram:ID schemeID="0088">123456789</ram:ID>
+---
+>           <ram:ID>123456789</ram:ID>
+180c181
+<         <ram:GlobalID schemeID="0088">138</ram:GlobalID>
+---
+>         <ram:ID>138</ram:ID>
+257c258
+<         <ram:GlobalID schemeID="0088">68</ram:GlobalID>
+---
+>         <ram:ID>68</ram:ID>
+286c287
+<         <ram:GlobalID schemeID="0088">74</ram:GlobalID>
+---
+>         <ram:ID>74</ram:ID>
+289c290
+<           <ram:ID schemeID="0204">90000000-03083-72</ram:ID>
+---
+>           <ram:ID>90000000-03083-72</ram:ID>
+295a297
+>           <ram:IBANID>DE75512108001245126199</ram:IBANID>
+297d298
+<           <ram:ProprietaryID>DE75512108001245126199</ram:ProprietaryID>
+304a306
+>         <ram:Information>[Payment means text]</ram:Information>
+318d319
+<         <ram:DueDateTypeCode>5</ram:DueDateTypeCode>
+diff cii/01.03_comprehensive_test_uncefact.xml cii2/01.03_comprehensive_test_uncefact.xml
+31c31
+<         <ram:GlobalID schemeID="0088">123456789</ram:GlobalID>
+---
+>         <ram:GlobalID>123456789</ram:GlobalID>
+62a63
+>           <ram:BasisQuantity unitCode="XPP">1</ram:BasisQuantity>
+144c145
+<         <ram:GlobalID schemeID="0088">987654321</ram:GlobalID>
+---
+>         <ram:ID>987654321</ram:ID>
+148c149
+<           <ram:ID schemeID="0088">123456789</ram:ID>
+---
+>           <ram:ID>123456789</ram:ID>
+152c153
+<           <ram:DepartmentName>Testorganisation</ram:DepartmentName>
+---
+>           <ram:PersonName>Testorganisation</ram:PersonName>
+187c188
+<           <ram:DepartmentName>Tina Tester</ram:DepartmentName>
+---
+>           <ram:PersonName>Tina Tester</ram:PersonName>
+289c290
+<           <ram:ID schemeID="0204">90000000-03083-72</ram:ID>
+---
+>           <ram:ID>90000000-03083-72</ram:ID>
+316a318,320
+>         <ram:TaxPointDate>
+>           <udt:DateString format="102">20180413</udt:DateString>
+>         </ram:TaxPointDate>
+diff cii/01.04_comprehensive_test_uncefact.xml cii2/01.04_comprehensive_test_uncefact.xml
+31c31
+<         <ram:GlobalID schemeID="0088">123456789</ram:GlobalID>
+---
+>         <ram:GlobalID>123456789</ram:GlobalID>
+62a63
+>           <ram:BasisQuantity unitCode="XPP">1</ram:BasisQuantity>
+144c145
+<         <ram:GlobalID schemeID="0088">987654321</ram:GlobalID>
+---
+>         <ram:ID>987654321</ram:ID>
+148c149
+<           <ram:ID schemeID="0088">123456789</ram:ID>
+---
+>           <ram:ID>123456789</ram:ID>
+152c153
+<           <ram:DepartmentName>Testorganisation</ram:DepartmentName>
+---
+>           <ram:PersonName>Testorganisation</ram:PersonName>
+187c188
+<           <ram:DepartmentName>Tina Tester</ram:DepartmentName>
+---
+>           <ram:PersonName>Tina Tester</ram:PersonName>
+290c291
+<           <ram:ID schemeID="0204">90000000-03083-72</ram:ID>
+---
+>           <ram:ID>90000000-03083-72</ram:ID>
+316a318,320
+>         <ram:TaxPointDate>
+>           <udt:DateString format="102">20180413</udt:DateString>
+>         </ram:TaxPointDate>
+diff cii/01.07a-INVOICE_uncefact.xml cii2/01.07a-INVOICE_uncefact.xml
+111a112,113
+>       <ram:ShipToTradeParty>
+>       </ram:ShipToTradeParty>
+diff cii/01.09a-INVOICE_uncefact.xml cii2/01.09a-INVOICE_uncefact.xml
+25c25
+<         <ram:Name>Paketierung der Anwendung "Kofax 10.2" für 180 Geräte</ram:Name>
+---
+>         <ram:Name>Paketierung der Anwendung &quot;Kofax 10.2&quot; für 180 Geräte</ram:Name>
+diff cii/01.14a-INVOICE_uncefact.xml cii2/01.14a-INVOICE_uncefact.xml
+107c107
+<           <ram:ID>HRB 3456</ram:ID>
+---
+>           <ram:ID schemeID="0204">HRB 3456</ram:ID>
+diff cii/01.17a-INVOICE_uncefact.xml cii2/01.17a-INVOICE_uncefact.xml
+35c35
+<           <ram:ClassCode listID="IB">0721-880X</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">0721-880X</ram:ClassCode>
+diff cii/01.20a-INVOICE_uncefact.xml cii2/01.20a-INVOICE_uncefact.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+diff cii/01.21a-INVOICE_uncefact.xml cii2/01.21a-INVOICE_uncefact.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:a="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+47d46
+<           <ram:ExemptionReason>Umkehrung der Steuerschuldnerschaft</ram:ExemptionReason>
+80c79
+<           <ram:ID schemeID="FC">04523149435</ram:ID>
+---
+>           <ram:ID schemeID="VA">DE152338654</ram:ID>
+83c82
+<           <ram:ID schemeID="VA">DE152338654</ram:ID>
+---
+>           <ram:ID schemeID="FC">04523149435</ram:ID>
+104,106d102
+<         <ram:SpecifiedTaxRegistration>
+<           <ram:ID schemeID="FC">04523249415</ram:ID>
+<         </ram:SpecifiedTaxRegistration>
+109a106,107
+>       <ram:ShipToTradeParty>
+>       </ram:ShipToTradeParty>
+diff cii/02.01a-cvd_INVOICE_uncefact.xml cii2/02.01a-cvd_INVOICE_uncefact.xml
+35c35
+<         <ram:GlobalID schemeID="0088">123456789</ram:GlobalID>
+---
+>         <ram:GlobalID>123456789</ram:GlobalID>
+65c65
+<           <ram:ClassCode listID="CVD">M2</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">M2</ram:ClassCode>
+86a87
+>           <ram:BasisQuantity unitCode="XPP">1</ram:BasisQuantity>
+211c212
+<         <ram:GlobalID schemeID="0088">987654321</ram:GlobalID>
+---
+>         <ram:ID>987654321</ram:ID>
+215c216
+<           <ram:ID schemeID="0088">123456789</ram:ID>
+---
+>           <ram:ID>123456789</ram:ID>
+349c350
+<           <ram:ID schemeID="0204">90000000-03083-72</ram:ID>
+---
+>           <ram:ID>90000000-03083-72</ram:ID>
+364a366
+>         <ram:Information>[Payment means text]</ram:Information>
+389a392,394
+>         <ram:TaxPointDate>
+>           <udt:DateString format="102">20180413</udt:DateString>
+>         </ram:TaxPointDate>
+diff cii/02.01a-INVOICE_uncefact.xml cii2/02.01a-INVOICE_uncefact.xml
+35c35
+<           <ram:ClassCode listID="IB">0721-880X</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">0721-880X</ram:ClassCode>
+97c97
+<         <ram:GlobalID schemeID="0088">4721480668400</ram:GlobalID>
+---
+>         <ram:ID>4721480668400</ram:ID>
+101c101
+<           <ram:ID schemeID="0088">5923183878011</ram:ID>
+---
+>           <ram:ID>5923183878011</ram:ID>
+246a247,249
+>         <ram:TaxPointDate>
+>           <udt:DateString format="102">20180413</udt:DateString>
+>         </ram:TaxPointDate>
+diff cii/02.02a-INVOICE_uncefact.xml cii2/02.02a-INVOICE_uncefact.xml
+35c35
+<           <ram:ClassCode listID="IB">0721-880X</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">0721-880X</ram:ClassCode>
+97c97
+<         <ram:GlobalID schemeID="0088">6424367555074</ram:GlobalID>
+---
+>         <ram:ID>6424367555074</ram:ID>
+101c101
+<           <ram:ID schemeID="0088">4710796497965</ram:ID>
+---
+>           <ram:ID>4710796497965</ram:ID>
+diff cii/02.03a-INVOICE_uncefact.xml cii2/02.03a-INVOICE_uncefact.xml
+35c35
+<           <ram:ClassCode listID="IB">0721-880X</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">0721-880X</ram:ClassCode>
+97c97
+<         <ram:GlobalID schemeID="0088">2858578808058</ram:GlobalID>
+---
+>         <ram:ID>2858578808058</ram:ID>
+101c101
+<           <ram:ID schemeID="0088">2065964148418</ram:ID>
+---
+>           <ram:ID>2065964148418</ram:ID>
+246a247,249
+>         <ram:TaxPointDate>
+>           <udt:DateString format="102">20180413</udt:DateString>
+>         </ram:TaxPointDate>
+diff cii/02.04a-INVOICE_uncefact.xml cii2/02.04a-INVOICE_uncefact.xml
+35c35
+<           <ram:ClassCode listID="IB">0721-880X</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">0721-880X</ram:ClassCode>
+97c97
+<         <ram:GlobalID schemeID="0088">5862371197407</ram:GlobalID>
+---
+>         <ram:ID>5862371197407</ram:ID>
+101c101
+<           <ram:ID schemeID="0088">8905814887873</ram:ID>
+---
+>           <ram:ID>8905814887873</ram:ID>
+246a247,249
+>         <ram:TaxPointDate>
+>           <udt:DateString format="102">20180413</udt:DateString>
+>         </ram:TaxPointDate>
+diff cii/02.05a-INVOICE_uncefact.xml cii2/02.05a-INVOICE_uncefact.xml
+620c620
+<         <ram:GlobalID schemeID="0088">0197842701377</ram:GlobalID>
+---
+>         <ram:ID>0197842701377</ram:ID>
+624c624
+<           <ram:ID schemeID="0088">9823636820856</ram:ID>
+---
+>           <ram:ID>9823636820856</ram:ID>
+diff cii/02.06a-INVOICE_uncefact.xml cii2/02.06a-INVOICE_uncefact.xml
+74c74
+<         <ram:GlobalID schemeID="0088">2428600711948</ram:GlobalID>
+---
+>         <ram:ID>2428600711948</ram:ID>
+78c78
+<           <ram:ID schemeID="0088">3688088306671</ram:ID>
+---
+>           <ram:ID>3688088306671</ram:ID>
+diff cii/03.01a-INVOICE_uncefact.xml cii2/03.01a-INVOICE_uncefact.xml
+591a592,593
+>       <ram:ShipToTradeParty>
+>       </ram:ShipToTradeParty>
+diff cii/03.04a-INVOICE_uncefact.xml cii2/03.04a-INVOICE_uncefact.xml
+407a408,409
+>       <ram:ShipToTradeParty>
+>       </ram:ShipToTradeParty>
+diff cii/03.05a-INVOICE_uncefact.xml cii2/03.05a-INVOICE_uncefact.xml
+29a30,32
+>         <ram:GrossPriceProductTradePrice>
+>           <ram:BasisQuantity unitCode="DAY">366</ram:BasisQuantity>
+>         </ram:GrossPriceProductTradePrice>
+67a71,73
+>         <ram:GrossPriceProductTradePrice>
+>           <ram:BasisQuantity unitCode="KWT">1</ram:BasisQuantity>
+>         </ram:GrossPriceProductTradePrice>
+105a112,114
+>         <ram:GrossPriceProductTradePrice>
+>           <ram:BasisQuantity unitCode="KWH">1</ram:BasisQuantity>
+>         </ram:GrossPriceProductTradePrice>
+188a198,199
+>       <ram:ShipToTradeParty>
+>       </ram:ShipToTradeParty>
+diff cii/03.06a-INVOICE_uncefact.xml cii2/03.06a-INVOICE_uncefact.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+187c187
+<           <ram:ID schemeID="FC">1121081508150</ram:ID>
+---
+>           <ram:ID schemeID="VA">DE12345464867</ram:ID>
+190c190
+<           <ram:ID schemeID="VA">DE12345464867</ram:ID>
+---
+>           <ram:ID schemeID="FC">1121081508150</ram:ID>
+206a207,208
+>       <ram:ShipToTradeParty>
+>       </ram:ShipToTradeParty>
+diff cii/03.07a-INVOICE_uncefact.xml cii2/03.07a-INVOICE_uncefact.xml
+35c35
+<         <ram:GlobalID schemeID="0088">123456789</ram:GlobalID>
+---
+>         <ram:GlobalID>123456789</ram:GlobalID>
+76a77
+>           <ram:BasisQuantity unitCode="XPP">1</ram:BasisQuantity>
+201c202
+<         <ram:GlobalID schemeID="0088">987654321</ram:GlobalID>
+---
+>         <ram:ID>987654321</ram:ID>
+205c206
+<           <ram:ID schemeID="0088">123456789</ram:ID>
+---
+>           <ram:ID>123456789</ram:ID>
+353c354
+<           <ram:ID schemeID="0204">90000000-03083-72</ram:ID>
+---
+>           <ram:ID>90000000-03083-72</ram:ID>
+368a370
+>         <ram:Information>[Payment means text]</ram:Information>
+393a396,398
+>         <ram:TaxPointDate>
+>           <udt:DateString format="102">20180413</udt:DateString>
+>         </ram:TaxPointDate>
+diff cii/04.05a-INVOICE_uncefact.xml cii2/04.05a-INVOICE_uncefact.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+27c27
+<         <ram:GlobalID schemeID="XR01">12345678</ram:GlobalID>
+---
+>         <ram:GlobalID>12345678</ram:GlobalID>
+55c55
+<         <ram:GlobalID schemeID="XR03">987654321</ram:GlobalID>
+---
+>         <ram:ID>987654321</ram:ID>
+80c80
+<         <ram:GlobalID schemeID="XR03">123456789</ram:GlobalID>
+---
+>         <ram:ID>123456789</ram:ID>
+93a94,95
+>       <ram:ShipToTradeParty>
+>       </ram:ShipToTradeParty>
+103c105
+<         <ram:GlobalID schemeID="XR03">987654322</ram:GlobalID>
+---
+>         <ram:ID>987654322</ram:ID>
+Nur in cii/: a.
+diff cii/included-notes-bg-1-uncefact.xml cii2/included-notes-bg-1-uncefact.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+275c275
+<           <ram:ClassCode listID="IB">0721-880X</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">0721-880X</ram:ClassCode>
+diff cii/wrong-date-with-text-uncefact.xml cii2/wrong-date-with-text-uncefact.xml
+15c15
+<       <udt:DateTimeString format="102">Dies ist kein Datum</udt:DateTimeString>
+---
+>       <udt:DateTimeString format="102">ILLEALDA</udt:DateTimeString>
+35c35
+<           <ram:ClassCode listID="IB">0721-880X</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">0721-880X</ram:ClassCode>
+diff cii/wrong-date-with-zeros-uncefact.xml cii2/wrong-date-with-zeros-uncefact.xml
+15c15
+<       <udt:DateTimeString format="102">00000000</udt:DateTimeString>
+---
+>       <udt:DateTimeString format="102">ILLEALDA</udt:DateTimeString>
+35c35
+<           <ram:ClassCode listID="IB">0721-880X</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">0721-880X</ram:ClassCode>

@@ -69,7 +69,8 @@ copy_invoices () {
              download/xrechnung-testsuite/src/test/technical-cases/cvd/*_uncefact.xml \
              download/xrechnung-visualization/src/test/instances/*-uncefact.xml
     do
-        xsltproc pretty.xslt "$f" > cii/$(basename "$f")
+        xsltproc pretty.xslt "$f" | \
+            sed -f pretty_cii.sed > cii/$(basename "$f")
     done
     count_cii=$(ls cii/*.xml | wc -l)
     echo "Found $count_cii CII invoices"
@@ -143,7 +144,7 @@ test01_smx () {
 }
 
 
-# Test 02: BTJ -> CII'
+# Test 02: [CII -> SMX -> BTJ] -> CII'
 # uses files generated in Test 02
 test02_cii () {
     mkdir -p cii2
@@ -158,13 +159,13 @@ test02_cii () {
         #diff "$f" "$smx2"
     done
 
-#    diff cii/ cii2/ > tmp.diff
-#    if diff --color tmp.diff smx_smx2.diff
-#    then
-#        echo "${esc_white}Acceptable differences${esc} (&quot; and empty <xr:DELIVERY_INFORMATION>)"
-#    else
-#        echo "${esc_red}NOT OK${esc}"
-#    fi
+    diff cii/ cii2/ > tmp.diff
+    if diff --color tmp.diff cii_cii2.diff
+    then
+        echo "${esc_white}Acceptable differences${esc}"
+    else
+        echo "${esc_red}NOT OK${esc}"
+    fi
 }
 
 
@@ -182,7 +183,7 @@ cd ../templates
 uv run gen.py
 cd "$back"
 
-#test01_smx
+test01_smx
 test02_cii
 
 
