@@ -145,7 +145,7 @@ test01_smx () {
 
 
 # Test 02: [CII -> SMX -> BTJ] -> CII'
-# uses files generated in Test 02
+# uses files generated in Test 01
 test02_cii () {
     mkdir -p cii2
     rm cii2/*
