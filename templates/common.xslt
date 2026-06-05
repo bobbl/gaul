@@ -125,11 +125,12 @@
 </xsl:template>
 
 
-<!-- Output JSON key and date object
+<!-- Input: 1999-01-31
+     Output JSON key and date object
     "BT002": {
-      "YYYY": "1990",
-      "MM": "10",
-      "DD": "03"
+      "YYYY": "1999",
+      "MM": "01",
+      "DD": "31"
     },
 -->
 <xsl:template name="date_from_iso8601">
@@ -154,6 +155,43 @@
     <xsl:value-of select="$indent" />
     <xsl:text>      "DD": "</xsl:text>
     <xsl:value-of select="substring($xmltag, 9, 2)" />
+    <xsl:text>"&#10;</xsl:text>
+    <xsl:value-of select="$indent" />
+    <xsl:text>    },</xsl:text>
+  </xsl:if>
+</xsl:template>
+
+
+<!-- Input: 19990131
+     Output JSON key and date object
+    "BT002": {
+      "YYYY": "1999",
+      "MM": "01",
+      "DD": "31"
+    },
+-->
+<xsl:template name="date_from_CCYYMMDD">
+  <xsl:param name="xmltag"/>
+  <xsl:param name="jsonkey"/>
+  <xsl:param name="indent"/>
+
+  <xsl:if test="$xmltag">
+    <xsl:text>&#10;</xsl:text>
+    <xsl:value-of select="$indent" />
+    <xsl:text>    "</xsl:text>
+    <xsl:value-of select="$jsonkey" />
+    <xsl:text>": {&#10;</xsl:text>
+    <xsl:value-of select="$indent" />
+    <xsl:text>      "YYYY": "</xsl:text>
+    <xsl:value-of select="substring($xmltag, 1, 4)" />
+    <xsl:text>",&#10;</xsl:text>
+    <xsl:value-of select="$indent" />
+    <xsl:text>      "MM": "</xsl:text>
+    <xsl:value-of select="substring($xmltag, 5, 2)" />
+    <xsl:text>",&#10;</xsl:text>
+    <xsl:value-of select="$indent" />
+    <xsl:text>      "DD": "</xsl:text>
+    <xsl:value-of select="substring($xmltag, 7, 2)" />
     <xsl:text>"&#10;</xsl:text>
     <xsl:value-of select="$indent" />
     <xsl:text>    },</xsl:text>

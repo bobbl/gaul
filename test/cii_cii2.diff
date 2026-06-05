@@ -375,7 +375,6 @@ diff cii/04.05a-INVOICE_uncefact.xml cii2/04.05a-INVOICE_uncefact.xml
 <         <ram:GlobalID schemeID="XR03">987654322</ram:GlobalID>
 ---
 >         <ram:ID>987654322</ram:ID>
-Nur in cii/: a.
 diff cii/included-notes-bg-1-uncefact.xml cii2/included-notes-bg-1-uncefact.xml
 2c2
 < <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
