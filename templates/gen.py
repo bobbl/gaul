@@ -53,31 +53,35 @@ def smx2btj_recurse(bgno: str, prefix: str, indent: str, bt, bg) -> str:
 
     elif bg[bgno]['Cardinality'] in ["?", "1"]:
 
-        # bug 2 workaround
-        if bgno == "13":
-            bg13exception = " or xr:INVOICING_PERIOD"
-        else:
-            bg13exception = ""
-
         head = f"""
-{indent}  <xsl:if test="{prefix[:-1]}{bg13exception}">
-{indent}    <xsl:text>&#10;{indent}    "BG{bgno.zfill(3)}": {{</xsl:text>"""
+{indent}  <xsl:variable name="bg-{bgno}">"""
+        # test="string($bg-{bgno})" is necessary, see below
         tail = f"""
+{indent}  </xsl:variable>
+{indent}  <xsl:if test="string($bg-{bgno})">
+{indent}    <xsl:text>&#10;{indent}    "BG{bgno.zfill(3)}": {{</xsl:text>
+{indent}    <xsl:value-of select="substring($bg-{bgno}, 1, string-length($bg-{bgno}) - 1)" />
 {indent}    <xsl:text>&#10;{indent}    }},</xsl:text>
 {indent}  </xsl:if>"""
         indent += "  "
 
     else:
         # Wrap in for-each loop if the group can appear more than once
+        #
+        # test="string($bg-{bgno})" is required, because an empty for-each loop
+        # generates an empty Result Tree Fragment (RTF), that is not false.
+        # But when converted to a string this string is empty, which is false.
         head = f"""
-{indent}  <xsl:if test="{prefix[:-1]}">
-{indent}    <xsl:text>&#10;{indent}    "BG{bgno.zfill(3)}": [</xsl:text>
+{indent}  <xsl:variable name="bg-{bgno}">
 {indent}    <xsl:for-each select="{prefix[:-1]}">
 {indent}      <xsl:text>&#10;{indent}      {{</xsl:text>"""
         tail = f"""
-{indent}      <xsl:text>&#10;{indent}      }}</xsl:text>
-{indent}      <xsl:if test="position()!=last()">,</xsl:if>
+{indent}      <xsl:text>&#10;{indent}      }},</xsl:text>
 {indent}    </xsl:for-each>
+{indent}  </xsl:variable>
+{indent}  <xsl:if test="string($bg-{bgno})">
+{indent}    <xsl:text>&#10;{indent}    "BG{bgno.zfill(3)}": [</xsl:text>
+{indent}    <xsl:value-of select="substring($bg-{bgno}, 1, string-length($bg-{bgno}) - 1)" />
 {indent}    <xsl:text>&#10;{indent}    ],</xsl:text>
 {indent}  </xsl:if>"""
         prefix = ""

@@ -140,6 +140,7 @@ test01_smx () {
         echo "${esc_white}Acceptable differences${esc} (&quot; and empty <xr:DELIVERY_INFORMATION>)"
     else
         echo "${esc_red}NOT OK${esc}"
+        exit
     fi
 }
 
@@ -165,6 +166,7 @@ test02_cii () {
         echo "${esc_white}Acceptable differences${esc}"
     else
         echo "${esc_red}NOT OK${esc}"
+        exit
     fi
 }
 
