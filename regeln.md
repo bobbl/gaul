@@ -82,7 +82,15 @@ höchstens eins davon darf es geben
 
 BT-71 0..1
 
-
+BT-84 1..1
+/rsm:CrossIndustryInvoice
+  /rsm:SupplyChainTradeTransaction
+    /ram:ApplicableHeaderTradeSettlement
+      /ram:SpecifiedTradeSettlementPaymentMeans
+        /ram:PayeePartyCreditorFinancialAccount
+           /ram:ProprietaryID
+           /ram:IBANID
+genau eins davon muss es geben (je ram:PayeePartyCreditorFinancialAccount)
 
 
 

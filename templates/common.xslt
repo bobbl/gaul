@@ -89,14 +89,50 @@
 </xsl:template>
 
 
-<!-- Output JSON key and object for binary data 
+<!-- Output JSON key and object for binary data from CII
     "BT125": {
       "mime": "",
       "filename": "",
       "base64": ""
     },
 -->
-<xsl:template name="binary_object">
+<xsl:template name="binary_object_CII">
+  <xsl:param name="xmltag"/>
+  <xsl:param name="jsonkey"/>
+  <xsl:param name="indent"/>
+
+  <xsl:if test="$xmltag">
+    <xsl:text>&#10;</xsl:text>
+    <xsl:value-of select="$indent" />
+    <xsl:text>    "</xsl:text>
+    <xsl:value-of select="$jsonkey" />
+    <xsl:text>": {&#10;</xsl:text>
+    <xsl:value-of select="$indent" />
+    <xsl:text>      "mime": "</xsl:text>
+    <xsl:value-of select="$xmltag/@mimeCode" />
+    <xsl:text>",&#10;</xsl:text>
+    <xsl:value-of select="$indent" />
+    <xsl:text>      "filename": "</xsl:text>
+    <xsl:value-of select="$xmltag/@filename" />
+    <xsl:text>",&#10;</xsl:text>
+    <xsl:value-of select="$indent" />
+    <xsl:text>      "base64": "</xsl:text>
+    <xsl:value-of select="$xmltag/." />
+    <xsl:text>"&#10;</xsl:text>
+    <xsl:value-of select="$indent" />
+    <xsl:text>    },</xsl:text>
+  </xsl:if>
+</xsl:template>
+
+
+<!-- Output JSON key and object for binary data from SMX
+    "BT125": {
+      "mime": "",
+      "filename": "",
+      "base64": ""
+    },
+-->
+<xsl:template name="binary_object_SMX">
   <xsl:param name="xmltag"/>
   <xsl:param name="jsonkey"/>
   <xsl:param name="indent"/>

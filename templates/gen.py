@@ -95,7 +95,7 @@ def smx2btj_recurse(bgno: str, prefix: str, indent: str, bt, bg) -> str:
             if row['Cardinality'] in ["*", "+"]:
                 template_name = "array"
             elif row['Datatype'] == 'B':
-                template_name = "binary_object"
+                template_name = "binary_object_SMX"
             elif row['Datatype'] == 'D':
                 template_name = "date_from_iso8601"
             else:
