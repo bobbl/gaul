@@ -171,6 +171,34 @@ test02_cii () {
 }
 
 
+# Test 03: compare KoSIT CII -> SMX with Gaul CII -> BTJ -> SMX
+test03_smx () {
+    mkdir -p btj
+    rm btj/*
+    mkdir -p smx3
+    rm smx3/*
+
+    for f in cii/*.xml
+    do
+        echo "Gaul CII -> BTJ -> SMX': $f"
+        btj=btj/$(basename "$f" .xml).btj
+        smx3=smx3/$(basename "$f" .xml).smx
+
+        xsltproc ../templates/cii2btj.xslt "$f" > "$btj"
+        mustache "$btj" ../templates/gen/btj2smx.mustache > "$smx3"
+    done
+
+    diff smx/ smx3/ > tmp.diff
+    if diff --color tmp.diff smx_smx3.diff
+    then
+        echo "${esc_white}Acceptable differences${esc} (&quot; and empty <xr:DELIVERY_INFORMATION>)"
+    else
+        echo "${esc_red}NOT OK${esc}"
+        exit
+    fi
+}
+
+
 
 
 # Main program
@@ -187,6 +215,7 @@ cd "$back"
 
 test01_smx
 test02_cii
+test03_smx
 
 
 

@@ -1,5 +1,8 @@
 
 
+Korrektes Datumsformat in allen entsprechenden Elementen prüfen
+
+
 BT-7 und BT-8
 -------------
 BT-7 ist das Datum, an dem die Umsatzsteuer abrechnungsrelevant wird.
@@ -81,6 +84,12 @@ BT-60 0..1
 höchstens eins davon darf es geben
 
 BT-71 0..1
+  /rsm:SupplyChainTradeTransaction
+    /ram:ApplicableHeaderTradeDelivery
+      /ram:ShipToTradeParty
+        /ram:ID
+        /ram:GlobalID[exists(@schemeID)]
+höchstens eins davon darf es geben
 
 BT-84 1..1
 /rsm:CrossIndustryInvoice
@@ -92,8 +101,27 @@ BT-84 1..1
            /ram:IBANID
 genau eins davon muss es geben (je ram:PayeePartyCreditorFinancialAccount)
 
+BT-149 0..1
+/rsm:SupplyChainTradeTransaction
+  /ram:IncludedSupplyChainTradeLineItem
+    /ram:SpecifiedLineTradeAgreement
+      /ram:NetPriceProductTradePrice
+        /ram:BasisQuantity
+      /ram:GrossPriceProductTradePrice
+        /ram:BasisQuantity
+genau eins davon muss es geben (je ram:IncludedSupplyChainTradeLineItem)
 
-
+BT-150 0..1
+/rsm:SupplyChainTradeTransaction
+  /ram:IncludedSupplyChainTradeLineItem
+    /ram:SpecifiedLineTradeAgreement
+      /ram:NetPriceProductTradePrice
+        /ram:BasisQuantity
+          /@unitCode"/>
+      /ram:GrossPriceProductTradePrice
+        /ram:BasisQuantity
+          /@unitCode"/>
+genau eins davon muss es geben (je ram:IncludedSupplyChainTradeLineItem)
 
 
 

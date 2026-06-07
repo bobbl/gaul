@@ -61,7 +61,7 @@
     <xsl:with-param name="indent" select="''"/>
   </xsl:call-template>
   <xsl:call-template name="string">
-    <xsl:with-param name="xmltag" select="ram:ApplicableHeaderTradeAgreement/ram:BuyerReference"/>
+    <xsl:with-param name="xmltag" select="rsm:SupplyChainTradeTransaction/ram:ApplicableHeaderTradeAgreement/ram:BuyerReference"/>
     <xsl:with-param name="jsonkey" select="'BT010'"/>
     <xsl:with-param name="indent" select="''"/>
   </xsl:call-template>
@@ -192,13 +192,10 @@
       <xsl:with-param name="indent" select="'  '"/>
     </xsl:call-template>
     <xsl:call-template name="array">
-      <xsl:with-param name="xmltag" select="ram:ID"/>
+      <xsl:with-param name="xmltag" select="*[self::ram:ID or self::ram:GlobalID]"/>
       <xsl:with-param name="jsonkey" select="'BT029'"/>
       <xsl:with-param name="indent" select="'  '"/>
     </xsl:call-template>
-
-    <!-- TODO: also add all ram:GlobalID[exists(@schemeID)] to BT029 -->
-
     <xsl:call-template name="string">
       <xsl:with-param name="xmltag" select="./ram:SpecifiedLegalOrganization/ram:ID"/>
       <xsl:with-param name="jsonkey" select="'BT030'"/>
@@ -324,7 +321,7 @@
       <xsl:with-param name="indent" select="'  '"/>
     </xsl:call-template>
     <xsl:call-template name="string">
-      <xsl:with-param name="xmltag" select="ram:GlobalID[exists(@schemeID)]"/>
+      <xsl:with-param name="xmltag" select="ram:GlobalID"/>
       <xsl:with-param name="jsonkey" select="'BT046'"/>
       <xsl:with-param name="indent" select="'  '"/>
     </xsl:call-template>
@@ -438,7 +435,7 @@
       <xsl:with-param name="indent" select="'  '"/>
     </xsl:call-template>
     <xsl:call-template name="string">
-      <xsl:with-param name="xmltag" select="rsm:SupplyChainTradeTransaction/ram:ApplicableHeaderTradeSettlement/ram:PayeeTradeParty/ram:ID"/>
+      <xsl:with-param name="xmltag" select="rsm:SupplyChainTradeTransaction/ram:ApplicableHeaderTradeSettlement/ram:PayeeTradeParty/ram:GlobalID"/>
       <xsl:with-param name="jsonkey" select="'BT060'"/>
       <xsl:with-param name="indent" select="'  '"/>
     </xsl:call-template>
@@ -520,7 +517,7 @@
 
   <xsl:variable name="bg-13">
     <xsl:call-template name="string">
-      <xsl:with-param name="xmltag" select="ram:Name"/>
+      <xsl:with-param name="xmltag" select="rsm:SupplyChainTradeTransaction/ram:ApplicableHeaderTradeDelivery/ram:ShipToTradeParty/ram:Name"/>
       <xsl:with-param name="jsonkey" select="'BT070'"/>
       <xsl:with-param name="indent" select="'  '"/>
     </xsl:call-template>
@@ -532,7 +529,7 @@
       <xsl:with-param name="indent" select="'  '"/>
     </xsl:call-template>
     <xsl:call-template name="string">
-      <xsl:with-param name="xmltag" select="rsm:SupplyChainTradeTransaction/ram:ApplicableHeaderTradeDelivery/ram:ShipToTradeParty/ram:GlobalID[exists(@schemeID)]"/>
+      <xsl:with-param name="xmltag" select="rsm:SupplyChainTradeTransaction/ram:ApplicableHeaderTradeDelivery/ram:ShipToTradeParty/ram:GlobalID"/>
       <xsl:with-param name="jsonkey" select="'BT071'"/>
       <xsl:with-param name="indent" select="'  '"/>
     </xsl:call-template>
@@ -942,58 +939,58 @@
     <xsl:text>&#10;    ],</xsl:text>
   </xsl:if>
 
-<!--
   <xsl:variable name="bg-25">
-    <xsl:for-each select="xr:INVOICE_LINE">
+    <xsl:for-each select="rsm:SupplyChainTradeTransaction/ram:IncludedSupplyChainTradeLineItem">
       <xsl:text>&#10;      {</xsl:text>
       <xsl:call-template name="string">
-        <xsl:with-param name="xmltag" select="xr:Invoice_line_identifier"/>
+        <xsl:with-param name="xmltag" select="ram:AssociatedDocumentLineDocument/ram:LineID"/>
         <xsl:with-param name="jsonkey" select="'BT126'"/>
         <xsl:with-param name="indent" select="'    '"/>
       </xsl:call-template>
       <xsl:call-template name="string">
-        <xsl:with-param name="xmltag" select="xr:Invoice_line_note"/>
+        <xsl:with-param name="xmltag" select="ram:AssociatedDocumentLineDocument/ram:IncludedNote/ram:Content"/>
         <xsl:with-param name="jsonkey" select="'BT127'"/>
         <xsl:with-param name="indent" select="'    '"/>
       </xsl:call-template>
       <xsl:call-template name="string">
-        <xsl:with-param name="xmltag" select="xr:Invoice_line_object_identifier"/>
+        <xsl:with-param name="xmltag" select="ram:SpecifiedLineTradeSettlement/ram:AdditionalReferencedDocument/ram:IssuerAssignedID[following-sibling::ram:TypeCode='130']"/>
         <xsl:with-param name="jsonkey" select="'BT128'"/>
         <xsl:with-param name="indent" select="'    '"/>
       </xsl:call-template>
       <xsl:call-template name="string">
-        <xsl:with-param name="xmltag" select="xr:Invoiced_quantity"/>
+        <xsl:with-param name="xmltag" select="ram:SpecifiedLineTradeDelivery/ram:BilledQuantity"/>
         <xsl:with-param name="jsonkey" select="'BT129'"/>
         <xsl:with-param name="indent" select="'    '"/>
       </xsl:call-template>
       <xsl:call-template name="string">
-        <xsl:with-param name="xmltag" select="xr:Invoiced_quantity_unit_of_measure_code"/>
+        <xsl:with-param name="xmltag" select="ram:SpecifiedLineTradeDelivery/ram:BilledQuantity/@unitCode"/>
         <xsl:with-param name="jsonkey" select="'BT130'"/>
         <xsl:with-param name="indent" select="'    '"/>
       </xsl:call-template>
       <xsl:call-template name="string">
-        <xsl:with-param name="xmltag" select="xr:Invoice_line_net_amount"/>
+        <xsl:with-param name="xmltag" select="ram:SpecifiedLineTradeSettlement/ram:SpecifiedTradeSettlementLineMonetarySummation/ram:LineTotalAmount"/>
         <xsl:with-param name="jsonkey" select="'BT131'"/>
         <xsl:with-param name="indent" select="'    '"/>
       </xsl:call-template>
       <xsl:call-template name="string">
-        <xsl:with-param name="xmltag" select="xr:Referenced_purchase_order_line_reference"/>
+        <xsl:with-param name="xmltag" select="ram:SpecifiedLineTradeAgreement/ram:BuyerOrderReferencedDocument/ram:LineID"/>
         <xsl:with-param name="jsonkey" select="'BT132'"/>
         <xsl:with-param name="indent" select="'    '"/>
       </xsl:call-template>
       <xsl:call-template name="string">
-        <xsl:with-param name="xmltag" select="xr:Invoice_line_Buyer_accounting_reference"/>
+        <xsl:with-param name="xmltag" select="ram:SpecifiedLineTradeSettlement/ram:ReceivableSpecifiedTradeAccountingAccount/ram:ID"/>
         <xsl:with-param name="jsonkey" select="'BT133'"/>
         <xsl:with-param name="indent" select="'    '"/>
       </xsl:call-template>
+
       <xsl:variable name="bg-26">
-        <xsl:call-template name="date_from_iso8601">
-          <xsl:with-param name="xmltag" select="xr:INVOICE_LINE_PERIOD/xr:Invoice_line_period_start_date"/>
+        <xsl:call-template name="date_from_CCYYMMDD">
+          <xsl:with-param name="xmltag" select="ram:SpecifiedLineTradeSettlement/ram:BillingSpecifiedPeriod/ram:StartDateTime/udt:DateTimeString[@format='102']"/>
           <xsl:with-param name="jsonkey" select="'BT134'"/>
           <xsl:with-param name="indent" select="'      '"/>
         </xsl:call-template>
-        <xsl:call-template name="date_from_iso8601">
-          <xsl:with-param name="xmltag" select="xr:INVOICE_LINE_PERIOD/xr:Invoice_line_period_end_date"/>
+        <xsl:call-template name="date_from_CCYYMMDD">
+          <xsl:with-param name="xmltag" select="ram:SpecifiedLineTradeSettlement/ram:BillingSpecifiedPeriod/ram:EndDateTime/udt:DateTimeString[@format='102']"/>
           <xsl:with-param name="jsonkey" select="'BT135'"/>
           <xsl:with-param name="indent" select="'      '"/>
         </xsl:call-template>
@@ -1005,30 +1002,30 @@
       </xsl:if>
 
       <xsl:variable name="bg-27">
-        <xsl:for-each select="xr:INVOICE_LINE_ALLOWANCES">
+        <xsl:for-each select="ram:SpecifiedLineTradeSettlement/ram:SpecifiedTradeAllowanceCharge[ram:ChargeIndicator/udt:Indicator='false']">
           <xsl:text>&#10;          {</xsl:text>
           <xsl:call-template name="string">
-            <xsl:with-param name="xmltag" select="xr:Invoice_line_allowance_amount"/>
+            <xsl:with-param name="xmltag" select="ram:ActualAmount"/>
             <xsl:with-param name="jsonkey" select="'BT136'"/>
             <xsl:with-param name="indent" select="'        '"/>
           </xsl:call-template>
           <xsl:call-template name="string">
-            <xsl:with-param name="xmltag" select="xr:Invoice_line_allowance_base_amount"/>
+            <xsl:with-param name="xmltag" select="ram:BasisAmount"/>
             <xsl:with-param name="jsonkey" select="'BT137'"/>
             <xsl:with-param name="indent" select="'        '"/>
           </xsl:call-template>
           <xsl:call-template name="string">
-            <xsl:with-param name="xmltag" select="xr:Invoice_line_allowance_percentage"/>
+            <xsl:with-param name="xmltag" select="ram:CalculationPercent"/>
             <xsl:with-param name="jsonkey" select="'BT138'"/>
             <xsl:with-param name="indent" select="'        '"/>
           </xsl:call-template>
           <xsl:call-template name="string">
-            <xsl:with-param name="xmltag" select="xr:Invoice_line_allowance_reason"/>
+            <xsl:with-param name="xmltag" select="ram:Reason"/>
             <xsl:with-param name="jsonkey" select="'BT139'"/>
             <xsl:with-param name="indent" select="'        '"/>
           </xsl:call-template>
           <xsl:call-template name="string">
-            <xsl:with-param name="xmltag" select="xr:Invoice_line_allowance_reason_code"/>
+            <xsl:with-param name="xmltag" select="ram:ReasonCode"/>
             <xsl:with-param name="jsonkey" select="'BT140'"/>
             <xsl:with-param name="indent" select="'        '"/>
           </xsl:call-template>
@@ -1042,30 +1039,30 @@
       </xsl:if>
 
       <xsl:variable name="bg-28">
-        <xsl:for-each select="xr:INVOICE_LINE_CHARGES">
+        <xsl:for-each select="ram:SpecifiedLineTradeSettlement/ram:SpecifiedTradeAllowanceCharge[ram:ChargeIndicator/udt:Indicator='true']">
           <xsl:text>&#10;          {</xsl:text>
           <xsl:call-template name="string">
-            <xsl:with-param name="xmltag" select="xr:Invoice_line_charge_amount"/>
+            <xsl:with-param name="xmltag" select="ram:ActualAmount"/>
             <xsl:with-param name="jsonkey" select="'BT141'"/>
             <xsl:with-param name="indent" select="'        '"/>
           </xsl:call-template>
           <xsl:call-template name="string">
-            <xsl:with-param name="xmltag" select="xr:Invoice_line_charge_base_amount"/>
+            <xsl:with-param name="xmltag" select="ram:BasisAmount"/>
             <xsl:with-param name="jsonkey" select="'BT142'"/>
             <xsl:with-param name="indent" select="'        '"/>
           </xsl:call-template>
           <xsl:call-template name="string">
-            <xsl:with-param name="xmltag" select="xr:Invoice_line_charge_percentage"/>
+            <xsl:with-param name="xmltag" select="ram:CalculationPercent"/>
             <xsl:with-param name="jsonkey" select="'BT143'"/>
             <xsl:with-param name="indent" select="'        '"/>
           </xsl:call-template>
           <xsl:call-template name="string">
-            <xsl:with-param name="xmltag" select="xr:Invoice_line_charge_reason"/>
+            <xsl:with-param name="xmltag" select="ram:Reason"/>
             <xsl:with-param name="jsonkey" select="'BT144'"/>
             <xsl:with-param name="indent" select="'        '"/>
           </xsl:call-template>
           <xsl:call-template name="string">
-            <xsl:with-param name="xmltag" select="xr:Invoice_line_charge_reason_code"/>
+            <xsl:with-param name="xmltag" select="ram:ReasonCode"/>
             <xsl:with-param name="jsonkey" select="'BT145'"/>
             <xsl:with-param name="indent" select="'        '"/>
           </xsl:call-template>
@@ -1080,30 +1077,45 @@
 
       <xsl:variable name="bg-29">
         <xsl:call-template name="string">
-          <xsl:with-param name="xmltag" select="xr:PRICE_DETAILS/xr:Item_net_price"/>
+          <xsl:with-param name="xmltag" select="ram:SpecifiedLineTradeAgreement/ram:NetPriceProductTradePrice/ram:ChargeAmount"/>
           <xsl:with-param name="jsonkey" select="'BT146'"/>
           <xsl:with-param name="indent" select="'      '"/>
         </xsl:call-template>
         <xsl:call-template name="string">
-          <xsl:with-param name="xmltag" select="xr:PRICE_DETAILS/xr:Item_price_discount"/>
+          <xsl:with-param name="xmltag" select="ram:SpecifiedLineTradeAgreement/ram:GrossPriceProductTradePrice/ram:AppliedTradeAllowanceCharge/ram:ActualAmount"/>
           <xsl:with-param name="jsonkey" select="'BT147'"/>
           <xsl:with-param name="indent" select="'      '"/>
         </xsl:call-template>
         <xsl:call-template name="string">
-          <xsl:with-param name="xmltag" select="xr:PRICE_DETAILS/xr:Item_gross_price"/>
+          <xsl:with-param name="xmltag" select="ram:SpecifiedLineTradeAgreement/ram:GrossPriceProductTradePrice/ram:ChargeAmount"/>
           <xsl:with-param name="jsonkey" select="'BT148'"/>
           <xsl:with-param name="indent" select="'      '"/>
         </xsl:call-template>
+
+        <!-- BT-149 is 0..1 => in a valid CII at most one of *Net* or *Gross* is present -->
         <xsl:call-template name="string">
-          <xsl:with-param name="xmltag" select="xr:PRICE_DETAILS/xr:Item_price_base_quantity"/>
+          <xsl:with-param name="xmltag" select="ram:SpecifiedLineTradeAgreement/ram:NetPriceProductTradePrice/ram:BasisQuantity"/>
           <xsl:with-param name="jsonkey" select="'BT149'"/>
           <xsl:with-param name="indent" select="'      '"/>
         </xsl:call-template>
         <xsl:call-template name="string">
-          <xsl:with-param name="xmltag" select="xr:PRICE_DETAILS/xr:Item_price_base_quantity_unit_of_measure"/>
+          <xsl:with-param name="xmltag" select="ram:SpecifiedLineTradeAgreement/ram:GrossPriceProductTradePrice/ram:BasisQuantity"/>
+          <xsl:with-param name="jsonkey" select="'BT149'"/>
+          <xsl:with-param name="indent" select="'      '"/>
+        </xsl:call-template>
+
+        <!-- BT-150 is 0..1 => in a valid CII at most one of *Net* or *Gross* is present -->
+        <xsl:call-template name="string">
+          <xsl:with-param name="xmltag" select="ram:SpecifiedLineTradeAgreement/ram:NetPriceProductTradePrice/ram:BasisQuantity/@unitCode"/>
           <xsl:with-param name="jsonkey" select="'BT150'"/>
           <xsl:with-param name="indent" select="'      '"/>
         </xsl:call-template>
+        <xsl:call-template name="string">
+          <xsl:with-param name="xmltag" select="ram:SpecifiedLineTradeAgreement/ram:GrossPriceProductTradePrice/ram:BasisQuantity/@unitCode"/>
+          <xsl:with-param name="jsonkey" select="'BT150'"/>
+          <xsl:with-param name="indent" select="'      '"/>
+        </xsl:call-template>
+
       </xsl:variable>
       <xsl:if test="string($bg-29)">
         <xsl:text>&#10;        "BG029": {</xsl:text>
@@ -1113,12 +1125,12 @@
 
       <xsl:variable name="bg-30">
         <xsl:call-template name="string">
-          <xsl:with-param name="xmltag" select="xr:LINE_VAT_INFORMATION/xr:Invoiced_item_VAT_category_code"/>
+          <xsl:with-param name="xmltag" select="ram:SpecifiedLineTradeSettlement/ram:ApplicableTradeTax/ram:CategoryCode"/>
           <xsl:with-param name="jsonkey" select="'BT151'"/>
           <xsl:with-param name="indent" select="'      '"/>
         </xsl:call-template>
         <xsl:call-template name="string">
-          <xsl:with-param name="xmltag" select="xr:LINE_VAT_INFORMATION/xr:Invoiced_item_VAT_rate"/>
+          <xsl:with-param name="xmltag" select="ram:SpecifiedLineTradeSettlement/ram:ApplicableTradeTax/ram:RateApplicablePercent"/>
           <xsl:with-param name="jsonkey" select="'BT152'"/>
           <xsl:with-param name="indent" select="'      '"/>
         </xsl:call-template>
@@ -1131,50 +1143,51 @@
 
       <xsl:variable name="bg-31">
         <xsl:call-template name="string">
-          <xsl:with-param name="xmltag" select="xr:ITEM_INFORMATION/xr:Item_name"/>
+          <xsl:with-param name="xmltag" select="ram:SpecifiedTradeProduct/ram:Name"/>
           <xsl:with-param name="jsonkey" select="'BT153'"/>
           <xsl:with-param name="indent" select="'      '"/>
         </xsl:call-template>
         <xsl:call-template name="string">
-          <xsl:with-param name="xmltag" select="xr:ITEM_INFORMATION/xr:Item_description"/>
+          <xsl:with-param name="xmltag" select="ram:SpecifiedTradeProduct/ram:Description"/>
           <xsl:with-param name="jsonkey" select="'BT154'"/>
           <xsl:with-param name="indent" select="'      '"/>
         </xsl:call-template>
         <xsl:call-template name="string">
-          <xsl:with-param name="xmltag" select="xr:ITEM_INFORMATION/xr:Item_Sellers_identifier"/>
+          <xsl:with-param name="xmltag" select="ram:SpecifiedTradeProduct/ram:SellerAssignedID"/>
           <xsl:with-param name="jsonkey" select="'BT155'"/>
           <xsl:with-param name="indent" select="'      '"/>
         </xsl:call-template>
         <xsl:call-template name="string">
-          <xsl:with-param name="xmltag" select="xr:ITEM_INFORMATION/xr:Item_Buyers_identifier"/>
+          <xsl:with-param name="xmltag" select="ram:SpecifiedTradeProduct/ram:BuyerAssignedID"/>
           <xsl:with-param name="jsonkey" select="'BT156'"/>
           <xsl:with-param name="indent" select="'      '"/>
         </xsl:call-template>
         <xsl:call-template name="string">
-          <xsl:with-param name="xmltag" select="xr:ITEM_INFORMATION/xr:Item_standard_identifier"/>
+          <xsl:with-param name="xmltag" select="ram:SpecifiedTradeProduct/ram:GlobalID"/>
           <xsl:with-param name="jsonkey" select="'BT157'"/>
           <xsl:with-param name="indent" select="'      '"/>
         </xsl:call-template>
         <xsl:call-template name="array">
-          <xsl:with-param name="xmltag" select="xr:ITEM_INFORMATION/xr:Item_classification_identifier"/>
+          <xsl:with-param name="xmltag" select="ram:SpecifiedTradeProduct/ram:DesignatedProductClassification/ram:ClassCode"/>
           <xsl:with-param name="jsonkey" select="'BT158'"/>
           <xsl:with-param name="indent" select="'      '"/>
         </xsl:call-template>
         <xsl:call-template name="string">
-          <xsl:with-param name="xmltag" select="xr:ITEM_INFORMATION/xr:Item_country_of_origin"/>
+          <xsl:with-param name="xmltag" select="ram:SpecifiedTradeProduct/ram:OriginTradeCountry/ram:ID"/>
           <xsl:with-param name="jsonkey" select="'BT159'"/>
           <xsl:with-param name="indent" select="'      '"/>
         </xsl:call-template>
+
         <xsl:variable name="bg-32">
-          <xsl:for-each select="xr:ITEM_INFORMATION/xr:ITEM_ATTRIBUTES">
+          <xsl:for-each select="ram:SpecifiedTradeProduct/ram:ApplicableProductCharacteristic">
             <xsl:text>&#10;            {</xsl:text>
             <xsl:call-template name="string">
-              <xsl:with-param name="xmltag" select="xr:Item_attribute_name"/>
+              <xsl:with-param name="xmltag" select="ram:Description"/>
               <xsl:with-param name="jsonkey" select="'BT160'"/>
               <xsl:with-param name="indent" select="'          '"/>
             </xsl:call-template>
             <xsl:call-template name="string">
-              <xsl:with-param name="xmltag" select="xr:Item_attribute_value"/>
+              <xsl:with-param name="xmltag" select="ram:Value"/>
               <xsl:with-param name="jsonkey" select="'BT161'"/>
               <xsl:with-param name="indent" select="'          '"/>
             </xsl:call-template>
@@ -1202,33 +1215,6 @@
     <xsl:value-of select="substring($bg-25, 1, string-length($bg-25) - 1)" />
     <xsl:text>&#10;    ],</xsl:text>
   </xsl:if>
-
-
--->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   <xsl:text>
   }
