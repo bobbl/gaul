@@ -222,6 +222,7 @@ def main():
 
 
 
+
     # XSLT script to convert the KoSIT semantic model XML to JSON business terms
 
     with open("gen/smx2btj.xslt", "w") as f:
@@ -260,10 +261,34 @@ def main():
 
 
     # mustache script to convert JSON business terms to the KoSIT semantic model
-
     with open("gen/btj2smx.mustache", "w") as f:
         print('<?xml version="1.0" encoding="UTF-8"?>', file=f)
         print(btj2smx_recurse("0", "", bt, bg), file=f)
+
+
+    # script to replace BT names with names from the semantic model
+    with open("gen/btj2smj.sed", "w") as f:
+        for row in sm_rows:
+            btname = f"{row['Terminal']}{row['BT'].zfill(3)}"
+            smname = row['Name'].replace(" ", "_")
+            if row['Terminal'] == "BT":
+                smname = smname[0].upper() + smname[1:].lower()
+            else:
+                smname = smname.upper()
+            print(f's/"{btname}"/"{smname}"/g', file=f)
+
+
+    # script to replace  names from the semantic model with BT names
+    with open("gen/smj2btj.sed", "w") as f:
+        for row in sm_rows:
+            btname = f"{row['Terminal']}{row['BT'].zfill(3)}"
+            smname = row['Name'].replace(" ", "_")
+            if row['Terminal'] == "BT":
+                smname = smname[0].upper() + smname[1:].lower()
+            else:
+                smname = smname.upper()
+            print(f's/"{smname}"/"{btname}"/g', file=f)
+
 
 
 
