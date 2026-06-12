@@ -347,8 +347,8 @@ replace_bt2sm = {pprint.pformat(bt2sm, indent=4)}
 
 
     # python source code file with all the templates
-    os.makedirs("../py/gaul/src/gaul", exist_ok=True)
-    with open("../py/gaul/src/gaul/templates.py", "w") as f:
+    os.makedirs("../py/src/gaul", exist_ok=True)
+    with open("../py/src/gaul/templates.py", "w") as f:
         f.write(collection)
 
 

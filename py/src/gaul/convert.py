@@ -28,6 +28,12 @@ class Gaul:
         self.bttree = None
 
 
+    SUPPORTED_FORMATS = ["BTJ", "SMJ", "SMX", "CII"]
+
+    def format_supported(format_str: str) -> bool:
+        return format_str in Gaul.SUPPORTED_FORMATS
+
+
 
     def load_btj(self, s: str):
         self.btstr = s
@@ -46,18 +52,32 @@ class Gaul:
                             s)
         self.bttree = None
 
-    def load_smx(self, s: str) -> str:
+    def load_smx(self, s: str):
         self.btstr = xslt_transform(templates.smx2btj_xslt, s)
         self.bttree = None
 
-    def load_cii(self, s: str) -> str:
+    def load_cii(self, s: str):
         self.btstr = xslt_transform(templates.cii2btj_xslt, s)
         self.bttree = None
+
+    def load(self, s: str, format=""):
+        if format == "BTJ":
+            self.load_btj(s)
+        elif format == "SMJ":
+            self.load_smj(s)
+        elif format == "SMX":
+            self.load_smx(s)
+        elif format == "SMJ":
+            self.load_cii(s)
+        #elif format == "":
+        #   self.load_auto(s)
+        else:
+            ValueError(f"Unknown input format '{format}'")
 
 
 
     def dump_as_btj(self) -> str:
-        if not self.btstr:
+        if self.btstr == None:
             self.btstr = yaml.dump(self.bttree)
         return self.btstr
 
@@ -80,5 +100,19 @@ class Gaul:
         if not self.bttree:
             self.bttree = yaml.safe_load(self.btstr)
         return chevron.render(templates.btj2cii_mustache, self.bttree)
+
+    def dump(self, format):
+        if format == "BTJ":
+            return self.dump_as_btj()
+        if format == "SMJ":
+            return self.dump_as_smj()
+        if format == "SMX":
+            return self.dump_as_smx()
+        if format == "CII":
+            return self.dump_as_cii()
+        #lif format == "":
+        #    return self.dump_auto(s)
+        else:
+            ValueError(f"Unknown input format '{format}'")
 
 
