@@ -1,24 +1,117 @@
 diff smx/01.07a-INVOICE_uncefact.smx smx2/01.07a-INVOICE_uncefact.smx
-56a57,58
->   <xr:DELIVERY_INFORMATION xr:id="BG-13">
->   </xr:DELIVERY_INFORMATION>
-diff smx/01.09a-INVOICE_uncefact.smx smx2/01.09a-INVOICE_uncefact.smx
-82c82
-<       <xr:Item_name xr:id="BT-153">Paketierung der Anwendung "Kofax 10.2" für 180 Geräte</xr:Item_name>
----
->       <xr:Item_name xr:id="BT-153">Paketierung der Anwendung &quot;Kofax 10.2&quot; für 180 Geräte</xr:Item_name>
+56a57
+>   <xr:DELIVERY_INFORMATION xr:id="BG-13"/>
 diff smx/03.01a-INVOICE_uncefact.smx smx2/03.01a-INVOICE_uncefact.smx
-44a45,46
->   <xr:DELIVERY_INFORMATION xr:id="BG-13">
->   </xr:DELIVERY_INFORMATION>
+44a45
+>   <xr:DELIVERY_INFORMATION xr:id="BG-13"/>
 diff smx/03.04a-INVOICE_uncefact.smx smx2/03.04a-INVOICE_uncefact.smx
-43a44,45
->   <xr:DELIVERY_INFORMATION xr:id="BG-13">
->   </xr:DELIVERY_INFORMATION>
+43a44
+>   <xr:DELIVERY_INFORMATION xr:id="BG-13"/>
 diff smx/03.05a-INVOICE_uncefact.smx smx2/03.05a-INVOICE_uncefact.smx
-43a44,45
->   <xr:DELIVERY_INFORMATION xr:id="BG-13">
->   </xr:DELIVERY_INFORMATION>
+43a44
+>   <xr:DELIVERY_INFORMATION xr:id="BG-13"/>
+diff smx/CII_business_example_02.smx smx2/CII_business_example_02.smx
+36a37
+>   <xr:DELIVERY_INFORMATION xr:id="BG-13"/>
+diff smx/CII_example1a.smx smx2/CII_example1a.smx
+41a42
+>   <xr:DELIVERY_INFORMATION xr:id="BG-13"/>
+diff smx/CII_example3.smx smx2/CII_example3.smx
+38a39
+>   <xr:DELIVERY_INFORMATION xr:id="BG-13"/>
+diff smx/CII_example7.smx smx2/CII_example7.smx
+46a47
+>   <xr:DELIVERY_INFORMATION xr:id="BG-13"/>
+diff smx/issue1121.smx smx2/issue1121.smx
+33d32
+<       <xr:Seller_contact_point xr:id="BT-41">CRONUS DE </xr:Seller_contact_point>
+diff smx/issue20.smx smx2/issue20.smx
+149,150c149
+<     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </xr:Attached_document>
+---
+>     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</xr:Attached_document>
+155,157c154
+<     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="2300000013.PDF">
+<           SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </xr:Attached_document>
+---
+>     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="2300000013.PDF">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</xr:Attached_document>
+diff smx/issue22.smx smx2/issue22.smx
+8,9d7
+<   <xr:Value_added_tax_point_date_code xr:id="BT-8">3</xr:Value_added_tax_point_date_code>
+<   <xr:Value_added_tax_point_date_code xr:id="BT-8">3</xr:Value_added_tax_point_date_code>
+147,148c145
+<     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </xr:Attached_document>
+---
+>     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</xr:Attached_document>
+153,155c150
+<     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="2300000013.PDF">
+<           SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </xr:Attached_document>
+---
+>     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="2300000013.PDF">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</xr:Attached_document>
+diff smx/issue23.smx smx2/issue23.smx
+8,9d7
+<   <xr:Value_added_tax_point_date_code xr:id="BT-8">3</xr:Value_added_tax_point_date_code>
+<   <xr:Value_added_tax_point_date_code xr:id="BT-8">3</xr:Value_added_tax_point_date_code>
+147,148c145
+<     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </xr:Attached_document>
+---
+>     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</xr:Attached_document>
+153,155c150
+<     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="2300000013.PDF">
+<           SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </xr:Attached_document>
+---
+>     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="2300000013.PDF">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</xr:Attached_document>
+diff smx/issue28.smx smx2/issue28.smx
+8,9d7
+<   <xr:Value_added_tax_point_date_code xr:id="BT-8">3</xr:Value_added_tax_point_date_code>
+<   <xr:Value_added_tax_point_date_code xr:id="BT-8">3</xr:Value_added_tax_point_date_code>
+147,148c145
+<     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </xr:Attached_document>
+---
+>     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</xr:Attached_document>
+153,155c150
+<     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="2300000013.PDF">
+<           SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </xr:Attached_document>
+---
+>     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="2300000013.PDF">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</xr:Attached_document>
+diff smx/issue34.smx smx2/issue34.smx
+8,9d7
+<   <xr:Value_added_tax_point_date_code xr:id="BT-8">3</xr:Value_added_tax_point_date_code>
+<   <xr:Value_added_tax_point_date_code xr:id="BT-8">3</xr:Value_added_tax_point_date_code>
+147,148c145
+<     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </xr:Attached_document>
+---
+>     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</xr:Attached_document>
+153,155c150
+<     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="2300000013.PDF">
+<           SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </xr:Attached_document>
+---
+>     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="2300000013.PDF">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</xr:Attached_document>
+diff smx/issue38-bad.smx smx2/issue38-bad.smx
+8,9d7
+<   <xr:Value_added_tax_point_date_code xr:id="BT-8">3</xr:Value_added_tax_point_date_code>
+<   <xr:Value_added_tax_point_date_code xr:id="BT-8">3</xr:Value_added_tax_point_date_code>
+148,149c146
+<     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </xr:Attached_document>
+---
+>     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</xr:Attached_document>
+154,156c151
+<     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="2300000013.PDF">
+<           SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </xr:Attached_document>
+---
+>     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="2300000013.PDF">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</xr:Attached_document>
 diff smx/wrong-date-with-text-uncefact.smx smx2/wrong-date-with-text-uncefact.smx
 4c4
 <   <xr:Invoice_issue_date xr:id="BT-2">ILLEGAL DATE FORMAT of "Dies ist kein Datum".</xr:Invoice_issue_date>

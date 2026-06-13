@@ -19,6 +19,241 @@ diff smx/03.05a-INVOICE_uncefact.smx smx3/03.05a-INVOICE_uncefact.smx
 43a44,45
 >   <xr:DELIVERY_INFORMATION xr:id="BG-13">
 >   </xr:DELIVERY_INFORMATION>
+diff smx/CII_business_example_02.smx smx3/CII_business_example_02.smx
+36a37,38
+>   <xr:DELIVERY_INFORMATION xr:id="BG-13">
+>   </xr:DELIVERY_INFORMATION>
+86c88
+<       <xr:Item_description xr:id="BT-154"/>
+---
+>       <xr:Item_description xr:id="BT-154"></xr:Item_description>
+103c105
+<       <xr:Item_description xr:id="BT-154"/>
+---
+>       <xr:Item_description xr:id="BT-154"></xr:Item_description>
+120c122
+<       <xr:Item_description xr:id="BT-154"/>
+---
+>       <xr:Item_description xr:id="BT-154"></xr:Item_description>
+diff smx/CII_example1a.smx smx3/CII_example1a.smx
+11c11
+<     <xr:Invoice_note xr:id="BT-22">Alle leveringen zijn franco. Alle prijzen zijn incl. BTW. Betalingstermijn: 14 dagen netto. Prijswijzigingen voorbehouden. Op al onze aanbiedingen, leveringen en overeenkomsten zijn van toepassing in de algemene verkoop en leveringsvoorwaarden. Gedeponeerd bij de K.v.K. te Amsterdam 25-04-'85.</xr:Invoice_note>
+---
+>     <xr:Invoice_note xr:id="BT-22">Alle leveringen zijn franco. Alle prijzen zijn incl. BTW. Betalingstermijn: 14 dagen netto. Prijswijzigingen voorbehouden. Op al onze aanbiedingen, leveringen en overeenkomsten zijn van toepassing in de algemene verkoop en leveringsvoorwaarden. Gedeponeerd bij de K.v.K. te Amsterdam 25-04-&#39;85.</xr:Invoice_note>
+18a19
+>     <xr:Seller_VAT_identifier xr:id="BT-31">ATU00000006</xr:Seller_VAT_identifier>
+41a43,44
+>   <xr:DELIVERY_INFORMATION xr:id="BG-13">
+>   </xr:DELIVERY_INFORMATION>
+diff smx/CII_example1-CreditNote.smx smx3/CII_example1-CreditNote.smx
+10c10
+<     <xr:Invoice_note xr:id="BT-22">Alle leveringen zijn franco. Alle prijzen zijn incl. BTW. Betalingstermijn: 14 dagen netto. Prijswijzigingen voorbehouden. Op al onze aanbiedingen, leveringen en overeenkomsten zijn van toepassing in de algemene verkoop en leveringsvoorwaarden. Gedeponeerd bij de K.v.K. te Amsterdam 25-04-'85.</xr:Invoice_note>
+---
+>     <xr:Invoice_note xr:id="BT-22">Alle leveringen zijn franco. Alle prijzen zijn incl. BTW. Betalingstermijn: 14 dagen netto. Prijswijzigingen voorbehouden. Op al onze aanbiedingen, leveringen en overeenkomsten zijn van toepassing in de algemene verkoop en leveringsvoorwaarden. Gedeponeerd bij de K.v.K. te Amsterdam 25-04-&#39;85.</xr:Invoice_note>
+diff smx/CII_example1.smx smx3/CII_example1.smx
+10c10
+<     <xr:Invoice_note xr:id="BT-22">Alle leveringen zijn franco. Alle prijzen zijn incl. BTW. Betalingstermijn: 14 dagen netto. Prijswijzigingen voorbehouden. Op al onze aanbiedingen, leveringen en overeenkomsten zijn van toepassing in de algemene verkoop en leveringsvoorwaarden. Gedeponeerd bij de K.v.K. te Amsterdam 25-04-'85.</xr:Invoice_note>
+---
+>     <xr:Invoice_note xr:id="BT-22">Alle leveringen zijn franco. Alle prijzen zijn incl. BTW. Betalingstermijn: 14 dagen netto. Prijswijzigingen voorbehouden. Op al onze aanbiedingen, leveringen en overeenkomsten zijn van toepassing in de algemene verkoop en leveringsvoorwaarden. Gedeponeerd bij de K.v.K. te Amsterdam 25-04-&#39;85.</xr:Invoice_note>
+diff smx/CII_example2.smx smx3/CII_example2.smx
+213c213
+<       <xr:Item_name xr:id="BT-153">Returned "Advanced computing" book</xr:Item_name>
+---
+>       <xr:Item_name xr:id="BT-153">Returned &quot;Advanced computing&quot; book</xr:Item_name>
+238c238
+<       <xr:Item_name xr:id="BT-153">"Computing for dummies" book</xr:Item_name>
+---
+>       <xr:Item_name xr:id="BT-153">&quot;Computing for dummies&quot; book</xr:Item_name>
+diff smx/CII_example3.smx smx3/CII_example3.smx
+38a39,40
+>   <xr:DELIVERY_INFORMATION xr:id="BG-13">
+>   </xr:DELIVERY_INFORMATION>
+diff smx/CII_example7.smx smx3/CII_example7.smx
+46a47,48
+>   <xr:DELIVERY_INFORMATION xr:id="BG-13">
+>   </xr:DELIVERY_INFORMATION>
+diff smx/CII_example8.smx smx3/CII_example8.smx
+28c28
+<       <xr:Seller_city xr:id="BT-37">'S-HERTOGENBOSCH</xr:Seller_city>
+---
+>       <xr:Seller_city xr:id="BT-37">&#39;S-HERTOGENBOSCH</xr:Seller_city>
+diff smx/issue1121.smx smx3/issue1121.smx
+33d32
+<       <xr:Seller_contact_point xr:id="BT-41">CRONUS DE </xr:Seller_contact_point>
+diff smx/issue12.smx smx3/issue12.smx
+9,12c9,12
+<   <xr:Project_reference xr:id="BT-11"/>
+<   <xr:Contract_reference xr:id="BT-12"/>
+<   <xr:Purchase_order_reference xr:id="BT-13"/>
+<   <xr:Payment_terms xr:id="BT-20"/>
+---
+>   <xr:Project_reference xr:id="BT-11"></xr:Project_reference>
+>   <xr:Contract_reference xr:id="BT-12"></xr:Contract_reference>
+>   <xr:Purchase_order_reference xr:id="BT-13"></xr:Purchase_order_reference>
+>   <xr:Payment_terms xr:id="BT-20"></xr:Payment_terms>
+28c28
+<       <xr:Seller_address_line_2 xr:id="BT-36"/>
+---
+>       <xr:Seller_address_line_2 xr:id="BT-36"></xr:Seller_address_line_2>
+44c44
+<       <xr:Buyer_address_line_2 xr:id="BT-51"/>
+---
+>       <xr:Buyer_address_line_2 xr:id="BT-51"></xr:Buyer_address_line_2>
+87,88c87,88
+<       <xr:Item_description xr:id="BT-154"/>
+<       <xr:Item_Sellers_identifier xr:id="BT-155"/>
+---
+>       <xr:Item_description xr:id="BT-154"></xr:Item_description>
+>       <xr:Item_Sellers_identifier xr:id="BT-155"></xr:Item_Sellers_identifier>
+diff smx/issue20.smx smx3/issue20.smx
+149,150c149
+<     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </xr:Attached_document>
+---
+>     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</xr:Attached_document>
+155,157c154
+<     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="2300000013.PDF">
+<           SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </xr:Attached_document>
+---
+>     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="2300000013.PDF">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</xr:Attached_document>
+226c223
+<       <xr:Item_name xr:id="BT-153">Returned "Advanced computing" book</xr:Item_name>
+---
+>       <xr:Item_name xr:id="BT-153">Returned &quot;Advanced computing&quot; book</xr:Item_name>
+251c248
+<       <xr:Item_name xr:id="BT-153">"Computing for dummies" book</xr:Item_name>
+---
+>       <xr:Item_name xr:id="BT-153">&quot;Computing for dummies&quot; book</xr:Item_name>
+diff smx/issue22.smx smx3/issue22.smx
+8,9d7
+<   <xr:Value_added_tax_point_date_code xr:id="BT-8">3</xr:Value_added_tax_point_date_code>
+<   <xr:Value_added_tax_point_date_code xr:id="BT-8">3</xr:Value_added_tax_point_date_code>
+147,148c145
+<     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </xr:Attached_document>
+---
+>     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</xr:Attached_document>
+153,155c150
+<     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="2300000013.PDF">
+<           SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </xr:Attached_document>
+---
+>     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="2300000013.PDF">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</xr:Attached_document>
+224c219
+<       <xr:Item_name xr:id="BT-153">Returned "Advanced computing" book</xr:Item_name>
+---
+>       <xr:Item_name xr:id="BT-153">Returned &quot;Advanced computing&quot; book</xr:Item_name>
+249c244
+<       <xr:Item_name xr:id="BT-153">"Computing for dummies" book</xr:Item_name>
+---
+>       <xr:Item_name xr:id="BT-153">&quot;Computing for dummies&quot; book</xr:Item_name>
+diff smx/issue23.smx smx3/issue23.smx
+8,9d7
+<   <xr:Value_added_tax_point_date_code xr:id="BT-8">3</xr:Value_added_tax_point_date_code>
+<   <xr:Value_added_tax_point_date_code xr:id="BT-8">3</xr:Value_added_tax_point_date_code>
+147,148c145
+<     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </xr:Attached_document>
+---
+>     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</xr:Attached_document>
+153,155c150
+<     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="2300000013.PDF">
+<           SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </xr:Attached_document>
+---
+>     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="2300000013.PDF">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</xr:Attached_document>
+224c219
+<       <xr:Item_name xr:id="BT-153">Returned "Advanced computing" book</xr:Item_name>
+---
+>       <xr:Item_name xr:id="BT-153">Returned &quot;Advanced computing&quot; book</xr:Item_name>
+249c244
+<       <xr:Item_name xr:id="BT-153">"Computing for dummies" book</xr:Item_name>
+---
+>       <xr:Item_name xr:id="BT-153">&quot;Computing for dummies&quot; book</xr:Item_name>
+diff smx/issue28.smx smx3/issue28.smx
+8,9d7
+<   <xr:Value_added_tax_point_date_code xr:id="BT-8">3</xr:Value_added_tax_point_date_code>
+<   <xr:Value_added_tax_point_date_code xr:id="BT-8">3</xr:Value_added_tax_point_date_code>
+147,148c145
+<     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </xr:Attached_document>
+---
+>     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</xr:Attached_document>
+153,155c150
+<     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="2300000013.PDF">
+<           SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </xr:Attached_document>
+---
+>     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="2300000013.PDF">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</xr:Attached_document>
+224c219
+<       <xr:Item_name xr:id="BT-153">Returned "Advanced computing" book</xr:Item_name>
+---
+>       <xr:Item_name xr:id="BT-153">Returned &quot;Advanced computing&quot; book</xr:Item_name>
+249c244
+<       <xr:Item_name xr:id="BT-153">"Computing for dummies" book</xr:Item_name>
+---
+>       <xr:Item_name xr:id="BT-153">&quot;Computing for dummies&quot; book</xr:Item_name>
+diff smx/issue34.smx smx3/issue34.smx
+8,9d7
+<   <xr:Value_added_tax_point_date_code xr:id="BT-8">3</xr:Value_added_tax_point_date_code>
+<   <xr:Value_added_tax_point_date_code xr:id="BT-8">3</xr:Value_added_tax_point_date_code>
+147,148c145
+<     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </xr:Attached_document>
+---
+>     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</xr:Attached_document>
+153,155c150
+<     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="2300000013.PDF">
+<           SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </xr:Attached_document>
+---
+>     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="2300000013.PDF">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</xr:Attached_document>
+224c219
+<       <xr:Item_name xr:id="BT-153">Returned "Advanced computing" book</xr:Item_name>
+---
+>       <xr:Item_name xr:id="BT-153">Returned &quot;Advanced computing&quot; book</xr:Item_name>
+249c244
+<       <xr:Item_name xr:id="BT-153">"Computing for dummies" book</xr:Item_name>
+---
+>       <xr:Item_name xr:id="BT-153">&quot;Computing for dummies&quot; book</xr:Item_name>
+diff smx/issue38-bad.smx smx3/issue38-bad.smx
+8,9d7
+<   <xr:Value_added_tax_point_date_code xr:id="BT-8">3</xr:Value_added_tax_point_date_code>
+<   <xr:Value_added_tax_point_date_code xr:id="BT-8">3</xr:Value_added_tax_point_date_code>
+99c97
+<       <xr:Debited_account_identifier xr:id="BT-91"/>
+---
+>       <xr:Debited_account_identifier xr:id="BT-91"></xr:Debited_account_identifier>
+148,149c146
+<     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </xr:Attached_document>
+---
+>     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</xr:Attached_document>
+154,156c151
+<     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="2300000013.PDF">
+<           SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </xr:Attached_document>
+---
+>     <xr:Attached_document xr:id="BT-125" mime_code="application/pdf" filename="2300000013.PDF">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</xr:Attached_document>
+225c220
+<       <xr:Item_name xr:id="BT-153">Returned "Advanced computing" book</xr:Item_name>
+---
+>       <xr:Item_name xr:id="BT-153">Returned &quot;Advanced computing&quot; book</xr:Item_name>
+250c245
+<       <xr:Item_name xr:id="BT-153">"Computing for dummies" book</xr:Item_name>
+---
+>       <xr:Item_name xr:id="BT-153">&quot;Computing for dummies&quot; book</xr:Item_name>
+diff smx/issue47.smx smx3/issue47.smx
+45c45
+<     <xr:Deliver_to_party_name xr:id="BT-70"/>
+---
+>     <xr:Deliver_to_party_name xr:id="BT-70"></xr:Deliver_to_party_name>
+diff smx/issue7.smx smx3/issue7.smx
+12c12
+<         algemene verkoop en leveringsvoorwaarden. Gedeponeerd bij de K.v.K. te Amsterdam 25-04-'85.</xr:Invoice_note>
+---
+>         algemene verkoop en leveringsvoorwaarden. Gedeponeerd bij de K.v.K. te Amsterdam 25-04-&#39;85.</xr:Invoice_note>
 diff smx/wrong-date-with-text-uncefact.smx smx3/wrong-date-with-text-uncefact.smx
 4c4
 <   <xr:Invoice_issue_date xr:id="BT-2">ILLEGAL DATE FORMAT of "Dies ist kein Datum".</xr:Invoice_issue_date>

@@ -295,19 +295,7 @@ diff cii/03.04a-INVOICE_uncefact.xml cii2/03.04a-INVOICE_uncefact.xml
 >       <ram:ShipToTradeParty>
 >       </ram:ShipToTradeParty>
 diff cii/03.05a-INVOICE_uncefact.xml cii2/03.05a-INVOICE_uncefact.xml
-29a30,32
->         <ram:GrossPriceProductTradePrice>
->           <ram:BasisQuantity unitCode="DAY">366</ram:BasisQuantity>
->         </ram:GrossPriceProductTradePrice>
-67a71,73
->         <ram:GrossPriceProductTradePrice>
->           <ram:BasisQuantity unitCode="KWT">1</ram:BasisQuantity>
->         </ram:GrossPriceProductTradePrice>
-105a112,114
->         <ram:GrossPriceProductTradePrice>
->           <ram:BasisQuantity unitCode="KWH">1</ram:BasisQuantity>
->         </ram:GrossPriceProductTradePrice>
-188a198,199
+188a189,190
 >       <ram:ShipToTradeParty>
 >       </ram:ShipToTradeParty>
 diff cii/03.06a-INVOICE_uncefact.xml cii2/03.06a-INVOICE_uncefact.xml
@@ -375,6 +363,326 @@ diff cii/04.05a-INVOICE_uncefact.xml cii2/04.05a-INVOICE_uncefact.xml
 <         <ram:GlobalID schemeID="XR03">987654322</ram:GlobalID>
 ---
 >         <ram:ID>987654322</ram:ID>
+diff cii/CII_business_example_01.xml cii2/CII_business_example_01.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100" xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+145a146,147
+>       <ram:ShipToTradeParty>
+>       </ram:ShipToTradeParty>
+diff cii/CII_business_example_02.xml cii2/CII_business_example_02.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100" xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+26c26
+<         <ram:Description/>
+---
+>         <ram:Description></ram:Description>
+53c53
+<         <ram:Description/>
+---
+>         <ram:Description></ram:Description>
+80c80
+<         <ram:Description/>
+---
+>         <ram:Description></ram:Description>
+107d106
+<         <ram:DefinedTradeContact/>
+119c118
+<         <ram:GlobalID schemeID="0088">1111111111</ram:GlobalID>
+---
+>         <ram:ID>1111111111</ram:ID>
+132a132,133
+>       <ram:ShipToTradeParty>
+>       </ram:ShipToTradeParty>
+diff cii/CII_example1a.xml cii2/CII_example1a.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100" xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+15c15
+<       <ram:Content>Alle leveringen zijn franco. Alle prijzen zijn incl. BTW. Betalingstermijn: 14 dagen netto. Prijswijzigingen voorbehouden. Op al onze aanbiedingen, leveringen en overeenkomsten zijn van toepassing in de algemene verkoop en leveringsvoorwaarden. Gedeponeerd bij de K.v.K. te Amsterdam 25-04-'85.</ram:Content>
+---
+>       <ram:Content>Alle leveringen zijn franco. Alle prijzen zijn incl. BTW. Betalingstermijn: 14 dagen netto. Prijswijzigingen voorbehouden. Op al onze aanbiedingen, leveringen en overeenkomsten zijn van toepassing in de algemene verkoop en leveringsvoorwaarden. Gedeponeerd bij de K.v.K. te Amsterdam 25-04-&#39;85.</ram:Content>
+577,579d576
+<         <ram:SpecifiedTaxRegistration>
+<           <ram:ID schemeID="VAT">ATU00000006</ram:ID>
+<         </ram:SpecifiedTaxRegistration>
+598a596,597
+>       <ram:ShipToTradeParty>
+>       </ram:ShipToTradeParty>
+diff cii/CII_example1-CreditNote.xml cii2/CII_example1-CreditNote.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100" xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+15c15
+<       <ram:Content>Alle leveringen zijn franco. Alle prijzen zijn incl. BTW. Betalingstermijn: 14 dagen netto. Prijswijzigingen voorbehouden. Op al onze aanbiedingen, leveringen en overeenkomsten zijn van toepassing in de algemene verkoop en leveringsvoorwaarden. Gedeponeerd bij de K.v.K. te Amsterdam 25-04-'85.</ram:Content>
+---
+>       <ram:Content>Alle leveringen zijn franco. Alle prijzen zijn incl. BTW. Betalingstermijn: 14 dagen netto. Prijswijzigingen voorbehouden. Op al onze aanbiedingen, leveringen en overeenkomsten zijn van toepassing in de algemene verkoop en leveringsvoorwaarden. Gedeponeerd bij de K.v.K. te Amsterdam 25-04-&#39;85.</ram:Content>
+diff cii/CII_example1.xml cii2/CII_example1.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100" xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+15c15
+<       <ram:Content>Alle leveringen zijn franco. Alle prijzen zijn incl. BTW. Betalingstermijn: 14 dagen netto. Prijswijzigingen voorbehouden. Op al onze aanbiedingen, leveringen en overeenkomsten zijn van toepassing in de algemene verkoop en leveringsvoorwaarden. Gedeponeerd bij de K.v.K. te Amsterdam 25-04-'85.</ram:Content>
+---
+>       <ram:Content>Alle leveringen zijn franco. Alle prijzen zijn incl. BTW. Betalingstermijn: 14 dagen netto. Prijswijzigingen voorbehouden. Op al onze aanbiedingen, leveringen en overeenkomsten zijn van toepassing in de algemene verkoop en leveringsvoorwaarden. Gedeponeerd bij de K.v.K. te Amsterdam 25-04-&#39;85.</ram:Content>
+diff cii/CII_example2.xml cii2/CII_example2.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100" xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+30c30
+<         <ram:GlobalID schemeID="0088">1234567890128</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890128</ram:GlobalID>
+39c39
+<           <ram:ClassCode listID="STI">65434568</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">65434568</ram:ClassCode>
+61c61
+<           <ram:BasisQuantity unitCode="NAR">1273</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="NAR">1498</ram:BasisQuantity>
+83c83
+<             <udt:Indicator>false</udt:Indicator>
+---
+>             <udt:Indicator>true</udt:Indicator>
+86c86
+<           <ram:Reason>Damage</ram:Reason>
+---
+>           <ram:Reason>Testing</ram:Reason>
+90c90
+<             <udt:Indicator>true</udt:Indicator>
+---
+>             <udt:Indicator>false</udt:Indicator>
+93c93
+<           <ram:Reason>Testing</ram:Reason>
+---
+>           <ram:Reason>Damage</ram:Reason>
+111c111
+<         <ram:GlobalID schemeID="0088">1234567890135</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890135</ram:GlobalID>
+113c113
+<         <ram:Name>Returned "Advanced computing" book</ram:Name>
+---
+>         <ram:Name>Returned &quot;Advanced computing&quot; book</ram:Name>
+115c115
+<           <ram:ClassCode listID="STI">65434567</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">65434567</ram:ClassCode>
+149c149
+<         <ram:GlobalID schemeID="0088">1234567890142</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890142</ram:GlobalID>
+151c151
+<         <ram:Name>"Computing for dummies" book</ram:Name>
+---
+>         <ram:Name>&quot;Computing for dummies&quot; book</ram:Name>
+153c153
+<           <ram:ClassCode listID="STI">65434566</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">65434566</ram:ClassCode>
+172c172
+<           <ram:BasisQuantity unitCode="NAR">2.48</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="NAR">2.75</ram:BasisQuantity>
+197c197
+<         <ram:GlobalID schemeID="0088">1234567890159</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890159</ram:GlobalID>
+201c201
+<           <ram:ClassCode listID="STI">65434565</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">65434565</ram:ClassCode>
+235c235
+<         <ram:GlobalID schemeID="0088">1234567890166</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890166</ram:GlobalID>
+243c243
+<           <ram:ClassCode listID="STI">12344325</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">12344325</ram:ClassCode>
+274c274
+<         <ram:GlobalID schemeID="0088">1238764941386</ram:GlobalID>
+---
+>         <ram:ID>1238764941386</ram:ID>
+301c301
+<         <ram:GlobalID schemeID="0088">3456789012098</ram:GlobalID>
+---
+>         <ram:ID>3456789012098</ram:ID>
+304c304
+<           <ram:ID>987654321</ram:ID>
+---
+>           <ram:ID schemeID="0204">987654321</ram:ID>
+357c357
+<         <ram:GlobalID schemeID="0088">6754238987643</ram:GlobalID>
+---
+>         <ram:ID>6754238987643</ram:ID>
+439c439
+<           <udt:Indicator>false</udt:Indicator>
+---
+>           <udt:Indicator>true</udt:Indicator>
+442,443c442
+<         <ram:ReasonCode>95</ram:ReasonCode>
+<         <ram:Reason>Promotion discount</ram:Reason>
+---
+>         <ram:Reason>Freight</ram:Reason>
+452c451
+<           <udt:Indicator>true</udt:Indicator>
+---
+>           <udt:Indicator>false</udt:Indicator>
+455c454,455
+<         <ram:Reason>Freight</ram:Reason>
+---
+>         <ram:ReasonCode>95</ram:ReasonCode>
+>         <ram:Reason>Promotion discount</ram:Reason>
+diff cii/CII_example3.xml cii2/CII_example3.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100" xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+68c68
+<         <ram:GlobalID schemeID="0088">5790000435975</ram:GlobalID>
+---
+>         <ram:ID>5790000435975</ram:ID>
+81a82,83
+>       <ram:ShipToTradeParty>
+>       </ram:ShipToTradeParty>
+diff cii/CII_example4.xml cii2/CII_example4.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100" xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+104c104
+<         <ram:GlobalID schemeID="0088">5790000436101</ram:GlobalID>
+---
+>         <ram:ID>5790000436101</ram:ID>
+129c129
+<         <ram:GlobalID schemeID="0088">5790000436057</ram:GlobalID>
+---
+>         <ram:ID>5790000436057</ram:ID>
+diff cii/CII_example5.xml cii2/CII_example5.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100" xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+31c31
+<         <ram:GlobalID schemeID="0088">1234567890128</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890128</ram:GlobalID>
+60c60
+<           <ram:BasisQuantity unitCode="C62">1</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="C62">1.1</ram:BasisQuantity>
+82c82
+<             <udt:Indicator>false</udt:Indicator>
+---
+>             <udt:Indicator>true</udt:Indicator>
+87,88c87,88
+<           <ram:ReasonCode>95</ram:ReasonCode>
+<           <ram:Reason>Loyal customer</ram:Reason>
+---
+>           <ram:ReasonCode>ABL</ram:ReasonCode>
+>           <ram:Reason>Packaging</ram:Reason>
+92c92
+<             <udt:Indicator>true</udt:Indicator>
+---
+>             <udt:Indicator>false</udt:Indicator>
+97,98c97,98
+<           <ram:ReasonCode>ABL</ram:ReasonCode>
+<           <ram:Reason>Packaging</ram:Reason>
+---
+>           <ram:ReasonCode>95</ram:ReasonCode>
+>           <ram:Reason>Loyal customer</ram:Reason>
+105a106
+>           <ram:ReferenceTypeCode>ABZ</ram:ReferenceTypeCode>
+157a159
+>           <ram:ReferenceTypeCode>ABZ</ram:ReferenceTypeCode>
+194c196
+<         <ram:GlobalID schemeID="0088">5790000436101</ram:GlobalID>
+---
+>         <ram:ID>5790000436101</ram:ID>
+229c231
+<         <ram:GlobalID schemeID="0088">5790000436057</ram:GlobalID>
+---
+>         <ram:ID>5790000436057</ram:ID>
+232c234
+<           <ram:ID>DK16356607</ram:ID>
+---
+>           <ram:ID schemeID="0204">DK16356607</ram:ID>
+283,288d284
+<         <ram:IssuerAssignedID>Lot567</ram:IssuerAssignedID>
+<       </ram:AdditionalReferencedDocument>
+<       <ram:AdditionalReferencedDocument>
+<         <ram:IssuerAssignedID>OBJ999</ram:IssuerAssignedID>
+<       </ram:AdditionalReferencedDocument>
+<       <ram:AdditionalReferencedDocument>
+301c297
+<         <ram:GlobalID schemeID="0088">5790000436068</ram:GlobalID>
+---
+>         <ram:ID>5790000436068</ram:ID>
+344a341
+>         <ram:Information>Half prepaid</ram:Information>
+348a346,349
+>       <ram:SpecifiedTradeSettlementPaymentMeans>
+>         <ram:TypeCode>58</ram:TypeCode>
+>         <ram:Information>Half prepaid</ram:Information>
+>       </ram:SpecifiedTradeSettlementPaymentMeans>
+379c380
+<           <udt:Indicator>false</udt:Indicator>
+---
+>           <udt:Indicator>true</udt:Indicator>
+384,385c385,386
+<         <ram:ReasonCode>95</ram:ReasonCode>
+<         <ram:Reason>Loyal customer</ram:Reason>
+---
+>         <ram:ReasonCode>ABL</ram:ReasonCode>
+>         <ram:Reason>Packaging</ram:Reason>
+394c395
+<           <udt:Indicator>true</udt:Indicator>
+---
+>           <udt:Indicator>false</udt:Indicator>
+399,400c400,401
+<         <ram:ReasonCode>ABL</ram:ReasonCode>
+<         <ram:Reason>Packaging</ram:Reason>
+---
+>         <ram:ReasonCode>95</ram:ReasonCode>
+>         <ram:Reason>Loyal customer</ram:Reason>
+diff cii/CII_example6.xml cii2/CII_example6.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100" xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+diff cii/CII_example7.xml cii2/CII_example7.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100" xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+123a124,125
+>       <ram:ShipToTradeParty>
+>       </ram:ShipToTradeParty>
+147a150
+>         <ram:RateApplicablePercent></ram:RateApplicablePercent>
+diff cii/CII_example8.xml cii2/CII_example8.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100" xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+404c404
+<           <ram:CityName>'S-HERTOGENBOSCH</ram:CityName>
+---
+>           <ram:CityName>&#39;S-HERTOGENBOSCH</ram:CityName>
+diff cii/CII_example9.xml cii2/CII_example9.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100" xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
 diff cii/included-notes-bg-1-uncefact.xml cii2/included-notes-bg-1-uncefact.xml
 2c2
 < <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
@@ -384,6 +692,882 @@ diff cii/included-notes-bg-1-uncefact.xml cii2/included-notes-bg-1-uncefact.xml
 <           <ram:ClassCode listID="IB">0721-880X</ram:ClassCode>
 ---
 >           <ram:ClassCode listID="IB" listVersionID="88">0721-880X</ram:ClassCode>
+diff cii/issue1121.xml cii2/issue1121.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:a="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:10" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+38,42d37
+<         <ram:ActualDeliverySupplyChainEvent>
+<           <ram:OccurrenceDateTime>
+<             <udt:DateTimeString format="102">2026-02-17</udt:DateTimeString>
+<           </ram:OccurrenceDateTime>
+<         </ram:ActualDeliverySupplyChainEvent>
+60d54
+<           <ram:TotalAllowanceChargeAmount>0.00</ram:TotalAllowanceChargeAmount>
+62,65d55
+<         <ram:AdditionalReferencedDocument>
+<           <ram:IssuerAssignedID schemeID="9930">TEST_value-1</ram:IssuerAssignedID>
+<           <ram:TypeCode>TEST_Value-2</ram:TypeCode>
+<         </ram:AdditionalReferencedDocument>
+77,78c67
+<           <ram:PersonName>CRONUS DE </ram:PersonName>
+<           <ram:DepartmentName>Kundenservice</ram:DepartmentName>
+---
+>           <ram:PersonName>Kundenservice</ram:PersonName>
+94c83
+<           <ram:URIID schemeID="0193">info@cronus.com</ram:URIID>
+---
+>           <ram:URIID schemeID="EM">info@cronus.com</ram:URIID>
+112c101
+<           <ram:URIID schemeID="0193">chaase@simova.de;kkekec@simova.de;mkrampe@simova.de</ram:URIID>
+---
+>           <ram:URIID schemeID="EM">chaase@simova.de;kkekec@simova.de;mkrampe@simova.de</ram:URIID>
+diff cii/issue12.xml cii2/issue12.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100 ../../../schemas/UN_CEFACT/CrossIndustryInvoice_100pD16B.xsd">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+27c27
+<         <ram:SellerAssignedID/>
+---
+>         <ram:SellerAssignedID></ram:SellerAssignedID>
+29c29
+<         <ram:Description/>
+---
+>         <ram:Description></ram:Description>
+54c54
+<         <ram:GlobalID schemeID="0088">Homepage Design GmbH</ram:GlobalID>
+---
+>         <ram:ID>Homepage Design GmbH</ram:ID>
+68c68
+<           <ram:LineTwo/>
+---
+>           <ram:LineTwo></ram:LineTwo>
+82c82
+<           <ram:LineTwo/>
+---
+>           <ram:LineTwo></ram:LineTwo>
+88c88
+<         <ram:IssuerAssignedID/>
+---
+>         <ram:IssuerAssignedID></ram:IssuerAssignedID>
+91c91
+<         <ram:IssuerAssignedID/>
+---
+>         <ram:IssuerAssignedID></ram:IssuerAssignedID>
+94,95c94,95
+<         <ram:ID/>
+<         <ram:Name/>
+---
+>         <ram:ID></ram:ID>
+>         <ram:Name>Project reference</ram:Name>
+120c120
+<         <ram:Description/>
+---
+>         <ram:Description></ram:Description>
+diff cii/issue20.xml cii2/issue20.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100" xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+30c30
+<         <ram:GlobalID schemeID="0088">1234567890128</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890128</ram:GlobalID>
+39c39
+<           <ram:ClassCode listID="STI">65434568</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">65434568</ram:ClassCode>
+61c61
+<           <ram:BasisQuantity unitCode="NAR">1273</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="NAR">1498</ram:BasisQuantity>
+83c83
+<             <udt:Indicator>false</udt:Indicator>
+---
+>             <udt:Indicator>true</udt:Indicator>
+86c86
+<           <ram:Reason>Damage</ram:Reason>
+---
+>           <ram:Reason>Testing</ram:Reason>
+90c90
+<             <udt:Indicator>true</udt:Indicator>
+---
+>             <udt:Indicator>false</udt:Indicator>
+93c93
+<           <ram:Reason>Testing</ram:Reason>
+---
+>           <ram:Reason>Damage</ram:Reason>
+111c111
+<         <ram:GlobalID schemeID="0088">1234567890135</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890135</ram:GlobalID>
+113c113
+<         <ram:Name>Returned "Advanced computing" book</ram:Name>
+---
+>         <ram:Name>Returned &quot;Advanced computing&quot; book</ram:Name>
+115c115
+<           <ram:ClassCode listID="STI">65434567</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">65434567</ram:ClassCode>
+149c149
+<         <ram:GlobalID schemeID="0088">1234567890142</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890142</ram:GlobalID>
+151c151
+<         <ram:Name>"Computing for dummies" book</ram:Name>
+---
+>         <ram:Name>&quot;Computing for dummies&quot; book</ram:Name>
+153c153
+<           <ram:ClassCode listID="STI">65434566</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">65434566</ram:ClassCode>
+172c172
+<           <ram:BasisQuantity unitCode="NAR">2.48</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="NAR">2.75</ram:BasisQuantity>
+197c197
+<         <ram:GlobalID schemeID="0088">1234567890159</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890159</ram:GlobalID>
+201c201
+<           <ram:ClassCode listID="STI">65434565</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">65434565</ram:ClassCode>
+235c235
+<         <ram:GlobalID schemeID="0088">1234567890166</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890166</ram:GlobalID>
+243c243
+<           <ram:ClassCode listID="STI">12344325</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">12344325</ram:ClassCode>
+274c274
+<         <ram:GlobalID schemeID="0088">1238764941386</ram:GlobalID>
+---
+>         <ram:ID>1238764941386</ram:ID>
+301c301
+<         <ram:GlobalID schemeID="0088">3456789012098</ram:GlobalID>
+---
+>         <ram:ID>3456789012098</ram:ID>
+304c304
+<           <ram:ID>987654321</ram:ID>
+---
+>           <ram:ID schemeID="0204">987654321</ram:ID>
+352,353c352
+<         <ram:AttachmentBinaryObject mimeCode="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </ram:AttachmentBinaryObject>
+---
+>         <ram:AttachmentBinaryObject mimeCode="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</ram:AttachmentBinaryObject>
+359,361c358
+<         <ram:AttachmentBinaryObject mimeCode="application/pdf" filename="2300000013.PDF">
+<           SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </ram:AttachmentBinaryObject>
+---
+>         <ram:AttachmentBinaryObject mimeCode="application/pdf" filename="2300000013.PDF">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</ram:AttachmentBinaryObject>
+372c369
+<         <ram:GlobalID schemeID="0088">6754238987643</ram:GlobalID>
+---
+>         <ram:ID>6754238987643</ram:ID>
+454c451
+<           <udt:Indicator>false</udt:Indicator>
+---
+>           <udt:Indicator>true</udt:Indicator>
+457,458c454
+<         <ram:ReasonCode>95</ram:ReasonCode>
+<         <ram:Reason>Promotion discount</ram:Reason>
+---
+>         <ram:Reason>Freight</ram:Reason>
+467c463
+<           <udt:Indicator>true</udt:Indicator>
+---
+>           <udt:Indicator>false</udt:Indicator>
+470c466,467
+<         <ram:Reason>Freight</ram:Reason>
+---
+>         <ram:ReasonCode>95</ram:ReasonCode>
+>         <ram:Reason>Promotion discount</ram:Reason>
+diff cii/issue22.xml cii2/issue22.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100" xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+30c30
+<         <ram:GlobalID schemeID="0088">1234567890128</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890128</ram:GlobalID>
+39c39
+<           <ram:ClassCode listID="STI">65434568</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">65434568</ram:ClassCode>
+61c61
+<           <ram:BasisQuantity unitCode="NAR">1273</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="NAR">1498</ram:BasisQuantity>
+83c83
+<             <udt:Indicator>false</udt:Indicator>
+---
+>             <udt:Indicator>true</udt:Indicator>
+86c86
+<           <ram:Reason>Damage</ram:Reason>
+---
+>           <ram:Reason>Testing</ram:Reason>
+90c90
+<             <udt:Indicator>true</udt:Indicator>
+---
+>             <udt:Indicator>false</udt:Indicator>
+93c93
+<           <ram:Reason>Testing</ram:Reason>
+---
+>           <ram:Reason>Damage</ram:Reason>
+111c111
+<         <ram:GlobalID schemeID="0088">1234567890135</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890135</ram:GlobalID>
+113c113
+<         <ram:Name>Returned "Advanced computing" book</ram:Name>
+---
+>         <ram:Name>Returned &quot;Advanced computing&quot; book</ram:Name>
+115c115
+<           <ram:ClassCode listID="STI">65434567</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">65434567</ram:ClassCode>
+149c149
+<         <ram:GlobalID schemeID="0088">1234567890142</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890142</ram:GlobalID>
+151c151
+<         <ram:Name>"Computing for dummies" book</ram:Name>
+---
+>         <ram:Name>&quot;Computing for dummies&quot; book</ram:Name>
+153c153
+<           <ram:ClassCode listID="STI">65434566</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">65434566</ram:ClassCode>
+172c172
+<           <ram:BasisQuantity unitCode="NAR">2.48</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="NAR">2.75</ram:BasisQuantity>
+197c197
+<         <ram:GlobalID schemeID="0088">1234567890159</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890159</ram:GlobalID>
+201c201
+<           <ram:ClassCode listID="STI">65434565</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">65434565</ram:ClassCode>
+235c235
+<         <ram:GlobalID schemeID="0088">1234567890166</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890166</ram:GlobalID>
+243c243
+<           <ram:ClassCode listID="STI">12344325</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">12344325</ram:ClassCode>
+274c274
+<         <ram:GlobalID schemeID="0088">1238764941386</ram:GlobalID>
+---
+>         <ram:ID>1238764941386</ram:ID>
+301c301
+<         <ram:GlobalID schemeID="0088">3456789012098</ram:GlobalID>
+---
+>         <ram:ID>3456789012098</ram:ID>
+304c304
+<           <ram:ID>987654321</ram:ID>
+---
+>           <ram:ID schemeID="0204">987654321</ram:ID>
+352,353c352
+<         <ram:AttachmentBinaryObject mimeCode="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </ram:AttachmentBinaryObject>
+---
+>         <ram:AttachmentBinaryObject mimeCode="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</ram:AttachmentBinaryObject>
+359,361c358
+<         <ram:AttachmentBinaryObject mimeCode="application/pdf" filename="2300000013.PDF">
+<           SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </ram:AttachmentBinaryObject>
+---
+>         <ram:AttachmentBinaryObject mimeCode="application/pdf" filename="2300000013.PDF">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</ram:AttachmentBinaryObject>
+372c369
+<         <ram:GlobalID schemeID="0088">6754238987643</ram:GlobalID>
+---
+>         <ram:ID>6754238987643</ram:ID>
+418d414
+<         <ram:DueDateTypeCode>3</ram:DueDateTypeCode>
+426d421
+<         <ram:DueDateTypeCode>3</ram:DueDateTypeCode>
+435d429
+<         <ram:DueDateTypeCode>3</ram:DueDateTypeCode>
+440c434
+<           <udt:Indicator>false</udt:Indicator>
+---
+>           <udt:Indicator>true</udt:Indicator>
+443,444c437
+<         <ram:ReasonCode>95</ram:ReasonCode>
+<         <ram:Reason>Promotion discount</ram:Reason>
+---
+>         <ram:Reason>Freight</ram:Reason>
+453c446
+<           <udt:Indicator>true</udt:Indicator>
+---
+>           <udt:Indicator>false</udt:Indicator>
+456c449,450
+<         <ram:Reason>Freight</ram:Reason>
+---
+>         <ram:ReasonCode>95</ram:ReasonCode>
+>         <ram:Reason>Promotion discount</ram:Reason>
+diff cii/issue23.xml cii2/issue23.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100" xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+30c30
+<         <ram:GlobalID schemeID="0088">1234567890128</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890128</ram:GlobalID>
+39c39
+<           <ram:ClassCode listID="STI">65434568</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">65434568</ram:ClassCode>
+61c61
+<           <ram:BasisQuantity unitCode="NAR">1273</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="NAR">1498</ram:BasisQuantity>
+83c83
+<             <udt:Indicator>false</udt:Indicator>
+---
+>             <udt:Indicator>true</udt:Indicator>
+86c86
+<           <ram:Reason>Damage</ram:Reason>
+---
+>           <ram:Reason>Testing</ram:Reason>
+90c90
+<             <udt:Indicator>true</udt:Indicator>
+---
+>             <udt:Indicator>false</udt:Indicator>
+93c93
+<           <ram:Reason>Testing</ram:Reason>
+---
+>           <ram:Reason>Damage</ram:Reason>
+111c111
+<         <ram:GlobalID schemeID="0088">1234567890135</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890135</ram:GlobalID>
+113c113
+<         <ram:Name>Returned "Advanced computing" book</ram:Name>
+---
+>         <ram:Name>Returned &quot;Advanced computing&quot; book</ram:Name>
+115c115
+<           <ram:ClassCode listID="STI">65434567</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">65434567</ram:ClassCode>
+149c149
+<         <ram:GlobalID schemeID="0088">1234567890142</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890142</ram:GlobalID>
+151c151
+<         <ram:Name>"Computing for dummies" book</ram:Name>
+---
+>         <ram:Name>&quot;Computing for dummies&quot; book</ram:Name>
+153c153
+<           <ram:ClassCode listID="STI">65434566</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">65434566</ram:ClassCode>
+172c172
+<           <ram:BasisQuantity unitCode="NAR">2.48</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="NAR">2.75</ram:BasisQuantity>
+197c197
+<         <ram:GlobalID schemeID="0088">1234567890159</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890159</ram:GlobalID>
+201c201
+<           <ram:ClassCode listID="STI">65434565</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">65434565</ram:ClassCode>
+235c235
+<         <ram:GlobalID schemeID="0088">1234567890166</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890166</ram:GlobalID>
+243c243
+<           <ram:ClassCode listID="STI">12344325</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">12344325</ram:ClassCode>
+274c274
+<         <ram:GlobalID schemeID="0088">1238764941386</ram:GlobalID>
+---
+>         <ram:ID>1238764941386</ram:ID>
+301c301
+<         <ram:GlobalID schemeID="0088">3456789012098</ram:GlobalID>
+---
+>         <ram:ID>3456789012098</ram:ID>
+304c304
+<           <ram:ID>987654321</ram:ID>
+---
+>           <ram:ID schemeID="0204">987654321</ram:ID>
+352,353c352
+<         <ram:AttachmentBinaryObject mimeCode="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </ram:AttachmentBinaryObject>
+---
+>         <ram:AttachmentBinaryObject mimeCode="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</ram:AttachmentBinaryObject>
+359,361c358
+<         <ram:AttachmentBinaryObject mimeCode="application/pdf" filename="2300000013.PDF">
+<           SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </ram:AttachmentBinaryObject>
+---
+>         <ram:AttachmentBinaryObject mimeCode="application/pdf" filename="2300000013.PDF">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</ram:AttachmentBinaryObject>
+372c369
+<         <ram:GlobalID schemeID="0088">6754238987643</ram:GlobalID>
+---
+>         <ram:ID>6754238987643</ram:ID>
+418d414
+<         <ram:DueDateTypeCode>3</ram:DueDateTypeCode>
+426d421
+<         <ram:DueDateTypeCode>3</ram:DueDateTypeCode>
+435d429
+<         <ram:DueDateTypeCode>3</ram:DueDateTypeCode>
+440c434
+<           <udt:Indicator>false</udt:Indicator>
+---
+>           <udt:Indicator>true</udt:Indicator>
+443,444c437
+<         <ram:ReasonCode>95</ram:ReasonCode>
+<         <ram:Reason>Promotion discount</ram:Reason>
+---
+>         <ram:Reason>Freight</ram:Reason>
+453c446
+<           <udt:Indicator>true</udt:Indicator>
+---
+>           <udt:Indicator>false</udt:Indicator>
+456c449,450
+<         <ram:Reason>Freight</ram:Reason>
+---
+>         <ram:ReasonCode>95</ram:ReasonCode>
+>         <ram:Reason>Promotion discount</ram:Reason>
+diff cii/issue28.xml cii2/issue28.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100" xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+30c30
+<         <ram:GlobalID schemeID="0088">1234567890128</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890128</ram:GlobalID>
+39c39
+<           <ram:ClassCode listID="STI">65434568</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">65434568</ram:ClassCode>
+61c61
+<           <ram:BasisQuantity unitCode="NAR">1273</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="NAR">1498</ram:BasisQuantity>
+83c83
+<             <udt:Indicator>false</udt:Indicator>
+---
+>             <udt:Indicator>true</udt:Indicator>
+86c86
+<           <ram:Reason>Damage</ram:Reason>
+---
+>           <ram:Reason>Testing</ram:Reason>
+90c90
+<             <udt:Indicator>true</udt:Indicator>
+---
+>             <udt:Indicator>false</udt:Indicator>
+93c93
+<           <ram:Reason>Testing</ram:Reason>
+---
+>           <ram:Reason>Damage</ram:Reason>
+111c111
+<         <ram:GlobalID schemeID="0088">1234567890135</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890135</ram:GlobalID>
+113c113
+<         <ram:Name>Returned "Advanced computing" book</ram:Name>
+---
+>         <ram:Name>Returned &quot;Advanced computing&quot; book</ram:Name>
+115c115
+<           <ram:ClassCode listID="STI">65434567</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">65434567</ram:ClassCode>
+149c149
+<         <ram:GlobalID schemeID="0088">1234567890142</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890142</ram:GlobalID>
+151c151
+<         <ram:Name>"Computing for dummies" book</ram:Name>
+---
+>         <ram:Name>&quot;Computing for dummies&quot; book</ram:Name>
+153c153
+<           <ram:ClassCode listID="STI">65434566</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">65434566</ram:ClassCode>
+172c172
+<           <ram:BasisQuantity unitCode="NAR">2.48</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="NAR">2.75</ram:BasisQuantity>
+197c197
+<         <ram:GlobalID schemeID="0088">1234567890159</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890159</ram:GlobalID>
+201c201
+<           <ram:ClassCode listID="STI">65434565</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">65434565</ram:ClassCode>
+235c235
+<         <ram:GlobalID schemeID="0088">1234567890166</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890166</ram:GlobalID>
+243c243
+<           <ram:ClassCode listID="STI">12344325</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">12344325</ram:ClassCode>
+274c274
+<         <ram:GlobalID schemeID="0088">1238764941386</ram:GlobalID>
+---
+>         <ram:ID>1238764941386</ram:ID>
+280c280
+<           <ram:DepartmentName>Sales Department</ram:DepartmentName>
+---
+>           <ram:PersonName>Sales Department</ram:PersonName>
+301c301
+<         <ram:GlobalID schemeID="0088">3456789012098</ram:GlobalID>
+---
+>         <ram:ID>3456789012098</ram:ID>
+304c304
+<           <ram:ID>987654321</ram:ID>
+---
+>           <ram:ID schemeID="0204">987654321</ram:ID>
+352,353c352
+<         <ram:AttachmentBinaryObject mimeCode="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </ram:AttachmentBinaryObject>
+---
+>         <ram:AttachmentBinaryObject mimeCode="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</ram:AttachmentBinaryObject>
+359,361c358
+<         <ram:AttachmentBinaryObject mimeCode="application/pdf" filename="2300000013.PDF">
+<           SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </ram:AttachmentBinaryObject>
+---
+>         <ram:AttachmentBinaryObject mimeCode="application/pdf" filename="2300000013.PDF">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</ram:AttachmentBinaryObject>
+372c369
+<         <ram:GlobalID schemeID="0088">6754238987643</ram:GlobalID>
+---
+>         <ram:ID>6754238987643</ram:ID>
+418d414
+<         <ram:DueDateTypeCode>3</ram:DueDateTypeCode>
+426d421
+<         <ram:DueDateTypeCode>3</ram:DueDateTypeCode>
+435d429
+<         <ram:DueDateTypeCode>3</ram:DueDateTypeCode>
+440c434
+<           <udt:Indicator>false</udt:Indicator>
+---
+>           <udt:Indicator>true</udt:Indicator>
+443,444c437
+<         <ram:ReasonCode>95</ram:ReasonCode>
+<         <ram:Reason>Promotion discount</ram:Reason>
+---
+>         <ram:Reason>Freight</ram:Reason>
+453c446
+<           <udt:Indicator>true</udt:Indicator>
+---
+>           <udt:Indicator>false</udt:Indicator>
+456c449,450
+<         <ram:Reason>Freight</ram:Reason>
+---
+>         <ram:ReasonCode>95</ram:ReasonCode>
+>         <ram:Reason>Promotion discount</ram:Reason>
+diff cii/issue34.xml cii2/issue34.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100" xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+30c30
+<         <ram:GlobalID schemeID="0088">1234567890128</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890128</ram:GlobalID>
+39c39
+<           <ram:ClassCode listID="STI">65434568</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">65434568</ram:ClassCode>
+61c61
+<           <ram:BasisQuantity unitCode="NAR">1273</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="NAR">1498</ram:BasisQuantity>
+83c83
+<             <udt:Indicator>false</udt:Indicator>
+---
+>             <udt:Indicator>true</udt:Indicator>
+86c86
+<           <ram:Reason>Damage</ram:Reason>
+---
+>           <ram:Reason>Testing</ram:Reason>
+90c90
+<             <udt:Indicator>true</udt:Indicator>
+---
+>             <udt:Indicator>false</udt:Indicator>
+93c93
+<           <ram:Reason>Testing</ram:Reason>
+---
+>           <ram:Reason>Damage</ram:Reason>
+111c111
+<         <ram:GlobalID schemeID="0088">1234567890135</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890135</ram:GlobalID>
+113c113
+<         <ram:Name>Returned "Advanced computing" book</ram:Name>
+---
+>         <ram:Name>Returned &quot;Advanced computing&quot; book</ram:Name>
+115c115
+<           <ram:ClassCode listID="STI">65434567</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">65434567</ram:ClassCode>
+149c149
+<         <ram:GlobalID schemeID="0088">1234567890142</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890142</ram:GlobalID>
+151c151
+<         <ram:Name>"Computing for dummies" book</ram:Name>
+---
+>         <ram:Name>&quot;Computing for dummies&quot; book</ram:Name>
+153c153
+<           <ram:ClassCode listID="STI">65434566</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">65434566</ram:ClassCode>
+172c172
+<           <ram:BasisQuantity unitCode="NAR">2.48</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="NAR">2.75</ram:BasisQuantity>
+197c197
+<         <ram:GlobalID schemeID="0088">1234567890159</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890159</ram:GlobalID>
+201c201
+<           <ram:ClassCode listID="STI">65434565</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">65434565</ram:ClassCode>
+235c235
+<         <ram:GlobalID schemeID="0088">1234567890166</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890166</ram:GlobalID>
+243c243
+<           <ram:ClassCode listID="STI">12344325</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">12344325</ram:ClassCode>
+274c274
+<         <ram:GlobalID schemeID="0088">1238764941386</ram:GlobalID>
+---
+>         <ram:ID>1238764941386</ram:ID>
+280c280
+<           <ram:DepartmentName>Sales Department</ram:DepartmentName>
+---
+>           <ram:PersonName>Sales Department</ram:PersonName>
+301c301
+<         <ram:GlobalID schemeID="0088">3456789012098</ram:GlobalID>
+---
+>         <ram:ID>3456789012098</ram:ID>
+304c304
+<           <ram:ID>987654321</ram:ID>
+---
+>           <ram:ID schemeID="0204">987654321</ram:ID>
+352,353c352
+<         <ram:AttachmentBinaryObject mimeCode="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </ram:AttachmentBinaryObject>
+---
+>         <ram:AttachmentBinaryObject mimeCode="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</ram:AttachmentBinaryObject>
+359,361c358
+<         <ram:AttachmentBinaryObject mimeCode="application/pdf" filename="2300000013.PDF">
+<           SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </ram:AttachmentBinaryObject>
+---
+>         <ram:AttachmentBinaryObject mimeCode="application/pdf" filename="2300000013.PDF">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</ram:AttachmentBinaryObject>
+372c369
+<         <ram:GlobalID schemeID="0088">6754238987643</ram:GlobalID>
+---
+>         <ram:ID>6754238987643</ram:ID>
+418d414
+<         <ram:DueDateTypeCode>3</ram:DueDateTypeCode>
+426d421
+<         <ram:DueDateTypeCode>3</ram:DueDateTypeCode>
+435d429
+<         <ram:DueDateTypeCode>3</ram:DueDateTypeCode>
+440c434
+<           <udt:Indicator>false</udt:Indicator>
+---
+>           <udt:Indicator>true</udt:Indicator>
+443,444c437
+<         <ram:ReasonCode>95</ram:ReasonCode>
+<         <ram:Reason>Promotion discount</ram:Reason>
+---
+>         <ram:Reason>Freight</ram:Reason>
+453c446
+<           <udt:Indicator>true</udt:Indicator>
+---
+>           <udt:Indicator>false</udt:Indicator>
+456c449,450
+<         <ram:Reason>Freight</ram:Reason>
+---
+>         <ram:ReasonCode>95</ram:ReasonCode>
+>         <ram:Reason>Promotion discount</ram:Reason>
+diff cii/issue38-bad.xml cii2/issue38-bad.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100" xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+30c30
+<         <ram:GlobalID schemeID="0088">1234567890128</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890128</ram:GlobalID>
+39c39
+<           <ram:ClassCode listID="STI">65434568</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">65434568</ram:ClassCode>
+61c61
+<           <ram:BasisQuantity unitCode="NAR">1273</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="NAR">1498</ram:BasisQuantity>
+83c83
+<             <udt:Indicator>false</udt:Indicator>
+---
+>             <udt:Indicator>true</udt:Indicator>
+86c86
+<           <ram:Reason>Damage</ram:Reason>
+---
+>           <ram:Reason>Testing</ram:Reason>
+90c90
+<             <udt:Indicator>true</udt:Indicator>
+---
+>             <udt:Indicator>false</udt:Indicator>
+93c93
+<           <ram:Reason>Testing</ram:Reason>
+---
+>           <ram:Reason>Damage</ram:Reason>
+111c111
+<         <ram:GlobalID schemeID="0088">1234567890135</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890135</ram:GlobalID>
+113c113
+<         <ram:Name>Returned "Advanced computing" book</ram:Name>
+---
+>         <ram:Name>Returned &quot;Advanced computing&quot; book</ram:Name>
+115c115
+<           <ram:ClassCode listID="STI">65434567</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">65434567</ram:ClassCode>
+149c149
+<         <ram:GlobalID schemeID="0088">1234567890142</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890142</ram:GlobalID>
+151c151
+<         <ram:Name>"Computing for dummies" book</ram:Name>
+---
+>         <ram:Name>&quot;Computing for dummies&quot; book</ram:Name>
+153c153
+<           <ram:ClassCode listID="STI">65434566</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">65434566</ram:ClassCode>
+172c172
+<           <ram:BasisQuantity unitCode="NAR">2.48</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="NAR">2.75</ram:BasisQuantity>
+197c197
+<         <ram:GlobalID schemeID="0088">1234567890159</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890159</ram:GlobalID>
+201c201
+<           <ram:ClassCode listID="STI">65434565</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">65434565</ram:ClassCode>
+235c235
+<         <ram:GlobalID schemeID="0088">1234567890166</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890166</ram:GlobalID>
+243c243
+<           <ram:ClassCode listID="STI">12344325</ram:ClassCode>
+---
+>           <ram:ClassCode listID="IB" listVersionID="88">12344325</ram:ClassCode>
+274c274
+<         <ram:GlobalID schemeID="0088">1238764941386</ram:GlobalID>
+---
+>         <ram:ID>1238764941386</ram:ID>
+280c280
+<           <ram:DepartmentName>Sales Department</ram:DepartmentName>
+---
+>           <ram:PersonName>Sales Department</ram:PersonName>
+301c301
+<         <ram:GlobalID schemeID="0088">3456789012098</ram:GlobalID>
+---
+>         <ram:ID>3456789012098</ram:ID>
+304c304
+<           <ram:ID>987654321</ram:ID>
+---
+>           <ram:ID schemeID="0204">987654321</ram:ID>
+352,353c352
+<         <ram:AttachmentBinaryObject mimeCode="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </ram:AttachmentBinaryObject>
+---
+>         <ram:AttachmentBinaryObject mimeCode="application/pdf" filename="EHF.pdf">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</ram:AttachmentBinaryObject>
+359,361c358
+<         <ram:AttachmentBinaryObject mimeCode="application/pdf" filename="2300000013.PDF">
+<           SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=
+<         </ram:AttachmentBinaryObject>
+---
+>         <ram:AttachmentBinaryObject mimeCode="application/pdf" filename="2300000013.PDF">SlZCRVJpMHhMalVOQ2lVTkNqRWdNQ0J2WW1vT3k2SlRaWDliY2dSVnhJVkcuLi50Ykxvc0NoVTJYUmY5eGIvb21zY2dUWS9sWEVoVWI=</ram:AttachmentBinaryObject>
+372c369
+<         <ram:GlobalID schemeID="0088">6754238987643</ram:GlobalID>
+---
+>         <ram:ID>6754238987643</ram:ID>
+388a386
+>       <ram:CreditorReferenceID></ram:CreditorReferenceID>
+412c410
+<           <ram:IBANID/>
+---
+>           <ram:IBANID></ram:IBANID>
+420d417
+<         <ram:DueDateTypeCode>3</ram:DueDateTypeCode>
+428d424
+<         <ram:DueDateTypeCode>3</ram:DueDateTypeCode>
+437d432
+<         <ram:DueDateTypeCode>3</ram:DueDateTypeCode>
+442c437
+<           <udt:Indicator>false</udt:Indicator>
+---
+>           <udt:Indicator>true</udt:Indicator>
+445,446c440
+<         <ram:ReasonCode>95</ram:ReasonCode>
+<         <ram:Reason>Promotion discount</ram:Reason>
+---
+>         <ram:Reason>Freight</ram:Reason>
+455c449
+<           <udt:Indicator>true</udt:Indicator>
+---
+>           <udt:Indicator>false</udt:Indicator>
+458c452,453
+<         <ram:Reason>Freight</ram:Reason>
+---
+>         <ram:ReasonCode>95</ram:ReasonCode>
+>         <ram:Reason>Promotion discount</ram:Reason>
+470a466
+>         <ram:DirectDebitMandateID></ram:DirectDebitMandateID>
+diff cii/issue47.xml cii2/issue47.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:a="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+236c236
+<         <ram:Name/>
+---
+>         <ram:Name></ram:Name>
+diff cii/issue7.xml cii2/issue7.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100" xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xsi:schemaLocation="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100 ../schema/D16B%20SCRDM%20(Subset)/uncoupled%20clm/CII/uncefact/data/standard/CrossIndustryInvoice_100pD16B.xsd">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+17c17
+<         algemene verkoop en leveringsvoorwaarden. Gedeponeerd bij de K.v.K. te Amsterdam 25-04-'85.</ram:Content>
+---
+>         algemene verkoop en leveringsvoorwaarden. Gedeponeerd bij de K.v.K. te Amsterdam 25-04-&#39;85.</ram:Content>
+621a622
+>         <ram:DirectDebitMandateID></ram:DirectDebitMandateID>
 diff cii/wrong-date-with-text-uncefact.xml cii2/wrong-date-with-text-uncefact.xml
 15c15
 <       <udt:DateTimeString format="102">Dies ist kein Datum</udt:DateTimeString>
