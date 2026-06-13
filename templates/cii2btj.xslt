@@ -197,12 +197,12 @@
       <xsl:with-param name="indent" select="'  '"/>
     </xsl:call-template>
     <xsl:call-template name="string">
-      <xsl:with-param name="xmltag" select="./ram:SpecifiedLegalOrganization/ram:ID"/>
+      <xsl:with-param name="xmltag" select="ram:SpecifiedLegalOrganization/ram:ID"/>
       <xsl:with-param name="jsonkey" select="'BT030'"/>
       <xsl:with-param name="indent" select="'  '"/>
     </xsl:call-template>
     <xsl:call-template name="string">
-      <xsl:with-param name="xmltag" select="ram:SpecifiedTaxRegistration/ram:ID[@schemeID='VA']"/>
+      <xsl:with-param name="xmltag" select="ram:SpecifiedTaxRegistration/ram:ID[@schemeID='VA' or @schemeID='VAT']"/>
       <xsl:with-param name="jsonkey" select="'BT031'"/>
       <xsl:with-param name="indent" select="'  '"/>
     </xsl:call-template>

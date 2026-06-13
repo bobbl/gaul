@@ -3,12 +3,16 @@
 {{#invoice}}
 <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
   <rsm:ExchangedDocumentContext>
+    {{#BG002.BT023}}
     <ram:BusinessProcessSpecifiedDocumentContextParameter>
-      <ram:ID>{{BG002.BT023}}</ram:ID>
+      <ram:ID>{{.}}</ram:ID>
     </ram:BusinessProcessSpecifiedDocumentContextParameter>
+    {{/BG002.BT023}}
+    {{#BG002.BT024}}
     <ram:GuidelineSpecifiedDocumentContextParameter>
-      <ram:ID>{{BG002.BT024}}</ram:ID>
+      <ram:ID>{{.}}</ram:ID>
     </ram:GuidelineSpecifiedDocumentContextParameter>
+    {{/BG002.BT024}}
   </rsm:ExchangedDocumentContext>
   <rsm:ExchangedDocument>
     <ram:ID>{{BT001}}</ram:ID>
@@ -83,7 +87,9 @@
 
 
             GrossPriceProductTradePrice is often empty, therefore use cascading
-            tests to check if there is at least one valid child
+            tests to check if there is at least one valid child.
+            Only BT-149 and BT-150 is not enought, because it appears also in
+            NetPriceProductTradePrice.
         }}
         {{#BG029}}
           {{#BT148}}
@@ -103,22 +109,11 @@
         </ram:GrossPriceProductTradePrice>
           {{/BT148}}
           {{^BT148}}
-            {{#BT149}}
+            {{#BT147}}
         <ram:GrossPriceProductTradePrice>
+              {{#BT149}}
           <ram:BasisQuantity {{#BT150}}unitCode="{{.}}"{{/BT150}}>{{.}}</ram:BasisQuantity>
-              {{#BT147}}
-          <ram:AppliedTradeAllowanceCharge>
-            <ram:ChargeIndicator>
-              <udt:Indicator>false</udt:Indicator>
-            </ram:ChargeIndicator>
-            <ram:ActualAmount>{{.}}</ram:ActualAmount>
-          </ram:AppliedTradeAllowanceCharge>
-              {{/BT147}}
-        </ram:GrossPriceProductTradePrice>
-            {{/BT149}}
-            {{^BT149}}
-              {{#BT147}}
-        <ram:GrossPriceProductTradePrice>
+              {{/BT149}}
           <ram:AppliedTradeAllowanceCharge>
             <ram:ChargeIndicator>
               <udt:Indicator>false</udt:Indicator>
@@ -126,19 +121,18 @@
             <ram:ActualAmount>{{.}}</ram:ActualAmount>
           </ram:AppliedTradeAllowanceCharge>
         </ram:GrossPriceProductTradePrice>
-              {{/BT147}}
-            {{/BT149}}
+            {{/BT147}}
           {{/BT148}}
         {{/BG029}}
         {{#BG029}}
-        {{#BT146}}
+          {{#BT146}}
         <ram:NetPriceProductTradePrice>
           <ram:ChargeAmount>{{.}}</ram:ChargeAmount>
-          {{#BT149}}
+            {{#BT149}}
           <ram:BasisQuantity {{#BT150}}unitCode="{{.}}"{{/BT150}}>{{.}}</ram:BasisQuantity>
-          {{/BT149}}
+            {{/BT149}}
         </ram:NetPriceProductTradePrice>
-        {{/BT146}}
+          {{/BT146}}
         {{/BG029}}
         {{! end
 
@@ -237,7 +231,9 @@
     </ram:IncludedSupplyChainTradeLineItem>
     {{/BG025}}
     <ram:ApplicableHeaderTradeAgreement>
-      <ram:BuyerReference>{{BT010}}</ram:BuyerReference>
+      {{#BT010}}
+      <ram:BuyerReference>{{.}}</ram:BuyerReference>
+      {{/BT010}}
       {{#BG004}}
       <ram:SellerTradeParty>
         {{#BT029}}
@@ -266,13 +262,19 @@
         {{/BT030}}
         {{#BG006}}
         <ram:DefinedTradeContact>
-          <ram:PersonName>{{BT041}}</ram:PersonName>
+          {{#BT041}}
+          <ram:PersonName>{{.}}</ram:PersonName>
+          {{/BT041}}
+          {{#BT042}}
           <ram:TelephoneUniversalCommunication>
-            <ram:CompleteNumber>{{BT042}}</ram:CompleteNumber>
+            <ram:CompleteNumber>{{.}}</ram:CompleteNumber>
           </ram:TelephoneUniversalCommunication>
+          {{/BT042}}
+          {{#BT043}}
           <ram:EmailURIUniversalCommunication>
-            <ram:URIID>{{BT043}}</ram:URIID>
+            <ram:URIID>{{.}}</ram:URIID>
           </ram:EmailURIUniversalCommunication>
+          {{/BT043}}
         </ram:DefinedTradeContact>
         {{/BG006}}
         {{#BG005}}

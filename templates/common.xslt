@@ -117,7 +117,7 @@
     <xsl:text>",&#10;</xsl:text>
     <xsl:value-of select="$indent" />
     <xsl:text>      "base64": "</xsl:text>
-    <xsl:value-of select="$xmltag/." />
+    <xsl:value-of select="normalize-space($xmltag/.)" />
     <xsl:text>"&#10;</xsl:text>
     <xsl:value-of select="$indent" />
     <xsl:text>    },</xsl:text>
@@ -153,7 +153,7 @@
     <xsl:text>",&#10;</xsl:text>
     <xsl:value-of select="$indent" />
     <xsl:text>      "base64": "</xsl:text>
-    <xsl:value-of select="$xmltag/." />
+    <xsl:value-of select="normalize-space($xmltag/.)" />
     <xsl:text>"&#10;</xsl:text>
     <xsl:value-of select="$indent" />
     <xsl:text>    },</xsl:text>

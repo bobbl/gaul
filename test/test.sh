@@ -55,6 +55,8 @@ fetch_git () {
 
     #try_git_clone https://github.com/itplr-kosit/xrechnung-visualization.git
     try_git_clone https://projekte.kosit.org/xrechnung/xrechnung-visualization.git
+
+    try_git_clone git@github.com:phax/en16931-cii2ubl.git
 }
 
 
@@ -67,7 +69,9 @@ copy_invoices () {
              download/xrechnung-testsuite/src/test/business-cases/standard/*_uncefact.xml \
              download/xrechnung-testsuite/src/test/technical-cases/cius/*_uncefact.xml \
              download/xrechnung-testsuite/src/test/technical-cases/cvd/*_uncefact.xml \
-             download/xrechnung-visualization/src/test/instances/*-uncefact.xml
+             download/xrechnung-visualization/src/test/instances/*-uncefact.xml \
+             download/en16931-cii2ubl/en16931-cii2ubl/src/test/resources/external/cii/*.xml \
+             download/en16931-cii2ubl/en16931-cii2ubl/src/test/resources/external/cii/issues/*.xml
     do
         xsltproc pretty.xslt "$f" | \
             sed -f pretty_cii.sed > cii/$(basename "$f")
@@ -87,7 +91,7 @@ copy_invoices () {
         xsltproc pretty.xslt "$f" > ubl/$(basename "$f")
     done
     count_ubl=$(ls ubl/*.xml | wc -l)
-    echo "Found $count_cii UBL invoices"
+    echo "Found $count_ubl UBL invoices"
 }
 
 
@@ -99,8 +103,10 @@ gen_smx_with_kosit () {
     else
         count_smx=0
     fi
-    if [ $count_smx -lt $count_cii ]
+    if [ $count_smx -ne $count_cii ]
     then
+        rm smx/*
+
         # For the XSLT 2.0 transformation it's easier to call SaxonC HE via Python
         uv run to_smx.py
 
@@ -132,7 +138,8 @@ test01_smx () {
         smx2=smx2/$(basename "$f")
 
         xsltproc ../templates/gen/smx2btj.xslt "$f" > "$btj"
-        mustache "$btj" ../templates/gen/btj2smx.mustache > "$smx2"
+        mustache "$btj" ../templates/gen/btj2smx.mustache | \
+            xsltproc pretty.xslt - > "$smx2"
     done
     diff smx/ smx2/ > tmp.diff
     if diff --color tmp.diff smx_smx2.diff
