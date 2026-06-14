@@ -67,7 +67,7 @@
         {{/BG032}}
         {{#BT158}}
         <ram:DesignatedProductClassification>
-          <ram:ClassCode listID="IB" listVersionID="88">{{.}}</ram:ClassCode>
+          <ram:ClassCode>{{.}}</ram:ClassCode>
         </ram:DesignatedProductClassification>
         {{/BT158}}
         {{#BT159}}
@@ -123,8 +123,6 @@
         </ram:GrossPriceProductTradePrice>
             {{/BT147}}
           {{/BT148}}
-        {{/BG029}}
-        {{#BG029}}
           {{#BT146}}
         <ram:NetPriceProductTradePrice>
           <ram:ChargeAmount>{{.}}</ram:ChargeAmount>
@@ -483,14 +481,20 @@
     </ram:ApplicableHeaderTradeAgreement>
     <ram:ApplicableHeaderTradeDelivery>
       {{#BG013}}
-      <ram:ShipToTradeParty>
-        {{#BT071}}
-        <ram:ID>{{.}}</ram:ID>
-        {{/BT071}}
-        {{#BT070}}
-        <ram:Name>{{.}}</ram:Name>
-        {{/BT070}}
+      {{!
+
+
+          ShipToTradeParty is often empty, therefore use cascading
+          tests to check if there is at least one valid child.
+      }}
         {{#BG015}}
+      <ram:ShipToTradeParty>
+          {{#BT071}}
+        <ram:ID>{{.}}</ram:ID>
+          {{/BT071}}
+          {{#BT070}}
+        <ram:Name>{{.}}</ram:Name>
+          {{/BT070}}
         <ram:PostalTradeAddress>
           {{#BT078}}
           <ram:PostcodeCode>{{.}}</ram:PostcodeCode>
@@ -514,15 +518,36 @@
           <ram:CountrySubDivisionName>{{.}}</ram:CountrySubDivisionName>
           {{/BT079}}
         </ram:PostalTradeAddress>
-        {{/BG015}}
       </ram:ShipToTradeParty>
-      {{#BT072}}
+        {{/BG015}}
+        {{^BG015}}
+          {{#BT071}}
+      <ram:ShipToTradeParty>
+        <ram:ID>{{.}}</ram:ID>
+            {{#BT070}}
+        <ram:Name>{{.}}</ram:Name>
+            {{/BT070}}
+      </ram:ShipToTradeParty>
+          {{/BT071}}
+          {{^BT071}}
+            {{#BT070}}
+      <ram:ShipToTradeParty>
+        <ram:Name>{{.}}</ram:Name>
+      </ram:ShipToTradeParty>
+            {{/BT070}}
+          {{/BT071}}
+        {{/BG015}}
+        {{! end
+
+
+        }}
+        {{#BT072}}
       <ram:ActualDeliverySupplyChainEvent>
         <ram:OccurrenceDateTime>
           <udt:DateTimeString format="102">{{YYYY}}{{MM}}{{DD}}</udt:DateTimeString>
         </ram:OccurrenceDateTime>
       </ram:ActualDeliverySupplyChainEvent>
-      {{/BT072}}
+        {{/BT072}}
       {{/BG013}}
       {{#BT016}}
       <ram:DespatchAdviceReferencedDocument>
@@ -537,12 +562,12 @@
     </ram:ApplicableHeaderTradeDelivery>
     <ram:ApplicableHeaderTradeSettlement>
       {{#BG016}}
-      {{#BG019}}
+        {{#BG019}}
       <ram:CreditorReferenceID>{{BT090}}</ram:CreditorReferenceID>
-      {{/BG019}}
-      {{#BT083}}
+        {{/BG019}}
+        {{#BT083}}
       <ram:PaymentReference>{{.}}</ram:PaymentReference>
-      {{/BT083}}
+        {{/BT083}}
       {{/BG016}}
       {{#BT006}}
       <ram:TaxCurrencyCode>{{.}}</ram:TaxCurrencyCode>
@@ -566,14 +591,14 @@
       </ram:PayeeTradeParty>
       {{/BG010}}
       {{#BG016}}
-      {{#BG017}}
+        {{#BG017}}
       <ram:SpecifiedTradeSettlementPaymentMeans>
-        {{#BT081}}
+          {{#BT081}}
         <ram:TypeCode>{{.}}</ram:TypeCode>
-        {{/BT081}}
-        {{#BT082}}
+          {{/BT081}}
+          {{#BT082}}
         <ram:Information>{{.}}</ram:Information>
-        {{/BT082}}
+          {{/BT082}}
         <ram:PayeePartyCreditorFinancialAccount>
           {{#BT084}}
           <ram:IBANID>{{.}}</ram:IBANID>
@@ -598,12 +623,12 @@
         <ram:Information>{{.}}</ram:Information>
         {{/BT082}}
         <ram:ApplicableTradeSettlementFinancialCard>
-          {{#BT087}}
+        {{#BT087}}
           <ram:ID>{{.}}</ram:ID>
-          {{/BT087}}
-          {{#BT088}}
+        {{/BT087}}
+        {{#BT088}}
           <ram:CardholderName>{{.}}</ram:CardholderName>
-          {{/BT088}}
+        {{/BT088}}
         </ram:ApplicableTradeSettlementFinancialCard>
       </ram:SpecifiedTradeSettlementPaymentMeans>
       {{/BG018}}
@@ -662,7 +687,12 @@
           <udt:DateString format="102">{{YYYY}}{{MM}}{{DD}}</udt:DateString>
         </ram:TaxPointDate>
         {{/BT007}}
-        <ram:RateApplicablePercent>{{BT119}}</ram:RateApplicablePercent>
+        {{#BT008}}
+        <ram:DueDateTypeCode>{{.}}</ram:DueDateTypeCode>
+        {{/BT008}}
+        {{#BT119}}
+        <ram:RateApplicablePercent>{{.}}</ram:RateApplicablePercent>
+        {{/BT119}}
       </ram:ApplicableTradeTax>
       {{/BG023}}
       {{#BG013}}
@@ -750,7 +780,9 @@
         {{/BT009}}
         {{#BG016}}
         {{#BG019}}
-        <ram:DirectDebitMandateID>{{BT089}}</ram:DirectDebitMandateID>
+        {{#BT089}}
+        <ram:DirectDebitMandateID>{{.}}</ram:DirectDebitMandateID>
+        {{/BT089}}
         {{/BG019}}
         {{/BG016}}
       </ram:SpecifiedTradePaymentTerms>

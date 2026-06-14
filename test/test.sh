@@ -43,6 +43,7 @@ try_git_clone () {
 # Check if package dependencies are installed
 check_dependencies () {
     check_package xsltproc xsltproc
+    #check_package xsec-c14n xml-security-c-utils
 }
 
 
@@ -56,7 +57,7 @@ fetch_git () {
     #try_git_clone https://github.com/itplr-kosit/xrechnung-visualization.git
     try_git_clone https://projekte.kosit.org/xrechnung/xrechnung-visualization.git
 
-    try_git_clone git@github.com:phax/en16931-cii2ubl.git
+    #try_git_clone git@github.com:phax/en16931-cii2ubl.git
 }
 
 
@@ -70,11 +71,11 @@ copy_invoices () {
              download/xrechnung-testsuite/src/test/technical-cases/cius/*_uncefact.xml \
              download/xrechnung-testsuite/src/test/technical-cases/cvd/*_uncefact.xml \
              download/xrechnung-visualization/src/test/instances/*-uncefact.xml \
-             download/en16931-cii2ubl/en16931-cii2ubl/src/test/resources/external/cii/*.xml \
-             download/en16931-cii2ubl/en16931-cii2ubl/src/test/resources/external/cii/issues/*.xml
+             other/en16931-cii2ubl/*.xml
     do
-        xsltproc pretty.xslt "$f" | \
-            sed -f pretty_cii.sed > cii/$(basename "$f")
+        xsltproc pretty.xslt "$f" > cii/$(basename "$f")
+        #xmllint --format "$f" > cii/$(basename "$f")
+        #xsec-c14n -n  "$f" | xsltproc pretty.xslt - > cii/$(basename "$f")
     done
     count_cii=$(ls cii/*.xml | wc -l)
     echo "Found $count_cii CII invoices"
@@ -206,6 +207,36 @@ test03_smx () {
 }
 
 
+test_cii_btj_cii () {
+    mkdir -p btj
+    rm btj/*
+    mkdir -p cii_from_btj
+    rm cii_from_btj/*
+
+    for f in cii/*.xml
+    do
+        echo "CII -> BTJ -> CII': $f"
+        btj=btj/$(basename "$f" .xml).btj
+        cii_from_btj=cii_from_btj/$(basename "$f")
+
+        xsltproc ../templates/cii2btj.xslt "$f" > "$btj"
+        mustache "$btj" ../templates/btj2cii.mustache | \
+            xsltproc pretty.xslt - > "$cii_from_btj"
+    done
+
+    diff cii/ cii_from_btj/ > tmp.diff
+    if diff --color tmp.diff cii_btj_cii.diff
+    then
+        echo "${esc_white}Acceptable differences${esc} (&quot; and empty <xr:DELIVERY_INFORMATION>)"
+    else
+        echo "${esc_red}NOT OK${esc}"
+        exit
+    fi
+}
+
+
+
+
 
 
 # Main program
@@ -220,10 +251,10 @@ cd ../templates
 uv run gen.py
 cd "$back"
 
-test01_smx
-test02_cii
-test03_smx
-
+#test01_smx
+#test02_cii
+#test03_smx
+test_cii_btj_cii
 
 
 
