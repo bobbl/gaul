@@ -1110,16 +1110,17 @@
         <!-- BT-149 is 0..1 => if in a valid CII *Net* and *Gross* are present,
                                they must be identical -->
         <xsl:choose>
-          <xsl:when test="ram:SpecifiedLineTradeAgreement/ram:NetPriceProductTradePrice/ram:BasisQuantity">
+          <xsl:when test="ram:SpecifiedLineTradeAgreement/ram:GrossPriceProductTradePrice/ram:BasisQuantity">
+            <!-- Prefer *Gross* over *Net* as in KoSIT CII to SMX conversion -->
             <xsl:call-template name="string">
-              <xsl:with-param name="xmltag" select="ram:SpecifiedLineTradeAgreement/ram:NetPriceProductTradePrice/ram:BasisQuantity"/>
+              <xsl:with-param name="xmltag" select="ram:SpecifiedLineTradeAgreement/ram:GrossPriceProductTradePrice/ram:BasisQuantity"/>
               <xsl:with-param name="jsonkey" select="'BT149'"/>
               <xsl:with-param name="indent" select="'      '"/>
             </xsl:call-template>
           </xsl:when>
           <xsl:otherwise>
             <xsl:call-template name="string">
-              <xsl:with-param name="xmltag" select="ram:SpecifiedLineTradeAgreement/ram:GrossPriceProductTradePrice/ram:BasisQuantity"/>
+              <xsl:with-param name="xmltag" select="ram:SpecifiedLineTradeAgreement/ram:NetPriceProductTradePrice/ram:BasisQuantity"/>
               <xsl:with-param name="jsonkey" select="'BT149'"/>
               <xsl:with-param name="indent" select="'      '"/>
             </xsl:call-template>

@@ -374,10 +374,10 @@ diff cii/CII_example2.xml cii_from_btj/CII_example2.xml
 <           <ram:ClassCode listID="STI">65434568</ram:ClassCode>
 ---
 >           <ram:ClassCode>65434568</ram:ClassCode>
-51c51
-<           <ram:BasisQuantity unitCode="NAR">1498</ram:BasisQuantity>
+61c61
+<           <ram:BasisQuantity unitCode="NAR">1273</ram:BasisQuantity>
 ---
->           <ram:BasisQuantity unitCode="NAR">1273</ram:BasisQuantity>
+>           <ram:BasisQuantity unitCode="NAR">1498</ram:BasisQuantity>
 111c111
 <         <ram:GlobalID schemeID="0088">1234567890135</ram:GlobalID>
 ---
@@ -394,10 +394,10 @@ diff cii/CII_example2.xml cii_from_btj/CII_example2.xml
 <           <ram:ClassCode listID="STI">65434566</ram:ClassCode>
 ---
 >           <ram:ClassCode>65434566</ram:ClassCode>
-162c162
-<           <ram:BasisQuantity unitCode="NAR">2.75</ram:BasisQuantity>
+172c172
+<           <ram:BasisQuantity unitCode="NAR">2.48</ram:BasisQuantity>
 ---
->           <ram:BasisQuantity unitCode="NAR">2.48</ram:BasisQuantity>
+>           <ram:BasisQuantity unitCode="NAR">2.75</ram:BasisQuantity>
 197c197
 <         <ram:GlobalID schemeID="0088">1234567890159</ram:GlobalID>
 ---
@@ -449,10 +449,10 @@ diff cii/CII_example5.xml cii_from_btj/CII_example5.xml
 <         <ram:GlobalID schemeID="0088">1234567890128</ram:GlobalID>
 ---
 >         <ram:GlobalID>1234567890128</ram:GlobalID>
-50c50
-<           <ram:BasisQuantity unitCode="C62">1.1</ram:BasisQuantity>
+60c60
+<           <ram:BasisQuantity unitCode="C62">1</ram:BasisQuantity>
 ---
->           <ram:BasisQuantity unitCode="C62">1</ram:BasisQuantity>
+>           <ram:BasisQuantity unitCode="C62">1.1</ram:BasisQuantity>
 105a106
 >           <ram:ReferenceTypeCode>ABZ</ram:ReferenceTypeCode>
 157a159
@@ -537,10 +537,10 @@ diff cii/issue20.xml cii_from_btj/issue20.xml
 <           <ram:ClassCode listID="STI">65434568</ram:ClassCode>
 ---
 >           <ram:ClassCode>65434568</ram:ClassCode>
-51c51
-<           <ram:BasisQuantity unitCode="NAR">1498</ram:BasisQuantity>
+61c61
+<           <ram:BasisQuantity unitCode="NAR">1273</ram:BasisQuantity>
 ---
->           <ram:BasisQuantity unitCode="NAR">1273</ram:BasisQuantity>
+>           <ram:BasisQuantity unitCode="NAR">1498</ram:BasisQuantity>
 111c111
 <         <ram:GlobalID schemeID="0088">1234567890135</ram:GlobalID>
 ---
@@ -557,10 +557,10 @@ diff cii/issue20.xml cii_from_btj/issue20.xml
 <           <ram:ClassCode listID="STI">65434566</ram:ClassCode>
 ---
 >           <ram:ClassCode>65434566</ram:ClassCode>
-162c162
-<           <ram:BasisQuantity unitCode="NAR">2.75</ram:BasisQuantity>
+172c172
+<           <ram:BasisQuantity unitCode="NAR">2.48</ram:BasisQuantity>
 ---
->           <ram:BasisQuantity unitCode="NAR">2.48</ram:BasisQuantity>
+>           <ram:BasisQuantity unitCode="NAR">2.75</ram:BasisQuantity>
 197c197
 <         <ram:GlobalID schemeID="0088">1234567890159</ram:GlobalID>
 ---
@@ -602,10 +602,10 @@ diff cii/issue22.xml cii_from_btj/issue22.xml
 <           <ram:ClassCode listID="STI">65434568</ram:ClassCode>
 ---
 >           <ram:ClassCode>65434568</ram:ClassCode>
-51c51
-<           <ram:BasisQuantity unitCode="NAR">1498</ram:BasisQuantity>
+61c61
+<           <ram:BasisQuantity unitCode="NAR">1273</ram:BasisQuantity>
 ---
->           <ram:BasisQuantity unitCode="NAR">1273</ram:BasisQuantity>
+>           <ram:BasisQuantity unitCode="NAR">1498</ram:BasisQuantity>
 111c111
 <         <ram:GlobalID schemeID="0088">1234567890135</ram:GlobalID>
 ---
@@ -622,10 +622,10 @@ diff cii/issue22.xml cii_from_btj/issue22.xml
 <           <ram:ClassCode listID="STI">65434566</ram:ClassCode>
 ---
 >           <ram:ClassCode>65434566</ram:ClassCode>
-162c162
-<           <ram:BasisQuantity unitCode="NAR">2.75</ram:BasisQuantity>
+172c172
+<           <ram:BasisQuantity unitCode="NAR">2.48</ram:BasisQuantity>
 ---
->           <ram:BasisQuantity unitCode="NAR">2.48</ram:BasisQuantity>
+>           <ram:BasisQuantity unitCode="NAR">2.75</ram:BasisQuantity>
 197c197
 <         <ram:GlobalID schemeID="0088">1234567890159</ram:GlobalID>
 ---
@@ -667,10 +667,10 @@ diff cii/issue23.xml cii_from_btj/issue23.xml
 <           <ram:ClassCode listID="STI">65434568</ram:ClassCode>
 ---
 >           <ram:ClassCode>65434568</ram:ClassCode>
-51c51
-<           <ram:BasisQuantity unitCode="NAR">1498</ram:BasisQuantity>
+61c61
+<           <ram:BasisQuantity unitCode="NAR">1273</ram:BasisQuantity>
 ---
->           <ram:BasisQuantity unitCode="NAR">1273</ram:BasisQuantity>
+>           <ram:BasisQuantity unitCode="NAR">1498</ram:BasisQuantity>
 111c111
 <         <ram:GlobalID schemeID="0088">1234567890135</ram:GlobalID>
 ---
@@ -687,10 +687,10 @@ diff cii/issue23.xml cii_from_btj/issue23.xml
 <           <ram:ClassCode listID="STI">65434566</ram:ClassCode>
 ---
 >           <ram:ClassCode>65434566</ram:ClassCode>
-162c162
-<           <ram:BasisQuantity unitCode="NAR">2.75</ram:BasisQuantity>
+172c172
+<           <ram:BasisQuantity unitCode="NAR">2.48</ram:BasisQuantity>
 ---
->           <ram:BasisQuantity unitCode="NAR">2.48</ram:BasisQuantity>
+>           <ram:BasisQuantity unitCode="NAR">2.75</ram:BasisQuantity>
 197c197
 <         <ram:GlobalID schemeID="0088">1234567890159</ram:GlobalID>
 ---
@@ -732,10 +732,10 @@ diff cii/issue28.xml cii_from_btj/issue28.xml
 <           <ram:ClassCode listID="STI">65434568</ram:ClassCode>
 ---
 >           <ram:ClassCode>65434568</ram:ClassCode>
-51c51
-<           <ram:BasisQuantity unitCode="NAR">1498</ram:BasisQuantity>
+61c61
+<           <ram:BasisQuantity unitCode="NAR">1273</ram:BasisQuantity>
 ---
->           <ram:BasisQuantity unitCode="NAR">1273</ram:BasisQuantity>
+>           <ram:BasisQuantity unitCode="NAR">1498</ram:BasisQuantity>
 111c111
 <         <ram:GlobalID schemeID="0088">1234567890135</ram:GlobalID>
 ---
@@ -752,10 +752,10 @@ diff cii/issue28.xml cii_from_btj/issue28.xml
 <           <ram:ClassCode listID="STI">65434566</ram:ClassCode>
 ---
 >           <ram:ClassCode>65434566</ram:ClassCode>
-162c162
-<           <ram:BasisQuantity unitCode="NAR">2.75</ram:BasisQuantity>
+172c172
+<           <ram:BasisQuantity unitCode="NAR">2.48</ram:BasisQuantity>
 ---
->           <ram:BasisQuantity unitCode="NAR">2.48</ram:BasisQuantity>
+>           <ram:BasisQuantity unitCode="NAR">2.75</ram:BasisQuantity>
 197c197
 <         <ram:GlobalID schemeID="0088">1234567890159</ram:GlobalID>
 ---
@@ -801,10 +801,10 @@ diff cii/issue34.xml cii_from_btj/issue34.xml
 <           <ram:ClassCode listID="STI">65434568</ram:ClassCode>
 ---
 >           <ram:ClassCode>65434568</ram:ClassCode>
-51c51
-<           <ram:BasisQuantity unitCode="NAR">1498</ram:BasisQuantity>
+61c61
+<           <ram:BasisQuantity unitCode="NAR">1273</ram:BasisQuantity>
 ---
->           <ram:BasisQuantity unitCode="NAR">1273</ram:BasisQuantity>
+>           <ram:BasisQuantity unitCode="NAR">1498</ram:BasisQuantity>
 111c111
 <         <ram:GlobalID schemeID="0088">1234567890135</ram:GlobalID>
 ---
@@ -821,10 +821,10 @@ diff cii/issue34.xml cii_from_btj/issue34.xml
 <           <ram:ClassCode listID="STI">65434566</ram:ClassCode>
 ---
 >           <ram:ClassCode>65434566</ram:ClassCode>
-162c162
-<           <ram:BasisQuantity unitCode="NAR">2.75</ram:BasisQuantity>
+172c172
+<           <ram:BasisQuantity unitCode="NAR">2.48</ram:BasisQuantity>
 ---
->           <ram:BasisQuantity unitCode="NAR">2.48</ram:BasisQuantity>
+>           <ram:BasisQuantity unitCode="NAR">2.75</ram:BasisQuantity>
 197c197
 <         <ram:GlobalID schemeID="0088">1234567890159</ram:GlobalID>
 ---
@@ -870,10 +870,10 @@ diff cii/issue38-bad.xml cii_from_btj/issue38-bad.xml
 <           <ram:ClassCode listID="STI">65434568</ram:ClassCode>
 ---
 >           <ram:ClassCode>65434568</ram:ClassCode>
-51c51
-<           <ram:BasisQuantity unitCode="NAR">1498</ram:BasisQuantity>
+61c61
+<           <ram:BasisQuantity unitCode="NAR">1273</ram:BasisQuantity>
 ---
->           <ram:BasisQuantity unitCode="NAR">1273</ram:BasisQuantity>
+>           <ram:BasisQuantity unitCode="NAR">1498</ram:BasisQuantity>
 111c111
 <         <ram:GlobalID schemeID="0088">1234567890135</ram:GlobalID>
 ---
@@ -890,10 +890,10 @@ diff cii/issue38-bad.xml cii_from_btj/issue38-bad.xml
 <           <ram:ClassCode listID="STI">65434566</ram:ClassCode>
 ---
 >           <ram:ClassCode>65434566</ram:ClassCode>
-162c162
-<           <ram:BasisQuantity unitCode="NAR">2.75</ram:BasisQuantity>
+172c172
+<           <ram:BasisQuantity unitCode="NAR">2.48</ram:BasisQuantity>
 ---
->           <ram:BasisQuantity unitCode="NAR">2.48</ram:BasisQuantity>
+>           <ram:BasisQuantity unitCode="NAR">2.75</ram:BasisQuantity>
 197c197
 <         <ram:GlobalID schemeID="0088">1234567890159</ram:GlobalID>
 ---

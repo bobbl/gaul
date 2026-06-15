@@ -263,6 +263,33 @@ test_btj_smx_btj () {
 }
 
 
+test_kosit_smx () {
+    kosit_dir=kosit_smx
+    rm $kosit_dir/*
+
+    # For the XSLT 2.0 transformation it's easier to call SaxonC HE via Python
+    uv run to_smx.py
+
+    for f in $kosit_dir/*.smx
+    do
+        # remove unnecessary additional attributes from the xr: tags
+        # FIXME: if the attribute names appear within content, they are also removed there
+        sed 's/xr:src="[^"]*"//; s/scheme_identifier="[^"]*"//; s/scheme_version_identifier="[^"]*"//' "$f" > tmp.noxrsrc
+
+        # pretty print for comparison
+        xsltproc pretty.xslt tmp.noxrsrc > $kosit_dir/$(basename $f .xml.smx).smx
+        rm "$f"
+    done
+
+    diff kosit_smx/ smx/ > tmp.diff
+    if diff --color tmp.diff kosit_smx.diff
+    then
+        echo "${esc_white}Acceptable differences${esc}"
+    else
+        echo "${esc_red}NOT OK${esc}"
+        exit
+    fi
+}
 
 
 
@@ -285,7 +312,7 @@ cd "$back"
 
 test_cii_btj_cii
 test_btj_smx_btj
-
+test_kosit_smx
 
 # SPDX-License-Identifier: ISC
 
