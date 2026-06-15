@@ -98,27 +98,30 @@ copy_invoices () {
 
 # Generate SMX with KoSIT XSLT 2.0 template
 gen_smx_with_kosit () {
-    if [ -d smx ]
+    kosit_dir=kosit_smx
+
+    if [ -d $kosti_dir ]
     then
-        count_smx=$(ls smx/*.smx | wc -l)
+        count_smx=$(ls $kosit_dir/*.smx | wc -l)
     else
+        mkdir -p $kosit_dir
         count_smx=0
     fi
     if [ $count_smx -ne $count_cii ]
     then
-        rm smx/*
+        rm $kosit_dir/*
 
         # For the XSLT 2.0 transformation it's easier to call SaxonC HE via Python
         uv run to_smx.py
 
-        for f in smx/*.smx
+        for f in $kosit_dir/*.smx
         do
             # remove unnecessary additional attributes from the xr: tags
             # FIXME: if the attribute names appear within content, they are also removed there
             sed 's/xr:src="[^"]*"//; s/scheme_identifier="[^"]*"//; s/scheme_version_identifier="[^"]*"//' "$f" > tmp.noxrsrc
 
             # pretty print for comparison
-            xsltproc pretty.xslt tmp.noxrsrc > smx/$(basename $f .xml.smx).smx
+            xsltproc pretty.xslt tmp.noxrsrc > $kosit_dir/$(basename $f .xml.smx).smx
             rm "$f"
         done
     fi
@@ -209,9 +212,9 @@ test03_smx () {
 
 test_cii_btj_cii () {
     mkdir -p btj
-    rm btj/*
+    rm -f btj/*
     mkdir -p cii_from_btj
-    rm cii_from_btj/*
+    rm -f cii_from_btj/*
 
     for f in cii/*.xml
     do
@@ -227,7 +230,32 @@ test_cii_btj_cii () {
     diff cii/ cii_from_btj/ > tmp.diff
     if diff --color tmp.diff cii_btj_cii.diff
     then
-        echo "${esc_white}Acceptable differences${esc} (&quot; and empty <xr:DELIVERY_INFORMATION>)"
+        echo "${esc_white}Acceptable differences${esc}"
+    else
+        echo "${esc_red}NOT OK${esc}"
+        exit
+    fi
+}
+
+
+test_btj_smx_btj () {
+    mkdir -p smx
+    rm -f smx/*
+    mkdir -p btj2
+    rm -f btj2/*
+
+    for f in btj/*.btj
+    do
+        echo "BTJ -> SMX -> BTJ': $f"
+        smx=smx/$(basename "$f" .btj).smx
+        btj2=btj2/$(basename "$f")
+
+        mustache "$f" ../templates/gen/btj2smx.mustache > "$smx"
+        xsltproc ../templates/gen/smx2btj.xslt "$smx" > "$btj2"
+    done
+    if diff --color btj/ btj2/
+    then
+        echo "${esc_white}No differences${esc}"
     else
         echo "${esc_red}NOT OK${esc}"
         exit
@@ -254,8 +282,9 @@ cd "$back"
 #test01_smx
 #test02_cii
 #test03_smx
-test_cii_btj_cii
 
+test_cii_btj_cii
+test_btj_smx_btj
 
 
 # SPDX-License-Identifier: ISC

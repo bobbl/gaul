@@ -1,0 +1,948 @@
+diff cii/01.01a-INVOICE_uncefact.xml cii_from_btj/01.01a-INVOICE_uncefact.xml
+35c35
+<           <ram:ClassCode listID="IB">0721-880X</ram:ClassCode>
+---
+>           <ram:ClassCode>0721-880X</ram:ClassCode>
+diff cii/01.01_comprehensive_test_uncefact.xml cii_from_btj/01.01_comprehensive_test_uncefact.xml
+35c35
+<         <ram:GlobalID schemeID="0088">123456789</ram:GlobalID>
+---
+>         <ram:GlobalID>123456789</ram:GlobalID>
+49c49
+<           <ram:ClassCode listID="IB" listVersionID="88">0721-880X</ram:ClassCode>
+---
+>           <ram:ClassCode>0721-880X</ram:ClassCode>
+52c52
+<           <ram:ClassCode listID="IB" listVersionID="88">0721-880XYZ</ram:ClassCode>
+---
+>           <ram:ClassCode>0721-880XYZ</ram:ClassCode>
+73a74
+>           <ram:BasisQuantity unitCode="XPP">1</ram:BasisQuantity>
+177c178
+<         <ram:GlobalID schemeID="0088">987654321</ram:GlobalID>
+---
+>         <ram:ID>987654321</ram:ID>
+181c182
+<           <ram:ID schemeID="0088">123456789</ram:ID>
+---
+>           <ram:ID>123456789</ram:ID>
+329c330
+<           <ram:ID schemeID="0204">90000000-03083-72</ram:ID>
+---
+>           <ram:ID>90000000-03083-72</ram:ID>
+344a346
+>         <ram:Information>[Payment means text]</ram:Information>
+369a372,374
+>         <ram:TaxPointDate>
+>           <udt:DateString format="102">20180413</udt:DateString>
+>         </ram:TaxPointDate>
+diff cii/01.02_comprehensive_test_uncefact.xml cii_from_btj/01.02_comprehensive_test_uncefact.xml
+31c31
+<         <ram:GlobalID schemeID="0088">123456789</ram:GlobalID>
+---
+>         <ram:GlobalID>123456789</ram:GlobalID>
+41c41
+<           <ram:ClassCode listID="IB" listVersionID="88">0721-880X</ram:ClassCode>
+---
+>           <ram:ClassCode>0721-880X</ram:ClassCode>
+62a63
+>           <ram:BasisQuantity unitCode="XPP">1</ram:BasisQuantity>
+148c149
+<           <ram:ID schemeID="0088">123456789</ram:ID>
+---
+>           <ram:ID>123456789</ram:ID>
+180c181
+<         <ram:GlobalID schemeID="0088">138</ram:GlobalID>
+---
+>         <ram:ID>138</ram:ID>
+257c258
+<         <ram:GlobalID schemeID="0088">68</ram:GlobalID>
+---
+>         <ram:ID>68</ram:ID>
+286c287
+<         <ram:GlobalID schemeID="0088">74</ram:GlobalID>
+---
+>         <ram:ID>74</ram:ID>
+289c290
+<           <ram:ID schemeID="0204">90000000-03083-72</ram:ID>
+---
+>           <ram:ID>90000000-03083-72</ram:ID>
+295a297
+>           <ram:IBANID>DE75512108001245126199</ram:IBANID>
+297d298
+<           <ram:ProprietaryID>DE75512108001245126199</ram:ProprietaryID>
+304a306
+>         <ram:Information>[Payment means text]</ram:Information>
+327a330
+>         <ram:DueDateTypeCode>5</ram:DueDateTypeCode>
+diff cii/01.03_comprehensive_test_uncefact.xml cii_from_btj/01.03_comprehensive_test_uncefact.xml
+31c31
+<         <ram:GlobalID schemeID="0088">123456789</ram:GlobalID>
+---
+>         <ram:GlobalID>123456789</ram:GlobalID>
+41c41
+<           <ram:ClassCode listID="IB" listVersionID="88">0721-880X</ram:ClassCode>
+---
+>           <ram:ClassCode>0721-880X</ram:ClassCode>
+62a63
+>           <ram:BasisQuantity unitCode="XPP">1</ram:BasisQuantity>
+144c145
+<         <ram:GlobalID schemeID="0088">987654321</ram:GlobalID>
+---
+>         <ram:ID>987654321</ram:ID>
+148c149
+<           <ram:ID schemeID="0088">123456789</ram:ID>
+---
+>           <ram:ID>123456789</ram:ID>
+152c153
+<           <ram:DepartmentName>Testorganisation</ram:DepartmentName>
+---
+>           <ram:PersonName>Testorganisation</ram:PersonName>
+187c188
+<           <ram:DepartmentName>Tina Tester</ram:DepartmentName>
+---
+>           <ram:PersonName>Tina Tester</ram:PersonName>
+289c290
+<           <ram:ID schemeID="0204">90000000-03083-72</ram:ID>
+---
+>           <ram:ID>90000000-03083-72</ram:ID>
+316a318,320
+>         <ram:TaxPointDate>
+>           <udt:DateString format="102">20180413</udt:DateString>
+>         </ram:TaxPointDate>
+diff cii/01.04_comprehensive_test_uncefact.xml cii_from_btj/01.04_comprehensive_test_uncefact.xml
+31c31
+<         <ram:GlobalID schemeID="0088">123456789</ram:GlobalID>
+---
+>         <ram:GlobalID>123456789</ram:GlobalID>
+41c41
+<           <ram:ClassCode listID="IB" listVersionID="88">0721-880X</ram:ClassCode>
+---
+>           <ram:ClassCode>0721-880X</ram:ClassCode>
+62a63
+>           <ram:BasisQuantity unitCode="XPP">1</ram:BasisQuantity>
+144c145
+<         <ram:GlobalID schemeID="0088">987654321</ram:GlobalID>
+---
+>         <ram:ID>987654321</ram:ID>
+148c149
+<           <ram:ID schemeID="0088">123456789</ram:ID>
+---
+>           <ram:ID>123456789</ram:ID>
+152c153
+<           <ram:DepartmentName>Testorganisation</ram:DepartmentName>
+---
+>           <ram:PersonName>Testorganisation</ram:PersonName>
+187c188
+<           <ram:DepartmentName>Tina Tester</ram:DepartmentName>
+---
+>           <ram:PersonName>Tina Tester</ram:PersonName>
+290c291
+<           <ram:ID schemeID="0204">90000000-03083-72</ram:ID>
+---
+>           <ram:ID>90000000-03083-72</ram:ID>
+316a318,320
+>         <ram:TaxPointDate>
+>           <udt:DateString format="102">20180413</udt:DateString>
+>         </ram:TaxPointDate>
+diff cii/01.14a-INVOICE_uncefact.xml cii_from_btj/01.14a-INVOICE_uncefact.xml
+107c107
+<           <ram:ID>HRB 3456</ram:ID>
+---
+>           <ram:ID schemeID="0204">HRB 3456</ram:ID>
+diff cii/01.17a-INVOICE_uncefact.xml cii_from_btj/01.17a-INVOICE_uncefact.xml
+35c35
+<           <ram:ClassCode listID="IB">0721-880X</ram:ClassCode>
+---
+>           <ram:ClassCode>0721-880X</ram:ClassCode>
+diff cii/01.20a-INVOICE_uncefact.xml cii_from_btj/01.20a-INVOICE_uncefact.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+diff cii/01.21a-INVOICE_uncefact.xml cii_from_btj/01.21a-INVOICE_uncefact.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:a="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+47d46
+<           <ram:ExemptionReason>Umkehrung der Steuerschuldnerschaft</ram:ExemptionReason>
+80c79
+<           <ram:ID schemeID="FC">04523149435</ram:ID>
+---
+>           <ram:ID schemeID="VA">DE152338654</ram:ID>
+83c82
+<           <ram:ID schemeID="VA">DE152338654</ram:ID>
+---
+>           <ram:ID schemeID="FC">04523149435</ram:ID>
+103,105d101
+<         </ram:SpecifiedTaxRegistration>
+<         <ram:SpecifiedTaxRegistration>
+<           <ram:ID schemeID="FC">04523249415</ram:ID>
+diff cii/02.01a-cvd_INVOICE_uncefact.xml cii_from_btj/02.01a-cvd_INVOICE_uncefact.xml
+35c35
+<         <ram:GlobalID schemeID="0088">123456789</ram:GlobalID>
+---
+>         <ram:GlobalID>123456789</ram:GlobalID>
+65c65
+<           <ram:ClassCode listID="CVD">M2</ram:ClassCode>
+---
+>           <ram:ClassCode>M2</ram:ClassCode>
+68c68
+<           <ram:ClassCode listID="IB" listVersionID="88">0721-880XYZ</ram:ClassCode>
+---
+>           <ram:ClassCode>0721-880XYZ</ram:ClassCode>
+86a87
+>           <ram:BasisQuantity unitCode="XPP">1</ram:BasisQuantity>
+211c212
+<         <ram:GlobalID schemeID="0088">987654321</ram:GlobalID>
+---
+>         <ram:ID>987654321</ram:ID>
+215c216
+<           <ram:ID schemeID="0088">123456789</ram:ID>
+---
+>           <ram:ID>123456789</ram:ID>
+349c350
+<           <ram:ID schemeID="0204">90000000-03083-72</ram:ID>
+---
+>           <ram:ID>90000000-03083-72</ram:ID>
+364a366
+>         <ram:Information>[Payment means text]</ram:Information>
+389a392,394
+>         <ram:TaxPointDate>
+>           <udt:DateString format="102">20180413</udt:DateString>
+>         </ram:TaxPointDate>
+diff cii/02.01a-INVOICE_uncefact.xml cii_from_btj/02.01a-INVOICE_uncefact.xml
+35c35
+<           <ram:ClassCode listID="IB">0721-880X</ram:ClassCode>
+---
+>           <ram:ClassCode>0721-880X</ram:ClassCode>
+97c97
+<         <ram:GlobalID schemeID="0088">4721480668400</ram:GlobalID>
+---
+>         <ram:ID>4721480668400</ram:ID>
+101c101
+<           <ram:ID schemeID="0088">5923183878011</ram:ID>
+---
+>           <ram:ID>5923183878011</ram:ID>
+246a247,249
+>         <ram:TaxPointDate>
+>           <udt:DateString format="102">20180413</udt:DateString>
+>         </ram:TaxPointDate>
+diff cii/02.02a-INVOICE_uncefact.xml cii_from_btj/02.02a-INVOICE_uncefact.xml
+35c35
+<           <ram:ClassCode listID="IB">0721-880X</ram:ClassCode>
+---
+>           <ram:ClassCode>0721-880X</ram:ClassCode>
+97c97
+<         <ram:GlobalID schemeID="0088">6424367555074</ram:GlobalID>
+---
+>         <ram:ID>6424367555074</ram:ID>
+101c101
+<           <ram:ID schemeID="0088">4710796497965</ram:ID>
+---
+>           <ram:ID>4710796497965</ram:ID>
+diff cii/02.03a-INVOICE_uncefact.xml cii_from_btj/02.03a-INVOICE_uncefact.xml
+35c35
+<           <ram:ClassCode listID="IB">0721-880X</ram:ClassCode>
+---
+>           <ram:ClassCode>0721-880X</ram:ClassCode>
+97c97
+<         <ram:GlobalID schemeID="0088">2858578808058</ram:GlobalID>
+---
+>         <ram:ID>2858578808058</ram:ID>
+101c101
+<           <ram:ID schemeID="0088">2065964148418</ram:ID>
+---
+>           <ram:ID>2065964148418</ram:ID>
+246a247,249
+>         <ram:TaxPointDate>
+>           <udt:DateString format="102">20180413</udt:DateString>
+>         </ram:TaxPointDate>
+diff cii/02.04a-INVOICE_uncefact.xml cii_from_btj/02.04a-INVOICE_uncefact.xml
+35c35
+<           <ram:ClassCode listID="IB">0721-880X</ram:ClassCode>
+---
+>           <ram:ClassCode>0721-880X</ram:ClassCode>
+97c97
+<         <ram:GlobalID schemeID="0088">5862371197407</ram:GlobalID>
+---
+>         <ram:ID>5862371197407</ram:ID>
+101c101
+<           <ram:ID schemeID="0088">8905814887873</ram:ID>
+---
+>           <ram:ID>8905814887873</ram:ID>
+246a247,249
+>         <ram:TaxPointDate>
+>           <udt:DateString format="102">20180413</udt:DateString>
+>         </ram:TaxPointDate>
+diff cii/02.05a-INVOICE_uncefact.xml cii_from_btj/02.05a-INVOICE_uncefact.xml
+620c620
+<         <ram:GlobalID schemeID="0088">0197842701377</ram:GlobalID>
+---
+>         <ram:ID>0197842701377</ram:ID>
+624c624
+<           <ram:ID schemeID="0088">9823636820856</ram:ID>
+---
+>           <ram:ID>9823636820856</ram:ID>
+diff cii/02.06a-INVOICE_uncefact.xml cii_from_btj/02.06a-INVOICE_uncefact.xml
+74c74
+<         <ram:GlobalID schemeID="0088">2428600711948</ram:GlobalID>
+---
+>         <ram:ID>2428600711948</ram:ID>
+78c78
+<           <ram:ID schemeID="0088">3688088306671</ram:ID>
+---
+>           <ram:ID>3688088306671</ram:ID>
+diff cii/03.06a-INVOICE_uncefact.xml cii_from_btj/03.06a-INVOICE_uncefact.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+187c187
+<           <ram:ID schemeID="FC">1121081508150</ram:ID>
+---
+>           <ram:ID schemeID="VA">DE12345464867</ram:ID>
+190c190
+<           <ram:ID schemeID="VA">DE12345464867</ram:ID>
+---
+>           <ram:ID schemeID="FC">1121081508150</ram:ID>
+diff cii/03.07a-INVOICE_uncefact.xml cii_from_btj/03.07a-INVOICE_uncefact.xml
+35c35
+<         <ram:GlobalID schemeID="0088">123456789</ram:GlobalID>
+---
+>         <ram:GlobalID>123456789</ram:GlobalID>
+76a77
+>           <ram:BasisQuantity unitCode="XPP">1</ram:BasisQuantity>
+201c202
+<         <ram:GlobalID schemeID="0088">987654321</ram:GlobalID>
+---
+>         <ram:ID>987654321</ram:ID>
+205c206
+<           <ram:ID schemeID="0088">123456789</ram:ID>
+---
+>           <ram:ID>123456789</ram:ID>
+353c354
+<           <ram:ID schemeID="0204">90000000-03083-72</ram:ID>
+---
+>           <ram:ID>90000000-03083-72</ram:ID>
+368a370
+>         <ram:Information>[Payment means text]</ram:Information>
+393a396,398
+>         <ram:TaxPointDate>
+>           <udt:DateString format="102">20180413</udt:DateString>
+>         </ram:TaxPointDate>
+diff cii/04.05a-INVOICE_uncefact.xml cii_from_btj/04.05a-INVOICE_uncefact.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+27c27
+<         <ram:GlobalID schemeID="XR01">12345678</ram:GlobalID>
+---
+>         <ram:GlobalID>12345678</ram:GlobalID>
+55c55
+<         <ram:GlobalID schemeID="XR03">987654321</ram:GlobalID>
+---
+>         <ram:ID>987654321</ram:ID>
+80c80
+<         <ram:GlobalID schemeID="XR03">123456789</ram:GlobalID>
+---
+>         <ram:ID>123456789</ram:ID>
+103c103
+<         <ram:GlobalID schemeID="XR03">987654322</ram:GlobalID>
+---
+>         <ram:ID>987654322</ram:ID>
+diff cii/CII_business_example_02.xml cii_from_btj/CII_business_example_02.xml
+107d106
+<         <ram:DefinedTradeContact/>
+119c118
+<         <ram:GlobalID schemeID="0088">1111111111</ram:GlobalID>
+---
+>         <ram:ID>1111111111</ram:ID>
+diff cii/CII_example1a.xml cii_from_btj/CII_example1a.xml
+578c578
+<           <ram:ID schemeID="VAT">ATU00000006</ram:ID>
+---
+>           <ram:ID schemeID="VA">ATU00000006</ram:ID>
+diff cii/CII_example2.xml cii_from_btj/CII_example2.xml
+30c30
+<         <ram:GlobalID schemeID="0088">1234567890128</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890128</ram:GlobalID>
+39c39
+<           <ram:ClassCode listID="STI">65434568</ram:ClassCode>
+---
+>           <ram:ClassCode>65434568</ram:ClassCode>
+51c51
+<           <ram:BasisQuantity unitCode="NAR">1498</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="NAR">1273</ram:BasisQuantity>
+111c111
+<         <ram:GlobalID schemeID="0088">1234567890135</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890135</ram:GlobalID>
+115c115
+<           <ram:ClassCode listID="STI">65434567</ram:ClassCode>
+---
+>           <ram:ClassCode>65434567</ram:ClassCode>
+149c149
+<         <ram:GlobalID schemeID="0088">1234567890142</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890142</ram:GlobalID>
+153c153
+<           <ram:ClassCode listID="STI">65434566</ram:ClassCode>
+---
+>           <ram:ClassCode>65434566</ram:ClassCode>
+162c162
+<           <ram:BasisQuantity unitCode="NAR">2.75</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="NAR">2.48</ram:BasisQuantity>
+197c197
+<         <ram:GlobalID schemeID="0088">1234567890159</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890159</ram:GlobalID>
+201c201
+<           <ram:ClassCode listID="STI">65434565</ram:ClassCode>
+---
+>           <ram:ClassCode>65434565</ram:ClassCode>
+235c235
+<         <ram:GlobalID schemeID="0088">1234567890166</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890166</ram:GlobalID>
+243c243
+<           <ram:ClassCode listID="STI">12344325</ram:ClassCode>
+---
+>           <ram:ClassCode>12344325</ram:ClassCode>
+274c274
+<         <ram:GlobalID schemeID="0088">1238764941386</ram:GlobalID>
+---
+>         <ram:ID>1238764941386</ram:ID>
+301c301
+<         <ram:GlobalID schemeID="0088">3456789012098</ram:GlobalID>
+---
+>         <ram:ID>3456789012098</ram:ID>
+304c304
+<           <ram:ID>987654321</ram:ID>
+---
+>           <ram:ID schemeID="0204">987654321</ram:ID>
+357c357
+<         <ram:GlobalID schemeID="0088">6754238987643</ram:GlobalID>
+---
+>         <ram:ID>6754238987643</ram:ID>
+diff cii/CII_example3.xml cii_from_btj/CII_example3.xml
+68c68
+<         <ram:GlobalID schemeID="0088">5790000435975</ram:GlobalID>
+---
+>         <ram:ID>5790000435975</ram:ID>
+diff cii/CII_example4.xml cii_from_btj/CII_example4.xml
+104c104
+<         <ram:GlobalID schemeID="0088">5790000436101</ram:GlobalID>
+---
+>         <ram:ID>5790000436101</ram:ID>
+129c129
+<         <ram:GlobalID schemeID="0088">5790000436057</ram:GlobalID>
+---
+>         <ram:ID>5790000436057</ram:ID>
+diff cii/CII_example5.xml cii_from_btj/CII_example5.xml
+31c31
+<         <ram:GlobalID schemeID="0088">1234567890128</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890128</ram:GlobalID>
+50c50
+<           <ram:BasisQuantity unitCode="C62">1.1</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="C62">1</ram:BasisQuantity>
+105a106
+>           <ram:ReferenceTypeCode>ABZ</ram:ReferenceTypeCode>
+157a159
+>           <ram:ReferenceTypeCode>ABZ</ram:ReferenceTypeCode>
+194c196
+<         <ram:GlobalID schemeID="0088">5790000436101</ram:GlobalID>
+---
+>         <ram:ID>5790000436101</ram:ID>
+229c231
+<         <ram:GlobalID schemeID="0088">5790000436057</ram:GlobalID>
+---
+>         <ram:ID>5790000436057</ram:ID>
+232c234
+<           <ram:ID>DK16356607</ram:ID>
+---
+>           <ram:ID schemeID="0204">DK16356607</ram:ID>
+283,288d284
+<         <ram:IssuerAssignedID>Lot567</ram:IssuerAssignedID>
+<       </ram:AdditionalReferencedDocument>
+<       <ram:AdditionalReferencedDocument>
+<         <ram:IssuerAssignedID>OBJ999</ram:IssuerAssignedID>
+<       </ram:AdditionalReferencedDocument>
+<       <ram:AdditionalReferencedDocument>
+301c297
+<         <ram:GlobalID schemeID="0088">5790000436068</ram:GlobalID>
+---
+>         <ram:ID>5790000436068</ram:ID>
+344a341
+>         <ram:Information>Half prepaid</ram:Information>
+347a345,348
+>       </ram:SpecifiedTradeSettlementPaymentMeans>
+>       <ram:SpecifiedTradeSettlementPaymentMeans>
+>         <ram:TypeCode>58</ram:TypeCode>
+>         <ram:Information>Half prepaid</ram:Information>
+diff cii/included-notes-bg-1-uncefact.xml cii_from_btj/included-notes-bg-1-uncefact.xml
+275c275
+<           <ram:ClassCode listID="IB">0721-880X</ram:ClassCode>
+---
+>           <ram:ClassCode>0721-880X</ram:ClassCode>
+diff cii/issue1121.xml cii_from_btj/issue1121.xml
+38,42d37
+<         <ram:ActualDeliverySupplyChainEvent>
+<           <ram:OccurrenceDateTime>
+<             <udt:DateTimeString format="102">2026-02-17</udt:DateTimeString>
+<           </ram:OccurrenceDateTime>
+<         </ram:ActualDeliverySupplyChainEvent>
+60d54
+<           <ram:TotalAllowanceChargeAmount>0.00</ram:TotalAllowanceChargeAmount>
+62,65d55
+<         <ram:AdditionalReferencedDocument>
+<           <ram:IssuerAssignedID schemeID="9930">TEST_value-1</ram:IssuerAssignedID>
+<           <ram:TypeCode>TEST_Value-2</ram:TypeCode>
+<         </ram:AdditionalReferencedDocument>
+77,78c67
+<           <ram:PersonName>CRONUS DE </ram:PersonName>
+<           <ram:DepartmentName>Kundenservice</ram:DepartmentName>
+---
+>           <ram:PersonName>CRONUS DE  ; Kundenservice</ram:PersonName>
+94c83
+<           <ram:URIID schemeID="0193">info@cronus.com</ram:URIID>
+---
+>           <ram:URIID schemeID="EM">info@cronus.com</ram:URIID>
+112c101
+<           <ram:URIID schemeID="0193">chaase@simova.de;kkekec@simova.de;mkrampe@simova.de</ram:URIID>
+---
+>           <ram:URIID schemeID="EM">chaase@simova.de;kkekec@simova.de;mkrampe@simova.de</ram:URIID>
+diff cii/issue12.xml cii_from_btj/issue12.xml
+54c54
+<         <ram:GlobalID schemeID="0088">Homepage Design GmbH</ram:GlobalID>
+---
+>         <ram:ID>Homepage Design GmbH</ram:ID>
+95c95
+<         <ram:Name/>
+---
+>         <ram:Name>Project reference</ram:Name>
+diff cii/issue20.xml cii_from_btj/issue20.xml
+30c30
+<         <ram:GlobalID schemeID="0088">1234567890128</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890128</ram:GlobalID>
+39c39
+<           <ram:ClassCode listID="STI">65434568</ram:ClassCode>
+---
+>           <ram:ClassCode>65434568</ram:ClassCode>
+51c51
+<           <ram:BasisQuantity unitCode="NAR">1498</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="NAR">1273</ram:BasisQuantity>
+111c111
+<         <ram:GlobalID schemeID="0088">1234567890135</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890135</ram:GlobalID>
+115c115
+<           <ram:ClassCode listID="STI">65434567</ram:ClassCode>
+---
+>           <ram:ClassCode>65434567</ram:ClassCode>
+149c149
+<         <ram:GlobalID schemeID="0088">1234567890142</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890142</ram:GlobalID>
+153c153
+<           <ram:ClassCode listID="STI">65434566</ram:ClassCode>
+---
+>           <ram:ClassCode>65434566</ram:ClassCode>
+162c162
+<           <ram:BasisQuantity unitCode="NAR">2.75</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="NAR">2.48</ram:BasisQuantity>
+197c197
+<         <ram:GlobalID schemeID="0088">1234567890159</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890159</ram:GlobalID>
+201c201
+<           <ram:ClassCode listID="STI">65434565</ram:ClassCode>
+---
+>           <ram:ClassCode>65434565</ram:ClassCode>
+235c235
+<         <ram:GlobalID schemeID="0088">1234567890166</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890166</ram:GlobalID>
+243c243
+<           <ram:ClassCode listID="STI">12344325</ram:ClassCode>
+---
+>           <ram:ClassCode>12344325</ram:ClassCode>
+274c274
+<         <ram:GlobalID schemeID="0088">1238764941386</ram:GlobalID>
+---
+>         <ram:ID>1238764941386</ram:ID>
+301c301
+<         <ram:GlobalID schemeID="0088">3456789012098</ram:GlobalID>
+---
+>         <ram:ID>3456789012098</ram:ID>
+304c304
+<           <ram:ID>987654321</ram:ID>
+---
+>           <ram:ID schemeID="0204">987654321</ram:ID>
+369c369
+<         <ram:GlobalID schemeID="0088">6754238987643</ram:GlobalID>
+---
+>         <ram:ID>6754238987643</ram:ID>
+diff cii/issue22.xml cii_from_btj/issue22.xml
+30c30
+<         <ram:GlobalID schemeID="0088">1234567890128</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890128</ram:GlobalID>
+39c39
+<           <ram:ClassCode listID="STI">65434568</ram:ClassCode>
+---
+>           <ram:ClassCode>65434568</ram:ClassCode>
+51c51
+<           <ram:BasisQuantity unitCode="NAR">1498</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="NAR">1273</ram:BasisQuantity>
+111c111
+<         <ram:GlobalID schemeID="0088">1234567890135</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890135</ram:GlobalID>
+115c115
+<           <ram:ClassCode listID="STI">65434567</ram:ClassCode>
+---
+>           <ram:ClassCode>65434567</ram:ClassCode>
+149c149
+<         <ram:GlobalID schemeID="0088">1234567890142</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890142</ram:GlobalID>
+153c153
+<           <ram:ClassCode listID="STI">65434566</ram:ClassCode>
+---
+>           <ram:ClassCode>65434566</ram:ClassCode>
+162c162
+<           <ram:BasisQuantity unitCode="NAR">2.75</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="NAR">2.48</ram:BasisQuantity>
+197c197
+<         <ram:GlobalID schemeID="0088">1234567890159</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890159</ram:GlobalID>
+201c201
+<           <ram:ClassCode listID="STI">65434565</ram:ClassCode>
+---
+>           <ram:ClassCode>65434565</ram:ClassCode>
+235c235
+<         <ram:GlobalID schemeID="0088">1234567890166</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890166</ram:GlobalID>
+243c243
+<           <ram:ClassCode listID="STI">12344325</ram:ClassCode>
+---
+>           <ram:ClassCode>12344325</ram:ClassCode>
+274c274
+<         <ram:GlobalID schemeID="0088">1238764941386</ram:GlobalID>
+---
+>         <ram:ID>1238764941386</ram:ID>
+301c301
+<         <ram:GlobalID schemeID="0088">3456789012098</ram:GlobalID>
+---
+>         <ram:ID>3456789012098</ram:ID>
+304c304
+<           <ram:ID>987654321</ram:ID>
+---
+>           <ram:ID schemeID="0204">987654321</ram:ID>
+369c369
+<         <ram:GlobalID schemeID="0088">6754238987643</ram:GlobalID>
+---
+>         <ram:ID>6754238987643</ram:ID>
+diff cii/issue23.xml cii_from_btj/issue23.xml
+30c30
+<         <ram:GlobalID schemeID="0088">1234567890128</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890128</ram:GlobalID>
+39c39
+<           <ram:ClassCode listID="STI">65434568</ram:ClassCode>
+---
+>           <ram:ClassCode>65434568</ram:ClassCode>
+51c51
+<           <ram:BasisQuantity unitCode="NAR">1498</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="NAR">1273</ram:BasisQuantity>
+111c111
+<         <ram:GlobalID schemeID="0088">1234567890135</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890135</ram:GlobalID>
+115c115
+<           <ram:ClassCode listID="STI">65434567</ram:ClassCode>
+---
+>           <ram:ClassCode>65434567</ram:ClassCode>
+149c149
+<         <ram:GlobalID schemeID="0088">1234567890142</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890142</ram:GlobalID>
+153c153
+<           <ram:ClassCode listID="STI">65434566</ram:ClassCode>
+---
+>           <ram:ClassCode>65434566</ram:ClassCode>
+162c162
+<           <ram:BasisQuantity unitCode="NAR">2.75</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="NAR">2.48</ram:BasisQuantity>
+197c197
+<         <ram:GlobalID schemeID="0088">1234567890159</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890159</ram:GlobalID>
+201c201
+<           <ram:ClassCode listID="STI">65434565</ram:ClassCode>
+---
+>           <ram:ClassCode>65434565</ram:ClassCode>
+235c235
+<         <ram:GlobalID schemeID="0088">1234567890166</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890166</ram:GlobalID>
+243c243
+<           <ram:ClassCode listID="STI">12344325</ram:ClassCode>
+---
+>           <ram:ClassCode>12344325</ram:ClassCode>
+274c274
+<         <ram:GlobalID schemeID="0088">1238764941386</ram:GlobalID>
+---
+>         <ram:ID>1238764941386</ram:ID>
+301c301
+<         <ram:GlobalID schemeID="0088">3456789012098</ram:GlobalID>
+---
+>         <ram:ID>3456789012098</ram:ID>
+304c304
+<           <ram:ID>987654321</ram:ID>
+---
+>           <ram:ID schemeID="0204">987654321</ram:ID>
+369c369
+<         <ram:GlobalID schemeID="0088">6754238987643</ram:GlobalID>
+---
+>         <ram:ID>6754238987643</ram:ID>
+diff cii/issue28.xml cii_from_btj/issue28.xml
+30c30
+<         <ram:GlobalID schemeID="0088">1234567890128</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890128</ram:GlobalID>
+39c39
+<           <ram:ClassCode listID="STI">65434568</ram:ClassCode>
+---
+>           <ram:ClassCode>65434568</ram:ClassCode>
+51c51
+<           <ram:BasisQuantity unitCode="NAR">1498</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="NAR">1273</ram:BasisQuantity>
+111c111
+<         <ram:GlobalID schemeID="0088">1234567890135</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890135</ram:GlobalID>
+115c115
+<           <ram:ClassCode listID="STI">65434567</ram:ClassCode>
+---
+>           <ram:ClassCode>65434567</ram:ClassCode>
+149c149
+<         <ram:GlobalID schemeID="0088">1234567890142</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890142</ram:GlobalID>
+153c153
+<           <ram:ClassCode listID="STI">65434566</ram:ClassCode>
+---
+>           <ram:ClassCode>65434566</ram:ClassCode>
+162c162
+<           <ram:BasisQuantity unitCode="NAR">2.75</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="NAR">2.48</ram:BasisQuantity>
+197c197
+<         <ram:GlobalID schemeID="0088">1234567890159</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890159</ram:GlobalID>
+201c201
+<           <ram:ClassCode listID="STI">65434565</ram:ClassCode>
+---
+>           <ram:ClassCode>65434565</ram:ClassCode>
+235c235
+<         <ram:GlobalID schemeID="0088">1234567890166</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890166</ram:GlobalID>
+243c243
+<           <ram:ClassCode listID="STI">12344325</ram:ClassCode>
+---
+>           <ram:ClassCode>12344325</ram:ClassCode>
+274c274
+<         <ram:GlobalID schemeID="0088">1238764941386</ram:GlobalID>
+---
+>         <ram:ID>1238764941386</ram:ID>
+280c280
+<           <ram:DepartmentName>Sales Department</ram:DepartmentName>
+---
+>           <ram:PersonName>Sales Department</ram:PersonName>
+301c301
+<         <ram:GlobalID schemeID="0088">3456789012098</ram:GlobalID>
+---
+>         <ram:ID>3456789012098</ram:ID>
+304c304
+<           <ram:ID>987654321</ram:ID>
+---
+>           <ram:ID schemeID="0204">987654321</ram:ID>
+369c369
+<         <ram:GlobalID schemeID="0088">6754238987643</ram:GlobalID>
+---
+>         <ram:ID>6754238987643</ram:ID>
+diff cii/issue34.xml cii_from_btj/issue34.xml
+30c30
+<         <ram:GlobalID schemeID="0088">1234567890128</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890128</ram:GlobalID>
+39c39
+<           <ram:ClassCode listID="STI">65434568</ram:ClassCode>
+---
+>           <ram:ClassCode>65434568</ram:ClassCode>
+51c51
+<           <ram:BasisQuantity unitCode="NAR">1498</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="NAR">1273</ram:BasisQuantity>
+111c111
+<         <ram:GlobalID schemeID="0088">1234567890135</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890135</ram:GlobalID>
+115c115
+<           <ram:ClassCode listID="STI">65434567</ram:ClassCode>
+---
+>           <ram:ClassCode>65434567</ram:ClassCode>
+149c149
+<         <ram:GlobalID schemeID="0088">1234567890142</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890142</ram:GlobalID>
+153c153
+<           <ram:ClassCode listID="STI">65434566</ram:ClassCode>
+---
+>           <ram:ClassCode>65434566</ram:ClassCode>
+162c162
+<           <ram:BasisQuantity unitCode="NAR">2.75</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="NAR">2.48</ram:BasisQuantity>
+197c197
+<         <ram:GlobalID schemeID="0088">1234567890159</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890159</ram:GlobalID>
+201c201
+<           <ram:ClassCode listID="STI">65434565</ram:ClassCode>
+---
+>           <ram:ClassCode>65434565</ram:ClassCode>
+235c235
+<         <ram:GlobalID schemeID="0088">1234567890166</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890166</ram:GlobalID>
+243c243
+<           <ram:ClassCode listID="STI">12344325</ram:ClassCode>
+---
+>           <ram:ClassCode>12344325</ram:ClassCode>
+274c274
+<         <ram:GlobalID schemeID="0088">1238764941386</ram:GlobalID>
+---
+>         <ram:ID>1238764941386</ram:ID>
+280c280
+<           <ram:DepartmentName>Sales Department</ram:DepartmentName>
+---
+>           <ram:PersonName>Sales Department</ram:PersonName>
+301c301
+<         <ram:GlobalID schemeID="0088">3456789012098</ram:GlobalID>
+---
+>         <ram:ID>3456789012098</ram:ID>
+304c304
+<           <ram:ID>987654321</ram:ID>
+---
+>           <ram:ID schemeID="0204">987654321</ram:ID>
+369c369
+<         <ram:GlobalID schemeID="0088">6754238987643</ram:GlobalID>
+---
+>         <ram:ID>6754238987643</ram:ID>
+diff cii/issue38-bad.xml cii_from_btj/issue38-bad.xml
+30c30
+<         <ram:GlobalID schemeID="0088">1234567890128</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890128</ram:GlobalID>
+39c39
+<           <ram:ClassCode listID="STI">65434568</ram:ClassCode>
+---
+>           <ram:ClassCode>65434568</ram:ClassCode>
+51c51
+<           <ram:BasisQuantity unitCode="NAR">1498</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="NAR">1273</ram:BasisQuantity>
+111c111
+<         <ram:GlobalID schemeID="0088">1234567890135</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890135</ram:GlobalID>
+115c115
+<           <ram:ClassCode listID="STI">65434567</ram:ClassCode>
+---
+>           <ram:ClassCode>65434567</ram:ClassCode>
+149c149
+<         <ram:GlobalID schemeID="0088">1234567890142</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890142</ram:GlobalID>
+153c153
+<           <ram:ClassCode listID="STI">65434566</ram:ClassCode>
+---
+>           <ram:ClassCode>65434566</ram:ClassCode>
+162c162
+<           <ram:BasisQuantity unitCode="NAR">2.75</ram:BasisQuantity>
+---
+>           <ram:BasisQuantity unitCode="NAR">2.48</ram:BasisQuantity>
+197c197
+<         <ram:GlobalID schemeID="0088">1234567890159</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890159</ram:GlobalID>
+201c201
+<           <ram:ClassCode listID="STI">65434565</ram:ClassCode>
+---
+>           <ram:ClassCode>65434565</ram:ClassCode>
+235c235
+<         <ram:GlobalID schemeID="0088">1234567890166</ram:GlobalID>
+---
+>         <ram:GlobalID>1234567890166</ram:GlobalID>
+243c243
+<           <ram:ClassCode listID="STI">12344325</ram:ClassCode>
+---
+>           <ram:ClassCode>12344325</ram:ClassCode>
+274c274
+<         <ram:GlobalID schemeID="0088">1238764941386</ram:GlobalID>
+---
+>         <ram:ID>1238764941386</ram:ID>
+280c280
+<           <ram:DepartmentName>Sales Department</ram:DepartmentName>
+---
+>           <ram:PersonName>Sales Department</ram:PersonName>
+301c301
+<         <ram:GlobalID schemeID="0088">3456789012098</ram:GlobalID>
+---
+>         <ram:ID>3456789012098</ram:ID>
+304c304
+<           <ram:ID>987654321</ram:ID>
+---
+>           <ram:ID schemeID="0204">987654321</ram:ID>
+369c369
+<         <ram:GlobalID schemeID="0088">6754238987643</ram:GlobalID>
+---
+>         <ram:ID>6754238987643</ram:ID>
+385a386
+>       <ram:CreditorReferenceID/>
+diff cii/wrong-date-with-text-uncefact.xml cii_from_btj/wrong-date-with-text-uncefact.xml
+15c15
+<       <udt:DateTimeString format="102">Dies ist kein Datum</udt:DateTimeString>
+---
+>       <udt:DateTimeString format="102">Dies ist</udt:DateTimeString>
+35c35
+<           <ram:ClassCode listID="IB">0721-880X</ram:ClassCode>
+---
+>           <ram:ClassCode>0721-880X</ram:ClassCode>
+diff cii/wrong-date-with-zeros-uncefact.xml cii_from_btj/wrong-date-with-zeros-uncefact.xml
+35c35
+<           <ram:ClassCode listID="IB">0721-880X</ram:ClassCode>
+---
+>           <ram:ClassCode>0721-880X</ram:ClassCode>

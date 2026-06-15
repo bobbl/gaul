@@ -31,6 +31,6 @@ def xslt2_in_dir(xslt_file: str, src_dir: str, dst_dir: str) -> None:
 
 
 if __name__ == "__main__":
-    xslt2_in_dir("download/xrechnung-visualization/src/xsl/cii-xr.xsl", "cii/", "smx/")
+    xslt2_in_dir("download/xrechnung-visualization/src/xsl/cii-xr.xsl", "cii/", "kosit_smx/")
     #xslt2_in_dir("download/xrechnung-visualization/src/xsl/ubl-invoice-xr.xsl", "ubl/", "smx/")
 

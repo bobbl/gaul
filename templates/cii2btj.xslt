@@ -132,7 +132,7 @@
       <xsl:text>&#10;      },</xsl:text>
     </xsl:for-each>
   </xsl:variable>
-  <xsl:if test="$bg-1">
+  <xsl:if test="string($bg-1)">
     <xsl:text>&#10;    "BG001": [</xsl:text>
     <xsl:value-of select="substring($bg-1, 1, string-length($bg-1) - 1)" />
     <xsl:text>&#10;    ],</xsl:text>
@@ -150,7 +150,7 @@
       <xsl:with-param name="indent" select="'  '"/>
     </xsl:call-template>
   </xsl:variable>
-  <xsl:if test="$bg-2">
+  <xsl:if test="string($bg-2)">
     <xsl:text>&#10;    "BG002": {</xsl:text>
     <xsl:value-of select="substring($bg-2, 1, string-length($bg-2) - 1)" />
     <xsl:text>&#10;    },</xsl:text>
@@ -265,17 +265,32 @@
     </xsl:if>
 
     <xsl:variable name="bg-6">
-      <!-- BT-41 is 1..1 => in a valid CII there is either PersonName or DepartmentName -->
-      <xsl:call-template name="string">
-        <xsl:with-param name="xmltag" select="ram:DefinedTradeContact/ram:PersonName"/>
-        <xsl:with-param name="jsonkey" select="'BT041'"/>
-        <xsl:with-param name="indent" select="'    '"/>
-      </xsl:call-template>
-      <xsl:call-template name="string">
-        <xsl:with-param name="xmltag" select="ram:DefinedTradeContact/ram:DepartmentName"/>
-        <xsl:with-param name="jsonkey" select="'BT041'"/>
-        <xsl:with-param name="indent" select="'    '"/>
-      </xsl:call-template>
+
+      <!-- BT-41 is 1..1 => if PersonName and DepartmentName are present,
+                            combine them to one BT-41 -->
+      <xsl:choose>
+        <xsl:when test="ram:DefinedTradeContact/ram:PersonName">
+          <xsl:text>&#10;        "BT041": "</xsl:text>
+          <xsl:call-template name="escape-json">
+            <xsl:with-param name="text" select="ram:DefinedTradeContact/ram:PersonName"/>
+          </xsl:call-template>
+          <xsl:if test="ram:DefinedTradeContact/ram:DepartmentName">
+            <xsl:text> ; </xsl:text>
+            <xsl:call-template name="escape-json">
+              <xsl:with-param name="text" select="ram:DefinedTradeContact/ram:DepartmentName"/>
+            </xsl:call-template>
+          </xsl:if>
+          <xsl:text>",</xsl:text>
+        </xsl:when>
+        <xsl:when test="ram:DefinedTradeContact/ram:DepartmentName">
+          <xsl:text>&#10;        "BT041": "</xsl:text>
+          <xsl:call-template name="escape-json">
+            <xsl:with-param name="text" select="ram:DefinedTradeContact/ram:DepartmentName"/>
+          </xsl:call-template>
+          <xsl:text>",</xsl:text>
+        </xsl:when>
+      </xsl:choose>
+
       <xsl:call-template name="string">
         <xsl:with-param name="xmltag" select="ram:DefinedTradeContact/ram:TelephoneUniversalCommunication/ram:CompleteNumber"/>
         <xsl:with-param name="jsonkey" select="'BT042'"/>
@@ -1092,29 +1107,43 @@
           <xsl:with-param name="indent" select="'      '"/>
         </xsl:call-template>
 
-        <!-- BT-149 is 0..1 => in a valid CII at most one of *Net* or *Gross* is present -->
-        <xsl:call-template name="string">
-          <xsl:with-param name="xmltag" select="ram:SpecifiedLineTradeAgreement/ram:NetPriceProductTradePrice/ram:BasisQuantity"/>
-          <xsl:with-param name="jsonkey" select="'BT149'"/>
-          <xsl:with-param name="indent" select="'      '"/>
-        </xsl:call-template>
-        <xsl:call-template name="string">
-          <xsl:with-param name="xmltag" select="ram:SpecifiedLineTradeAgreement/ram:GrossPriceProductTradePrice/ram:BasisQuantity"/>
-          <xsl:with-param name="jsonkey" select="'BT149'"/>
-          <xsl:with-param name="indent" select="'      '"/>
-        </xsl:call-template>
+        <!-- BT-149 is 0..1 => if in a valid CII *Net* and *Gross* are present,
+                               they must be identical -->
+        <xsl:choose>
+          <xsl:when test="ram:SpecifiedLineTradeAgreement/ram:NetPriceProductTradePrice/ram:BasisQuantity">
+            <xsl:call-template name="string">
+              <xsl:with-param name="xmltag" select="ram:SpecifiedLineTradeAgreement/ram:NetPriceProductTradePrice/ram:BasisQuantity"/>
+              <xsl:with-param name="jsonkey" select="'BT149'"/>
+              <xsl:with-param name="indent" select="'      '"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:call-template name="string">
+              <xsl:with-param name="xmltag" select="ram:SpecifiedLineTradeAgreement/ram:GrossPriceProductTradePrice/ram:BasisQuantity"/>
+              <xsl:with-param name="jsonkey" select="'BT149'"/>
+              <xsl:with-param name="indent" select="'      '"/>
+            </xsl:call-template>
+          </xsl:otherwise>
+        </xsl:choose>
 
-        <!-- BT-150 is 0..1 => in a valid CII at most one of *Net* or *Gross* is present -->
-        <xsl:call-template name="string">
-          <xsl:with-param name="xmltag" select="ram:SpecifiedLineTradeAgreement/ram:NetPriceProductTradePrice/ram:BasisQuantity/@unitCode"/>
-          <xsl:with-param name="jsonkey" select="'BT150'"/>
-          <xsl:with-param name="indent" select="'      '"/>
-        </xsl:call-template>
-        <xsl:call-template name="string">
-          <xsl:with-param name="xmltag" select="ram:SpecifiedLineTradeAgreement/ram:GrossPriceProductTradePrice/ram:BasisQuantity/@unitCode"/>
-          <xsl:with-param name="jsonkey" select="'BT150'"/>
-          <xsl:with-param name="indent" select="'      '"/>
-        </xsl:call-template>
+        <!-- BT-150 is 0..1 => if in a valid CII *Net* and *Gross* are present,
+                               they must be identical -->
+        <xsl:choose>
+          <xsl:when test="ram:SpecifiedLineTradeAgreement/ram:NetPriceProductTradePrice/ram:BasisQuantity/@unitCode">
+            <xsl:call-template name="string">
+              <xsl:with-param name="xmltag" select="ram:SpecifiedLineTradeAgreement/ram:NetPriceProductTradePrice/ram:BasisQuantity/@unitCode"/>
+              <xsl:with-param name="jsonkey" select="'BT150'"/>
+              <xsl:with-param name="indent" select="'      '"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:call-template name="string">
+              <xsl:with-param name="xmltag" select="ram:SpecifiedLineTradeAgreement/ram:GrossPriceProductTradePrice/ram:BasisQuantity/@unitCode"/>
+              <xsl:with-param name="jsonkey" select="'BT150'"/>
+              <xsl:with-param name="indent" select="'      '"/>
+            </xsl:call-template>
+          </xsl:otherwise>
+        </xsl:choose>
 
       </xsl:variable>
       <xsl:if test="string($bg-29)">
