@@ -12,13 +12,7 @@
 
 
 <xsl:template match="rsm:CrossIndustryInvoice">
-  <xsl:text>{
-  "_meta": {
-    "format": "XRechnung Business Terms",
-    "version": "0.9",
-    "description": "XRechnung invoice condensed to business terms and encoded in JSON"
-  },
-  "invoice": {</xsl:text>
+  <xsl:text>{</xsl:text>
 
   <xsl:call-template name="string">
     <xsl:with-param name="xmltag" select="rsm:ExchangedDocument/ram:ID"/>
@@ -118,7 +112,7 @@
 
   <xsl:variable name="bg-1">
     <xsl:for-each select="rsm:ExchangedDocument/ram:IncludedNote">
-      <xsl:text>&#10;      {</xsl:text>
+      <xsl:text>&#10;    {</xsl:text>
       <xsl:call-template name="string">
         <xsl:with-param name="xmltag" select="ram:SubjectCode"/>
         <xsl:with-param name="jsonkey" select="'BT021'"/>
@@ -129,13 +123,13 @@
         <xsl:with-param name="jsonkey" select="'BT022'"/>
         <xsl:with-param name="indent" select="'    '"/>
       </xsl:call-template>
-      <xsl:text>&#10;      },</xsl:text>
+      <xsl:text>&#10;    },</xsl:text>
     </xsl:for-each>
   </xsl:variable>
   <xsl:if test="string($bg-1)">
-    <xsl:text>&#10;    "BG001": [</xsl:text>
+    <xsl:text>&#10;  "BG001": [</xsl:text>
     <xsl:value-of select="substring($bg-1, 1, string-length($bg-1) - 1)" />
-    <xsl:text>&#10;    ],</xsl:text>
+    <xsl:text>&#10;  ],</xsl:text>
   </xsl:if>
 
   <xsl:variable name="bg-2">
@@ -151,14 +145,14 @@
     </xsl:call-template>
   </xsl:variable>
   <xsl:if test="string($bg-2)">
-    <xsl:text>&#10;    "BG002": {</xsl:text>
+    <xsl:text>&#10;  "BG002": {</xsl:text>
     <xsl:value-of select="substring($bg-2, 1, string-length($bg-2) - 1)" />
-    <xsl:text>&#10;    },</xsl:text>
+    <xsl:text>&#10;  },</xsl:text>
   </xsl:if>
 
   <xsl:variable name="bg-3">
     <xsl:for-each select="rsm:SupplyChainTradeTransaction/ram:ApplicableHeaderTradeSettlement/ram:InvoiceReferencedDocument">
-      <xsl:text>&#10;      {</xsl:text>
+      <xsl:text>&#10;    {</xsl:text>
       <xsl:call-template name="string">
         <xsl:with-param name="xmltag" select="ram:IssuerAssignedID"/>
         <xsl:with-param name="jsonkey" select="'BT025'"/>
@@ -169,13 +163,13 @@
         <xsl:with-param name="jsonkey" select="'BT026'"/>
         <xsl:with-param name="indent" select="'    '"/>
       </xsl:call-template>
-      <xsl:text>&#10;      },</xsl:text>
+      <xsl:text>&#10;    },</xsl:text>
     </xsl:for-each>
   </xsl:variable>
   <xsl:if test="string($bg-3)">
-    <xsl:text>&#10;    "BG003": [</xsl:text>
+    <xsl:text>&#10;  "BG003": [</xsl:text>
     <xsl:value-of select="substring($bg-3, 1, string-length($bg-3) - 1)" />
-    <xsl:text>&#10;    ],</xsl:text>
+    <xsl:text>&#10;  ],</xsl:text>
   </xsl:if>
 
   <xsl:variable name="bg-4">
@@ -259,9 +253,9 @@
       </xsl:call-template>
     </xsl:variable>
     <xsl:if test="string($bg-5)">
-      <xsl:text>&#10;      "BG005": {</xsl:text>
+      <xsl:text>&#10;    "BG005": {</xsl:text>
       <xsl:value-of select="substring($bg-5, 1, string-length($bg-5) - 1)" />
-      <xsl:text>&#10;      },</xsl:text>
+      <xsl:text>&#10;    },</xsl:text>
     </xsl:if>
 
     <xsl:variable name="bg-6">
@@ -270,7 +264,7 @@
                             combine them to one BT-41 -->
       <xsl:choose>
         <xsl:when test="ram:DefinedTradeContact/ram:PersonName">
-          <xsl:text>&#10;        "BT041": "</xsl:text>
+          <xsl:text>&#10;      "BT041": "</xsl:text>
           <xsl:call-template name="escape-json">
             <xsl:with-param name="text" select="ram:DefinedTradeContact/ram:PersonName"/>
           </xsl:call-template>
@@ -283,7 +277,7 @@
           <xsl:text>",</xsl:text>
         </xsl:when>
         <xsl:when test="ram:DefinedTradeContact/ram:DepartmentName">
-          <xsl:text>&#10;        "BT041": "</xsl:text>
+          <xsl:text>&#10;      "BT041": "</xsl:text>
           <xsl:call-template name="escape-json">
             <xsl:with-param name="text" select="ram:DefinedTradeContact/ram:DepartmentName"/>
           </xsl:call-template>
@@ -303,16 +297,16 @@
       </xsl:call-template>
     </xsl:variable>
     <xsl:if test="string($bg-6)">
-      <xsl:text>&#10;      "BG006": {</xsl:text>
+      <xsl:text>&#10;    "BG006": {</xsl:text>
       <xsl:value-of select="substring($bg-6, 1, string-length($bg-6) - 1)" />
-      <xsl:text>&#10;      },</xsl:text>
+      <xsl:text>&#10;    },</xsl:text>
     </xsl:if>
     </xsl:for-each>
   </xsl:variable>
   <xsl:if test="string($bg-4)">
-    <xsl:text>&#10;    "BG004": {</xsl:text>
+    <xsl:text>&#10;  "BG004": {</xsl:text>
     <xsl:value-of select="substring($bg-4, 1, string-length($bg-4) - 1)" />
-    <xsl:text>&#10;    },</xsl:text>
+    <xsl:text>&#10;  },</xsl:text>
   </xsl:if>
 
   <xsl:variable name="bg-7">
@@ -394,9 +388,9 @@
       </xsl:call-template>
     </xsl:variable>
     <xsl:if test="string($bg-8)">
-      <xsl:text>&#10;      "BG008": {</xsl:text>
+      <xsl:text>&#10;    "BG008": {</xsl:text>
       <xsl:value-of select="substring($bg-8, 1, string-length($bg-8) - 1)" />
-      <xsl:text>&#10;      },</xsl:text>
+      <xsl:text>&#10;    },</xsl:text>
     </xsl:if>
     <xsl:variable name="bg-9">
 
@@ -424,16 +418,16 @@
       </xsl:call-template>
     </xsl:variable>
     <xsl:if test="string($bg-9)">
-      <xsl:text>&#10;      "BG009": {</xsl:text>
+      <xsl:text>&#10;    "BG009": {</xsl:text>
       <xsl:value-of select="substring($bg-9, 1, string-length($bg-9) - 1)" />
-      <xsl:text>&#10;      },</xsl:text>
+      <xsl:text>&#10;    },</xsl:text>
     </xsl:if>
     </xsl:for-each>
   </xsl:variable>
   <xsl:if test="string($bg-7)">
-    <xsl:text>&#10;    "BG007": {</xsl:text>
+    <xsl:text>&#10;  "BG007": {</xsl:text>
     <xsl:value-of select="substring($bg-7, 1, string-length($bg-7) - 1)" />
-    <xsl:text>&#10;    },</xsl:text>
+    <xsl:text>&#10;  },</xsl:text>
   </xsl:if>
 
   <xsl:variable name="bg-10">
@@ -462,9 +456,9 @@
     </xsl:call-template>
   </xsl:variable>
   <xsl:if test="string($bg-10)">
-    <xsl:text>&#10;    "BG010": {</xsl:text>
+    <xsl:text>&#10;  "BG010": {</xsl:text>
     <xsl:value-of select="substring($bg-10, 1, string-length($bg-10) - 1)" />
-    <xsl:text>&#10;    },</xsl:text>
+    <xsl:text>&#10;  },</xsl:text>
   </xsl:if>
 
   <xsl:variable name="bg-11">
@@ -518,16 +512,16 @@
       </xsl:call-template>
     </xsl:variable>
     <xsl:if test="string($bg-12)">
-      <xsl:text>&#10;      "BG012": {</xsl:text>
+      <xsl:text>&#10;    "BG012": {</xsl:text>
       <xsl:value-of select="substring($bg-12, 1, string-length($bg-12) - 1)" />
-      <xsl:text>&#10;      },</xsl:text>
+      <xsl:text>&#10;    },</xsl:text>
     </xsl:if>
     </xsl:for-each>
   </xsl:variable>
   <xsl:if test="string($bg-11)">
-    <xsl:text>&#10;    "BG011": {</xsl:text>
+    <xsl:text>&#10;  "BG011": {</xsl:text>
     <xsl:value-of select="substring($bg-11, 1, string-length($bg-11) - 1)" />
-    <xsl:text>&#10;    },</xsl:text>
+    <xsl:text>&#10;  },</xsl:text>
   </xsl:if>
 
   <xsl:variable name="bg-13">
@@ -567,9 +561,9 @@
       </xsl:call-template>
     </xsl:variable>
     <xsl:if test="string($bg-14)">
-      <xsl:text>&#10;      "BG014": {</xsl:text>
+      <xsl:text>&#10;    "BG014": {</xsl:text>
       <xsl:value-of select="substring($bg-14, 1, string-length($bg-14) - 1)" />
-      <xsl:text>&#10;      },</xsl:text>
+      <xsl:text>&#10;    },</xsl:text>
     </xsl:if>
 
     <xsl:variable name="bg-15">
@@ -613,15 +607,15 @@
       </xsl:for-each>
     </xsl:variable>
     <xsl:if test="string($bg-15)">
-      <xsl:text>&#10;      "BG015": {</xsl:text>
+      <xsl:text>&#10;    "BG015": {</xsl:text>
       <xsl:value-of select="substring($bg-15, 1, string-length($bg-15) - 1)" />
-      <xsl:text>&#10;      },</xsl:text>
+      <xsl:text>&#10;    },</xsl:text>
     </xsl:if>
   </xsl:variable>
   <xsl:if test="string($bg-13)">
-    <xsl:text>&#10;    "BG013": {</xsl:text>
+    <xsl:text>&#10;  "BG013": {</xsl:text>
     <xsl:value-of select="substring($bg-13, 1, string-length($bg-13) - 1)" />
-    <xsl:text>&#10;    },</xsl:text>
+    <xsl:text>&#10;  },</xsl:text>
   </xsl:if>
 
   <xsl:variable name="bg-16">
@@ -642,7 +636,7 @@
     </xsl:call-template>
     <xsl:variable name="bg-17">
       <xsl:for-each select="rsm:SupplyChainTradeTransaction/ram:ApplicableHeaderTradeSettlement/ram:SpecifiedTradeSettlementPaymentMeans/ram:PayeePartyCreditorFinancialAccount">
-        <xsl:text>&#10;        {</xsl:text>
+        <xsl:text>&#10;      {</xsl:text>
 
         <!-- BT-84 is 1..1 => in a valid CII there is either ProprietaryID or IBANID -->
         <xsl:call-template name="string">
@@ -668,13 +662,13 @@
           <xsl:with-param name="jsonkey" select="'BT086'"/>
           <xsl:with-param name="indent" select="'      '"/>
         </xsl:call-template>
-        <xsl:text>&#10;        },</xsl:text>
+        <xsl:text>&#10;      },</xsl:text>
       </xsl:for-each>
     </xsl:variable>
     <xsl:if test="string($bg-17)">
-      <xsl:text>&#10;      "BG017": [</xsl:text>
+      <xsl:text>&#10;    "BG017": [</xsl:text>
       <xsl:value-of select="substring($bg-17, 1, string-length($bg-17) - 1)" />
-      <xsl:text>&#10;      ],</xsl:text>
+      <xsl:text>&#10;    ],</xsl:text>
     </xsl:if>
 
     <xsl:variable name="bg-18">
@@ -690,9 +684,9 @@
       </xsl:call-template>
     </xsl:variable>
     <xsl:if test="string($bg-18)">
-      <xsl:text>&#10;      "BG018": {</xsl:text>
+      <xsl:text>&#10;    "BG018": {</xsl:text>
       <xsl:value-of select="substring($bg-18, 1, string-length($bg-18) - 1)" />
-      <xsl:text>&#10;      },</xsl:text>
+      <xsl:text>&#10;    },</xsl:text>
     </xsl:if>
 
     <xsl:variable name="bg-19">
@@ -713,21 +707,21 @@
       </xsl:call-template>
     </xsl:variable>
     <xsl:if test="string($bg-19)">
-      <xsl:text>&#10;      "BG019": {</xsl:text>
+      <xsl:text>&#10;    "BG019": {</xsl:text>
       <xsl:value-of select="substring($bg-19, 1, string-length($bg-19) - 1)" />
-      <xsl:text>&#10;      },</xsl:text>
+      <xsl:text>&#10;    },</xsl:text>
     </xsl:if>
 
   </xsl:variable>
   <xsl:if test="string($bg-16)">
-    <xsl:text>&#10;    "BG016": {</xsl:text>
+    <xsl:text>&#10;  "BG016": {</xsl:text>
     <xsl:value-of select="substring($bg-16, 1, string-length($bg-16) - 1)" />
-    <xsl:text>&#10;    },</xsl:text>
+    <xsl:text>&#10;  },</xsl:text>
   </xsl:if>
 
   <xsl:variable name="bg-20">
     <xsl:for-each select="rsm:SupplyChainTradeTransaction/ram:ApplicableHeaderTradeSettlement/ram:SpecifiedTradeAllowanceCharge[ram:ChargeIndicator/udt:Indicator='false']">
-      <xsl:text>&#10;      {</xsl:text>
+      <xsl:text>&#10;    {</xsl:text>
       <xsl:call-template name="string">
         <xsl:with-param name="xmltag" select="ram:ActualAmount"/>
         <xsl:with-param name="jsonkey" select="'BT092'"/>
@@ -763,18 +757,18 @@
         <xsl:with-param name="jsonkey" select="'BT098'"/>
         <xsl:with-param name="indent" select="'    '"/>
       </xsl:call-template>
-      <xsl:text>&#10;      },</xsl:text>
+      <xsl:text>&#10;    },</xsl:text>
     </xsl:for-each>
   </xsl:variable>
   <xsl:if test="string($bg-20)">
-    <xsl:text>&#10;    "BG020": [</xsl:text>
+    <xsl:text>&#10;  "BG020": [</xsl:text>
     <xsl:value-of select="substring($bg-20, 1, string-length($bg-20) - 1)" />
-    <xsl:text>&#10;    ],</xsl:text>
+    <xsl:text>&#10;  ],</xsl:text>
   </xsl:if>
 
   <xsl:variable name="bg-21">
     <xsl:for-each select="rsm:SupplyChainTradeTransaction/ram:ApplicableHeaderTradeSettlement/ram:SpecifiedTradeAllowanceCharge[ram:ChargeIndicator/udt:Indicator='true']">
-      <xsl:text>&#10;      {</xsl:text>
+      <xsl:text>&#10;    {</xsl:text>
       <xsl:call-template name="string">
         <xsl:with-param name="xmltag" select="ram:ActualAmount"/>
         <xsl:with-param name="jsonkey" select="'BT099'"/>
@@ -810,13 +804,13 @@
         <xsl:with-param name="jsonkey" select="'BT105'"/>
         <xsl:with-param name="indent" select="'    '"/>
       </xsl:call-template>
-      <xsl:text>&#10;      },</xsl:text>
+      <xsl:text>&#10;    },</xsl:text>
     </xsl:for-each>
   </xsl:variable>
   <xsl:if test="string($bg-21)">
-    <xsl:text>&#10;    "BG021": [</xsl:text>
+    <xsl:text>&#10;  "BG021": [</xsl:text>
     <xsl:value-of select="substring($bg-21, 1, string-length($bg-21) - 1)" />
-    <xsl:text>&#10;    ],</xsl:text>
+    <xsl:text>&#10;  ],</xsl:text>
   </xsl:if>
 
   <xsl:variable name="bg-22">
@@ -875,14 +869,14 @@
     </xsl:for-each>
   </xsl:variable>
   <xsl:if test="string($bg-22)">
-    <xsl:text>&#10;    "BG022": {</xsl:text>
+    <xsl:text>&#10;  "BG022": {</xsl:text>
     <xsl:value-of select="substring($bg-22, 1, string-length($bg-22) - 1)" />
-    <xsl:text>&#10;    },</xsl:text>
+    <xsl:text>&#10;  },</xsl:text>
   </xsl:if>
 
   <xsl:variable name="bg-23">
     <xsl:for-each select="rsm:SupplyChainTradeTransaction/ram:ApplicableHeaderTradeSettlement/ram:ApplicableTradeTax">
-      <xsl:text>&#10;      {</xsl:text>
+      <xsl:text>&#10;    {</xsl:text>
       <xsl:call-template name="string">
         <xsl:with-param name="xmltag" select="ram:BasisAmount"/>
         <xsl:with-param name="jsonkey" select="'BT116'"/>
@@ -913,18 +907,18 @@
         <xsl:with-param name="jsonkey" select="'BT121'"/>
         <xsl:with-param name="indent" select="'    '"/>
       </xsl:call-template>
-      <xsl:text>&#10;      },</xsl:text>
+      <xsl:text>&#10;    },</xsl:text>
     </xsl:for-each>
   </xsl:variable>
   <xsl:if test="string($bg-23)">
-    <xsl:text>&#10;    "BG023": [</xsl:text>
+    <xsl:text>&#10;  "BG023": [</xsl:text>
     <xsl:value-of select="substring($bg-23, 1, string-length($bg-23) - 1)" />
-    <xsl:text>&#10;    ],</xsl:text>
+    <xsl:text>&#10;  ],</xsl:text>
   </xsl:if>
 
   <xsl:variable name="bg-24">
     <xsl:for-each select="rsm:SupplyChainTradeTransaction/ram:ApplicableHeaderTradeAgreement/ram:AdditionalReferencedDocument[ram:TypeCode='916']">
-      <xsl:text>&#10;      {</xsl:text>
+      <xsl:text>&#10;    {</xsl:text>
       <xsl:call-template name="string">
         <xsl:with-param name="xmltag" select="ram:IssuerAssignedID"/>
         <xsl:with-param name="jsonkey" select="'BT122'"/>
@@ -945,18 +939,18 @@
         <xsl:with-param name="jsonkey" select="'BT125'"/>
         <xsl:with-param name="indent" select="'    '"/>
       </xsl:call-template>
-      <xsl:text>&#10;      },</xsl:text>
+      <xsl:text>&#10;    },</xsl:text>
     </xsl:for-each>
   </xsl:variable>
   <xsl:if test="string($bg-24)">
-    <xsl:text>&#10;    "BG024": [</xsl:text>
+    <xsl:text>&#10;  "BG024": [</xsl:text>
     <xsl:value-of select="substring($bg-24, 1, string-length($bg-24) - 1)" />
-    <xsl:text>&#10;    ],</xsl:text>
+    <xsl:text>&#10;  ],</xsl:text>
   </xsl:if>
 
   <xsl:variable name="bg-25">
     <xsl:for-each select="rsm:SupplyChainTradeTransaction/ram:IncludedSupplyChainTradeLineItem">
-      <xsl:text>&#10;      {</xsl:text>
+      <xsl:text>&#10;    {</xsl:text>
       <xsl:call-template name="string">
         <xsl:with-param name="xmltag" select="ram:AssociatedDocumentLineDocument/ram:LineID"/>
         <xsl:with-param name="jsonkey" select="'BT126'"/>
@@ -1011,14 +1005,14 @@
         </xsl:call-template>
       </xsl:variable>
       <xsl:if test="string($bg-26)">
-        <xsl:text>&#10;        "BG026": {</xsl:text>
+        <xsl:text>&#10;      "BG026": {</xsl:text>
         <xsl:value-of select="substring($bg-26, 1, string-length($bg-26) - 1)" />
-        <xsl:text>&#10;        },</xsl:text>
+        <xsl:text>&#10;      },</xsl:text>
       </xsl:if>
 
       <xsl:variable name="bg-27">
         <xsl:for-each select="ram:SpecifiedLineTradeSettlement/ram:SpecifiedTradeAllowanceCharge[ram:ChargeIndicator/udt:Indicator='false']">
-          <xsl:text>&#10;          {</xsl:text>
+          <xsl:text>&#10;        {</xsl:text>
           <xsl:call-template name="string">
             <xsl:with-param name="xmltag" select="ram:ActualAmount"/>
             <xsl:with-param name="jsonkey" select="'BT136'"/>
@@ -1044,18 +1038,18 @@
             <xsl:with-param name="jsonkey" select="'BT140'"/>
             <xsl:with-param name="indent" select="'        '"/>
           </xsl:call-template>
-          <xsl:text>&#10;          },</xsl:text>
+          <xsl:text>&#10;        },</xsl:text>
         </xsl:for-each>
       </xsl:variable>
       <xsl:if test="string($bg-27)">
-        <xsl:text>&#10;        "BG027": [</xsl:text>
+        <xsl:text>&#10;      "BG027": [</xsl:text>
         <xsl:value-of select="substring($bg-27, 1, string-length($bg-27) - 1)" />
-        <xsl:text>&#10;        ],</xsl:text>
+        <xsl:text>&#10;      ],</xsl:text>
       </xsl:if>
 
       <xsl:variable name="bg-28">
         <xsl:for-each select="ram:SpecifiedLineTradeSettlement/ram:SpecifiedTradeAllowanceCharge[ram:ChargeIndicator/udt:Indicator='true']">
-          <xsl:text>&#10;          {</xsl:text>
+          <xsl:text>&#10;        {</xsl:text>
           <xsl:call-template name="string">
             <xsl:with-param name="xmltag" select="ram:ActualAmount"/>
             <xsl:with-param name="jsonkey" select="'BT141'"/>
@@ -1081,13 +1075,13 @@
             <xsl:with-param name="jsonkey" select="'BT145'"/>
             <xsl:with-param name="indent" select="'        '"/>
           </xsl:call-template>
-          <xsl:text>&#10;          },</xsl:text>
+          <xsl:text>&#10;        },</xsl:text>
         </xsl:for-each>
       </xsl:variable>
       <xsl:if test="string($bg-28)">
-        <xsl:text>&#10;        "BG028": [</xsl:text>
+        <xsl:text>&#10;      "BG028": [</xsl:text>
         <xsl:value-of select="substring($bg-28, 1, string-length($bg-28) - 1)" />
-        <xsl:text>&#10;        ],</xsl:text>
+        <xsl:text>&#10;      ],</xsl:text>
       </xsl:if>
 
       <xsl:variable name="bg-29">
@@ -1148,9 +1142,9 @@
 
       </xsl:variable>
       <xsl:if test="string($bg-29)">
-        <xsl:text>&#10;        "BG029": {</xsl:text>
+        <xsl:text>&#10;      "BG029": {</xsl:text>
         <xsl:value-of select="substring($bg-29, 1, string-length($bg-29) - 1)" />
-        <xsl:text>&#10;        },</xsl:text>
+        <xsl:text>&#10;      },</xsl:text>
       </xsl:if>
 
       <xsl:variable name="bg-30">
@@ -1166,9 +1160,9 @@
         </xsl:call-template>
       </xsl:variable>
       <xsl:if test="string($bg-30)">
-        <xsl:text>&#10;        "BG030": {</xsl:text>
+        <xsl:text>&#10;      "BG030": {</xsl:text>
         <xsl:value-of select="substring($bg-30, 1, string-length($bg-30) - 1)" />
-        <xsl:text>&#10;        },</xsl:text>
+        <xsl:text>&#10;      },</xsl:text>
       </xsl:if>
 
       <xsl:variable name="bg-31">
@@ -1210,7 +1204,7 @@
 
         <xsl:variable name="bg-32">
           <xsl:for-each select="ram:SpecifiedTradeProduct/ram:ApplicableProductCharacteristic">
-            <xsl:text>&#10;            {</xsl:text>
+            <xsl:text>&#10;          {</xsl:text>
             <xsl:call-template name="string">
               <xsl:with-param name="xmltag" select="ram:Description"/>
               <xsl:with-param name="jsonkey" select="'BT160'"/>
@@ -1221,33 +1215,32 @@
               <xsl:with-param name="jsonkey" select="'BT161'"/>
               <xsl:with-param name="indent" select="'          '"/>
             </xsl:call-template>
-            <xsl:text>&#10;            },</xsl:text>
+            <xsl:text>&#10;          },</xsl:text>
           </xsl:for-each>
         </xsl:variable>
         <xsl:if test="string($bg-32)">
-          <xsl:text>&#10;          "BG032": [</xsl:text>
+          <xsl:text>&#10;        "BG032": [</xsl:text>
           <xsl:value-of select="substring($bg-32, 1, string-length($bg-32) - 1)" />
-          <xsl:text>&#10;          ],</xsl:text>
+          <xsl:text>&#10;        ],</xsl:text>
         </xsl:if>
 
       </xsl:variable>
       <xsl:if test="string($bg-31)">
-        <xsl:text>&#10;        "BG031": {</xsl:text>
+        <xsl:text>&#10;      "BG031": {</xsl:text>
         <xsl:value-of select="substring($bg-31, 1, string-length($bg-31) - 1)" />
-        <xsl:text>&#10;        },</xsl:text>
+        <xsl:text>&#10;      },</xsl:text>
       </xsl:if>
 
-      <xsl:text>&#10;      },</xsl:text>
+      <xsl:text>&#10;    },</xsl:text>
     </xsl:for-each>
   </xsl:variable>
   <xsl:if test="string($bg-25)">
-    <xsl:text>&#10;    "BG025": [</xsl:text>
+    <xsl:text>&#10;  "BG025": [</xsl:text>
     <xsl:value-of select="substring($bg-25, 1, string-length($bg-25) - 1)" />
-    <xsl:text>&#10;    ],</xsl:text>
+    <xsl:text>&#10;  ],</xsl:text>
   </xsl:if>
 
   <xsl:text>
-  }
 }
 </xsl:text>
 </xsl:template>

@@ -68,16 +68,9 @@ def smx2btj_recurse(bgno: str, prefix: str, indent: str, bt, bg) -> str:
 
 
 <xsl:template match="xr:invoice">
-  <xsl:text>{
-  "_meta": {
-    "format": "XRechnung Business Terms",
-    "version": "0.9",
-    "description": "XRechnung invoice condensed to business terms and encoded in JSON"
-  },
-  "invoice": {</xsl:text>"""
+  <xsl:text>{</xsl:text>"""
         tail = """
   <xsl:text>
-  }
 }
 </xsl:text>
 </xsl:template>
@@ -91,9 +84,9 @@ def smx2btj_recurse(bgno: str, prefix: str, indent: str, bt, bg) -> str:
         tail = f"""
 {indent}  </xsl:variable>
 {indent}  <xsl:if test="string($bg-{bgno})">
-{indent}    <xsl:text>&#10;{indent}    "BG{bgno.zfill(3)}": {{</xsl:text>
+{indent}    <xsl:text>&#10;{indent}  "BG{bgno.zfill(3)}": {{</xsl:text>
 {indent}    <xsl:value-of select="substring($bg-{bgno}, 1, string-length($bg-{bgno}) - 1)" />
-{indent}    <xsl:text>&#10;{indent}    }},</xsl:text>
+{indent}    <xsl:text>&#10;{indent}  }},</xsl:text>
 {indent}  </xsl:if>"""
         indent += "  "
 
@@ -106,15 +99,15 @@ def smx2btj_recurse(bgno: str, prefix: str, indent: str, bt, bg) -> str:
         head = f"""
 {indent}  <xsl:variable name="bg-{bgno}">
 {indent}    <xsl:for-each select="{prefix[:-1]}">
-{indent}      <xsl:text>&#10;{indent}      {{</xsl:text>"""
+{indent}      <xsl:text>&#10;{indent}    {{</xsl:text>"""
         tail = f"""
-{indent}      <xsl:text>&#10;{indent}      }},</xsl:text>
+{indent}      <xsl:text>&#10;{indent}    }},</xsl:text>
 {indent}    </xsl:for-each>
 {indent}  </xsl:variable>
 {indent}  <xsl:if test="string($bg-{bgno})">
-{indent}    <xsl:text>&#10;{indent}    "BG{bgno.zfill(3)}": [</xsl:text>
+{indent}    <xsl:text>&#10;{indent}  "BG{bgno.zfill(3)}": [</xsl:text>
 {indent}    <xsl:value-of select="substring($bg-{bgno}, 1, string-length($bg-{bgno}) - 1)" />
-{indent}    <xsl:text>&#10;{indent}    ],</xsl:text>
+{indent}    <xsl:text>&#10;{indent}  ],</xsl:text>
 {indent}  </xsl:if>"""
         prefix = ""
         indent += "    "
@@ -158,15 +151,13 @@ def btj2smx_recurse(bgno: str, indent: str, bt, bg) -> str:
 
     if bgno == "0":
         # special case for root element
-        head = '''{{#invoice}}
-<xr:invoice xmlns:xr="urn:ce.eu:en16931:2017:xoev-de:kosit:standard:xrechnung-1">'''
-        tail = '''</xr:invoice>
-{{/invoice}}'''
+        head = '''<xr:invoice xmlns:xr="urn:ce.eu:en16931:2017:xoev-de:kosit:standard:xrechnung-1">'''
+        tail = '''</xr:invoice>'''
     else:
         # wrap in for-each loop anyway
         bgtag = f"BG{bgno.zfill(3)}"
-        head = f"{indent}{{{{#{bgtag}}}}}\n" + head
-        tail = tail + f"{indent}{{{{/{bgtag}}}}}\n"
+        head = f"{indent[2:]}{{{{#{bgtag}}}}}\n" + head
+        tail = tail + f"{indent[2:]}{{{{/{bgtag}}}}}\n"
 
     indent += "  "
     r = "\n"
@@ -199,7 +190,7 @@ def btj2smx_recurse(bgno: str, indent: str, bt, bg) -> str:
     if bgno == "13":   # BG-13 DELIVERY_INFORMATION
         bg14 = btj2smx_recurse("14", "  ", bt, bg)  # BG-14 INVOICE_PERIOD
         bg15 = btj2smx_recurse("15", indent, bt, bg) # BG-15 DELIVER_TO_ADDRESS
-        bg15 = bg15[15:-15] # remove {{#BG015}} and {{/BG015}}
+        bg15 = bg15[13:-13] # remove {{#BG015}} and {{/BG015}}
         return ("""  {{#BG013}}
     {{#BG015}}
   <xr:DELIVERY_INFORMATION xr:id="BG-13">

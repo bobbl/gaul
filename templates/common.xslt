@@ -69,13 +69,13 @@
   <xsl:if test="$xmltag">
     <xsl:text>&#10;</xsl:text>
     <xsl:value-of select="$indent" />
-    <xsl:text>    "</xsl:text>
+    <xsl:text>  "</xsl:text>
     <xsl:value-of select="$jsonkey" />
     <xsl:text>": [</xsl:text>
     <xsl:for-each select="$xmltag">
       <xsl:text>&#10;</xsl:text>
       <xsl:value-of select="$indent" />
-      <xsl:text>      "</xsl:text>
+      <xsl:text>    "</xsl:text>
       <xsl:call-template name="escape-json">
         <xsl:with-param name="text" select="."/>
       </xsl:call-template>
@@ -84,7 +84,7 @@
     </xsl:for-each>
     <xsl:text>&#10;</xsl:text>
     <xsl:value-of select="$indent" />
-    <xsl:text>    ],</xsl:text>
+    <xsl:text>  ],</xsl:text>
   </xsl:if>
 </xsl:template>
 
@@ -104,23 +104,23 @@
   <xsl:if test="$xmltag">
     <xsl:text>&#10;</xsl:text>
     <xsl:value-of select="$indent" />
-    <xsl:text>    "</xsl:text>
+    <xsl:text>  "</xsl:text>
     <xsl:value-of select="$jsonkey" />
     <xsl:text>": {&#10;</xsl:text>
     <xsl:value-of select="$indent" />
-    <xsl:text>      "mime": "</xsl:text>
+    <xsl:text>    "mime": "</xsl:text>
     <xsl:value-of select="$xmltag/@mimeCode" />
     <xsl:text>",&#10;</xsl:text>
     <xsl:value-of select="$indent" />
-    <xsl:text>      "filename": "</xsl:text>
+    <xsl:text>    "filename": "</xsl:text>
     <xsl:value-of select="$xmltag/@filename" />
     <xsl:text>",&#10;</xsl:text>
     <xsl:value-of select="$indent" />
-    <xsl:text>      "base64": "</xsl:text>
+    <xsl:text>    "base64": "</xsl:text>
     <xsl:value-of select="normalize-space($xmltag/.)" />
     <xsl:text>"&#10;</xsl:text>
     <xsl:value-of select="$indent" />
-    <xsl:text>    },</xsl:text>
+    <xsl:text>  },</xsl:text>
   </xsl:if>
 </xsl:template>
 
@@ -140,23 +140,23 @@
   <xsl:if test="$xmltag">
     <xsl:text>&#10;</xsl:text>
     <xsl:value-of select="$indent" />
-    <xsl:text>    "</xsl:text>
+    <xsl:text>  "</xsl:text>
     <xsl:value-of select="$jsonkey" />
     <xsl:text>": {&#10;</xsl:text>
     <xsl:value-of select="$indent" />
-    <xsl:text>      "mime": "</xsl:text>
+    <xsl:text>    "mime": "</xsl:text>
     <xsl:value-of select="$xmltag/@mime_code" />
     <xsl:text>",&#10;</xsl:text>
     <xsl:value-of select="$indent" />
-    <xsl:text>      "filename": "</xsl:text>
+    <xsl:text>    "filename": "</xsl:text>
     <xsl:value-of select="$xmltag/@filename" />
     <xsl:text>",&#10;</xsl:text>
     <xsl:value-of select="$indent" />
-    <xsl:text>      "base64": "</xsl:text>
+    <xsl:text>    "base64": "</xsl:text>
     <xsl:value-of select="normalize-space($xmltag/.)" />
     <xsl:text>"&#10;</xsl:text>
     <xsl:value-of select="$indent" />
-    <xsl:text>    },</xsl:text>
+    <xsl:text>  },</xsl:text>
   </xsl:if>
 </xsl:template>
 
@@ -177,23 +177,23 @@
   <xsl:if test="$xmltag">
     <xsl:text>&#10;</xsl:text>
     <xsl:value-of select="$indent" />
-    <xsl:text>    "</xsl:text>
+    <xsl:text>  "</xsl:text>
     <xsl:value-of select="$jsonkey" />
     <xsl:text>": {&#10;</xsl:text>
     <xsl:value-of select="$indent" />
-    <xsl:text>      "YYYY": "</xsl:text>
+    <xsl:text>    "YYYY": "</xsl:text>
     <xsl:value-of select="substring($xmltag, 1, 4)" />
     <xsl:text>",&#10;</xsl:text>
     <xsl:value-of select="$indent" />
-    <xsl:text>      "MM": "</xsl:text>
+    <xsl:text>    "MM": "</xsl:text>
     <xsl:value-of select="substring($xmltag, 6, 2)" />
     <xsl:text>",&#10;</xsl:text>
     <xsl:value-of select="$indent" />
-    <xsl:text>      "DD": "</xsl:text>
+    <xsl:text>    "DD": "</xsl:text>
     <xsl:value-of select="substring($xmltag, 9, 2)" />
     <xsl:text>"&#10;</xsl:text>
     <xsl:value-of select="$indent" />
-    <xsl:text>    },</xsl:text>
+    <xsl:text>  },</xsl:text>
   </xsl:if>
 </xsl:template>
 
@@ -214,23 +214,23 @@
   <xsl:if test="$xmltag">
     <xsl:text>&#10;</xsl:text>
     <xsl:value-of select="$indent" />
-    <xsl:text>    "</xsl:text>
+    <xsl:text>  "</xsl:text>
     <xsl:value-of select="$jsonkey" />
     <xsl:text>": {&#10;</xsl:text>
     <xsl:value-of select="$indent" />
-    <xsl:text>      "YYYY": "</xsl:text>
+    <xsl:text>    "YYYY": "</xsl:text>
     <xsl:value-of select="substring($xmltag, 1, 4)" />
     <xsl:text>",&#10;</xsl:text>
     <xsl:value-of select="$indent" />
-    <xsl:text>      "MM": "</xsl:text>
+    <xsl:text>    "MM": "</xsl:text>
     <xsl:value-of select="substring($xmltag, 5, 2)" />
     <xsl:text>",&#10;</xsl:text>
     <xsl:value-of select="$indent" />
-    <xsl:text>      "DD": "</xsl:text>
+    <xsl:text>    "DD": "</xsl:text>
     <xsl:value-of select="substring($xmltag, 7, 2)" />
     <xsl:text>"&#10;</xsl:text>
     <xsl:value-of select="$indent" />
-    <xsl:text>    },</xsl:text>
+    <xsl:text>  },</xsl:text>
   </xsl:if>
 </xsl:template>
 
@@ -246,7 +246,7 @@
   <xsl:if test="$xmltag">
     <xsl:text>&#10;</xsl:text>
     <xsl:value-of select="$indent" />
-    <xsl:text>    "</xsl:text>
+    <xsl:text>  "</xsl:text>
     <xsl:value-of select="$jsonkey" />
     <xsl:text>": "</xsl:text>
     <xsl:call-template name="escape-json">
