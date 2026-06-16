@@ -1,8 +1,10 @@
 import os
 import re
+import tomllib                  # toml read
 
 import chevron                  # mustache
 from lxml import etree          # xslt
+import tomli_w                  # toml write
 import yaml
 
 from . import templates
@@ -28,7 +30,7 @@ class Gaul:
         self.bttree = None
 
 
-    SUPPORTED_FORMATS = ["BTJ", "SMJ", "SMX", "CII"]
+    SUPPORTED_FORMATS = ["BTJ", "SMJ", "SMT", "SMX", "CII"]
 
     def format_supported(format_str: str) -> bool:
         return format_str in Gaul.SUPPORTED_FORMATS
@@ -52,6 +54,9 @@ class Gaul:
                             s)
         self.bttree = None
 
+    def load_smt(self, s: str):
+        self.load_smj(tomllib.loads(s))
+
     def load_smx(self, s: str):
         self.btstr = xslt_transform(templates.smx2btj_xslt, s)
         self.bttree = None
@@ -65,9 +70,11 @@ class Gaul:
             self.load_btj(s)
         elif format == "SMJ":
             self.load_smj(s)
+        elif format == "SMT":
+            self.load_smt(s)
         elif format == "SMX":
             self.load_smx(s)
-        elif format == "SMJ":
+        elif format == "CII":
             self.load_cii(s)
         #elif format == "":
         #   self.load_auto(s)
@@ -91,6 +98,11 @@ class Gaul:
                    self.btstr)
         return s
 
+    def dump_as_smt(self) -> str:
+        s = self.dump_as_smj()  # BT JSON string -> SM JSON string
+        d = yaml.safe_load(s)   #                -> SM Python dict
+        return tomli_w.dumps(d) #                -> SM TOML string
+
     def dump_as_smx(self) -> str:
         if not self.bttree:
             self.bttree = yaml.safe_load(self.btstr)
@@ -106,6 +118,8 @@ class Gaul:
             return self.dump_as_btj()
         if format == "SMJ":
             return self.dump_as_smj()
+        if format == "SMT":
+            return self.dump_as_smt()
         if format == "SMX":
             return self.dump_as_smx()
         if format == "CII":
