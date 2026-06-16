@@ -65,7 +65,7 @@ fetch_git () {
 copy_invoices () {
 
     mkdir -p cii
-    rm cii/*.xml
+    rm -f cii/*.xml
     for f in download/xrechnung-testsuite/src/test/business-cases/extension/*_uncefact.xml \
              download/xrechnung-testsuite/src/test/business-cases/standard/*_uncefact.xml \
              download/xrechnung-testsuite/src/test/technical-cases/cius/*_uncefact.xml \
@@ -81,7 +81,7 @@ copy_invoices () {
     echo "Found $count_cii CII invoices"
 
     mkdir -p ubl
-    rm ubl/*.xml
+    rm -r ubl/*.xml
     for f in download/xrechnung-testsuite/src/test/business-cases/extension/*_ubl.xml \
              download/xrechnung-testsuite/src/test/business-cases/standard/*_ubl.xml \
              download/xrechnung-testsuite/src/test/technical-cases/cius/*_ubl.xml \
@@ -93,120 +93,6 @@ copy_invoices () {
     done
     count_ubl=$(ls ubl/*.xml | wc -l)
     echo "Found $count_ubl UBL invoices"
-}
-
-
-# Generate SMX with KoSIT XSLT 2.0 template
-gen_smx_with_kosit () {
-    kosit_dir=kosit_smx
-
-    if [ -d $kosti_dir ]
-    then
-        count_smx=$(ls $kosit_dir/*.smx | wc -l)
-    else
-        mkdir -p $kosit_dir
-        count_smx=0
-    fi
-    if [ $count_smx -ne $count_cii ]
-    then
-        rm $kosit_dir/*
-
-        # For the XSLT 2.0 transformation it's easier to call SaxonC HE via Python
-        uv run to_smx.py
-
-        for f in $kosit_dir/*.smx
-        do
-            # remove unnecessary additional attributes from the xr: tags
-            # FIXME: if the attribute names appear within content, they are also removed there
-            sed 's/xr:src="[^"]*"//; s/scheme_identifier="[^"]*"//; s/scheme_version_identifier="[^"]*"//' "$f" > tmp.noxrsrc
-
-            # pretty print for comparison
-            xsltproc pretty.xslt tmp.noxrsrc > $kosit_dir/$(basename $f .xml.smx).smx
-            rm "$f"
-        done
-    fi
-}
-
-
-# Test 01: SMX -> BTJ -> SMX'
-test01_smx () {
-    mkdir -p btj
-    rm btj/*
-    mkdir -p smx2
-    rm smx2/*
-
-    for f in smx/*.smx
-    do
-        echo "SMX -> BTJ -> SMX': $f"
-        btj=btj/$(basename "$f" .smx).btj
-        smx2=smx2/$(basename "$f")
-
-        xsltproc ../templates/gen/smx2btj.xslt "$f" > "$btj"
-        mustache "$btj" ../templates/gen/btj2smx.mustache | \
-            xsltproc pretty.xslt - > "$smx2"
-    done
-    diff smx/ smx2/ > tmp.diff
-    if diff --color tmp.diff smx_smx2.diff
-    then
-        echo "${esc_white}Acceptable differences${esc} (&quot; and empty <xr:DELIVERY_INFORMATION>)"
-    else
-        echo "${esc_red}NOT OK${esc}"
-        exit
-    fi
-}
-
-
-# Test 02: [CII -> SMX -> BTJ] -> CII'
-# uses files generated in Test 01
-test02_cii () {
-    mkdir -p cii2
-    rm cii2/*
-
-    for f in btj/*.btj
-    do
-        echo "BTJ -> CII': $f"
-        cii2=cii2/$(basename "$f" .btj).xml
-
-        mustache "$f" ../templates/btj2cii.mustache > "$cii2"
-        #diff "$f" "$smx2"
-    done
-
-    diff cii/ cii2/ > tmp.diff
-    if diff --color tmp.diff cii_cii2.diff
-    then
-        echo "${esc_white}Acceptable differences${esc}"
-    else
-        echo "${esc_red}NOT OK${esc}"
-        exit
-    fi
-}
-
-
-# Test 03: compare KoSIT CII -> SMX with Gaul CII -> BTJ -> SMX
-test03_smx () {
-    mkdir -p btj
-    rm btj/*
-    mkdir -p smx3
-    rm smx3/*
-
-    for f in cii/*.xml
-    do
-        echo "Gaul CII -> BTJ -> SMX': $f"
-        btj=btj/$(basename "$f" .xml).btj
-        smx3=smx3/$(basename "$f" .xml).smx
-
-        xsltproc ../templates/cii2btj.xslt "$f" > "$btj"
-        mustache "$btj" ../templates/gen/btj2smx.mustache > "$smx3"
-    done
-
-    diff smx/ smx3/ > tmp.diff
-    if diff --color tmp.diff smx_smx3.diff
-    then
-        echo "${esc_white}Acceptable differences${esc} (&quot; and empty <xr:DELIVERY_INFORMATION>)"
-    else
-        echo "${esc_red}NOT OK${esc}"
-        exit
-    fi
 }
 
 
@@ -265,7 +151,7 @@ test_btj_smx_btj () {
 
 test_kosit_smx () {
     kosit_dir=kosit_smx
-    rm $kosit_dir/*
+    rm -f $kosit_dir/*
 
     # For the XSLT 2.0 transformation it's easier to call SaxonC HE via Python
     uv run to_smx.py
@@ -299,16 +185,11 @@ test_kosit_smx () {
 check_dependencies
 fetch_git
 copy_invoices
-gen_smx_with_kosit
 
 back=$(pwd)
 cd ../templates
 uv run gen.py
 cd "$back"
-
-#test01_smx
-#test02_cii
-#test03_smx
 
 test_cii_btj_cii
 test_btj_smx_btj

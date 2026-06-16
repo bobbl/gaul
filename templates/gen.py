@@ -195,13 +195,56 @@ def btj2smx_recurse(bgno: str, indent: str, bt, bg) -> str:
     #
     # Solution: when in BT-13 recurse only in BT-15 and append BT-14 after the
     #           end tag of BT-13
+    #           Cascading tests to avoid empty <xr:DELIVERY_INFORMATION> tag
     if bgno == "13":   # BG-13 DELIVERY_INFORMATION
-        r += btj2smx_recurse("15", indent, bt, bg) # BG-15 DELIVER_TO_ADDRESS
-        appendix = btj2smx_recurse("14", indent, bt, bg)
-        return (head + r + tail +
-            "  {{#BG013}}\n" +
-            btj2smx_recurse("14", "  ", bt, bg) +  # BG-14 INVOICE_PERIOD
-            "  {{/BG013}}\n")
+        bg14 = btj2smx_recurse("14", "  ", bt, bg)  # BG-14 INVOICE_PERIOD
+        bg15 = btj2smx_recurse("15", indent, bt, bg) # BG-15 DELIVER_TO_ADDRESS
+        bg15 = bg15[15:-15] # remove {{#BG015}} and {{/BG015}}
+        return ("""  {{#BG013}}
+    {{#BG015}}
+  <xr:DELIVERY_INFORMATION xr:id="BG-13">
+      {{#BT070}}
+    <xr:Deliver_to_party_name xr:id="BT-70">{{.}}</xr:Deliver_to_party_name>
+      {{/BT070}}
+      {{#BT071}}
+    <xr:Deliver_to_location_identifier xr:id="BT-71">{{.}}</xr:Deliver_to_location_identifier>
+      {{/BT071}}
+      {{#BT072}}
+    <xr:Actual_delivery_date xr:id="BT-72">{{YYYY}}-{{MM}}-{{DD}}</xr:Actual_delivery_date>
+      {{/BT072}}
+""" + bg15 + """  </xr:DELIVERY_INFORMATION>
+    {{/BG015}}
+    {{^BG015}}
+      {{#BT070}}
+  <xr:DELIVERY_INFORMATION xr:id="BG-13">
+    <xr:Deliver_to_party_name xr:id="BT-70">{{.}}</xr:Deliver_to_party_name>
+        {{#BT071}}
+    <xr:Deliver_to_location_identifier xr:id="BT-71">{{.}}</xr:Deliver_to_location_identifier>
+        {{/BT071}}
+        {{#BT072}}
+    <xr:Actual_delivery_date xr:id="BT-72">{{YYYY}}-{{MM}}-{{DD}}</xr:Actual_delivery_date>
+        {{/BT072}}
+  </xr:DELIVERY_INFORMATION>
+      {{/BT070}}
+      {{^BT070}}
+        {{#BT071}}
+  <xr:DELIVERY_INFORMATION xr:id="BG-13">
+    <xr:Deliver_to_location_identifier xr:id="BT-71">{{.}}</xr:Deliver_to_location_identifier>
+          {{#BT072}}
+    <xr:Actual_delivery_date xr:id="BT-72">{{YYYY}}-{{MM}}-{{DD}}</xr:Actual_delivery_date>
+          {{/BT072}}
+  </xr:DELIVERY_INFORMATION>
+        {{/BT071}}
+        {{^BT071}}
+          {{#BT072}}
+  <xr:DELIVERY_INFORMATION xr:id="BG-13">
+    <xr:Actual_delivery_date xr:id="BT-72">{{YYYY}}-{{MM}}-{{DD}}</xr:Actual_delivery_date>
+  </xr:DELIVERY_INFORMATION>
+          {{/BT072}}
+        {{/BT071}}
+      {{/BT070}}
+    {{/BG015}}
+""" + bg14 + "  {{/BG013}}\n")
 
     for i, row in bg.items():
         if row['BG'] == bgno:

@@ -1,37 +1,18 @@
-diff kosit_smx/01.07a-INVOICE_uncefact.smx smx/01.07a-INVOICE_uncefact.smx
-56a57,58
->   <xr:DELIVERY_INFORMATION xr:id="BG-13">
->   </xr:DELIVERY_INFORMATION>
 diff kosit_smx/01.09a-INVOICE_uncefact.smx smx/01.09a-INVOICE_uncefact.smx
 82c82
 <       <xr:Item_name xr:id="BT-153">Paketierung der Anwendung "Kofax 10.2" für 180 Geräte</xr:Item_name>
 ---
 >       <xr:Item_name xr:id="BT-153">Paketierung der Anwendung &quot;Kofax 10.2&quot; für 180 Geräte</xr:Item_name>
-diff kosit_smx/03.01a-INVOICE_uncefact.smx smx/03.01a-INVOICE_uncefact.smx
-44a45,46
->   <xr:DELIVERY_INFORMATION xr:id="BG-13">
->   </xr:DELIVERY_INFORMATION>
-diff kosit_smx/03.04a-INVOICE_uncefact.smx smx/03.04a-INVOICE_uncefact.smx
-43a44,45
->   <xr:DELIVERY_INFORMATION xr:id="BG-13">
->   </xr:DELIVERY_INFORMATION>
-diff kosit_smx/03.05a-INVOICE_uncefact.smx smx/03.05a-INVOICE_uncefact.smx
-43a44,45
->   <xr:DELIVERY_INFORMATION xr:id="BG-13">
->   </xr:DELIVERY_INFORMATION>
 diff kosit_smx/CII_business_example_02.smx smx/CII_business_example_02.smx
-36a37,38
->   <xr:DELIVERY_INFORMATION xr:id="BG-13">
->   </xr:DELIVERY_INFORMATION>
-86c88
+86c86
 <       <xr:Item_description xr:id="BT-154"/>
 ---
 >       <xr:Item_description xr:id="BT-154"></xr:Item_description>
-103c105
+103c103
 <       <xr:Item_description xr:id="BT-154"/>
 ---
 >       <xr:Item_description xr:id="BT-154"></xr:Item_description>
-120c122
+120c120
 <       <xr:Item_description xr:id="BT-154"/>
 ---
 >       <xr:Item_description xr:id="BT-154"></xr:Item_description>
@@ -42,9 +23,6 @@ diff kosit_smx/CII_example1a.smx smx/CII_example1a.smx
 >     <xr:Invoice_note xr:id="BT-22">Alle leveringen zijn franco. Alle prijzen zijn incl. BTW. Betalingstermijn: 14 dagen netto. Prijswijzigingen voorbehouden. Op al onze aanbiedingen, leveringen en overeenkomsten zijn van toepassing in de algemene verkoop en leveringsvoorwaarden. Gedeponeerd bij de K.v.K. te Amsterdam 25-04-&#39;85.</xr:Invoice_note>
 18a19
 >     <xr:Seller_VAT_identifier xr:id="BT-31">ATU00000006</xr:Seller_VAT_identifier>
-41a43,44
->   <xr:DELIVERY_INFORMATION xr:id="BG-13">
->   </xr:DELIVERY_INFORMATION>
 diff kosit_smx/CII_example1-CreditNote.smx smx/CII_example1-CreditNote.smx
 10c10
 <     <xr:Invoice_note xr:id="BT-22">Alle leveringen zijn franco. Alle prijzen zijn incl. BTW. Betalingstermijn: 14 dagen netto. Prijswijzigingen voorbehouden. Op al onze aanbiedingen, leveringen en overeenkomsten zijn van toepassing in de algemene verkoop en leveringsvoorwaarden. Gedeponeerd bij de K.v.K. te Amsterdam 25-04-'85.</xr:Invoice_note>
@@ -64,14 +42,6 @@ diff kosit_smx/CII_example2.smx smx/CII_example2.smx
 <       <xr:Item_name xr:id="BT-153">"Computing for dummies" book</xr:Item_name>
 ---
 >       <xr:Item_name xr:id="BT-153">&quot;Computing for dummies&quot; book</xr:Item_name>
-diff kosit_smx/CII_example3.smx smx/CII_example3.smx
-38a39,40
->   <xr:DELIVERY_INFORMATION xr:id="BG-13">
->   </xr:DELIVERY_INFORMATION>
-diff kosit_smx/CII_example7.smx smx/CII_example7.smx
-46a47,48
->   <xr:DELIVERY_INFORMATION xr:id="BG-13">
->   </xr:DELIVERY_INFORMATION>
 diff kosit_smx/CII_example8.smx smx/CII_example8.smx
 28c28
 <       <xr:Seller_city xr:id="BT-37">'S-HERTOGENBOSCH</xr:Seller_city>
