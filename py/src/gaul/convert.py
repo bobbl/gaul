@@ -1,9 +1,11 @@
+import json
 import os
 import re
 import tomllib                  # toml read
 
 import chevron                  # mustache
 from lxml import etree          # xslt
+from pypdf import PdfReader
 import tomli_w                  # toml write
 import yaml
 
@@ -14,9 +16,9 @@ from . import templates
 
 # Use an XSLT file to transform the given string
 def xslt_transform(xslt_string: str, xml_string: str) -> str:
-    parsed = etree.fromstring(xslt_string.encode())
+    parsed = etree.fromstring(xslt_string)
     transform = etree.XSLT(parsed)
-    xml = etree.fromstring(xml_string.encode())
+    xml = etree.fromstring(xml_string)
     return str(transform(xml))
 
 
@@ -55,14 +57,14 @@ class Gaul:
         self.bttree = None
 
     def load_smt(self, s: str):
-        self.load_smj(tomllib.loads(s))
+        self.load_smj(json.dumps(tomllib.loads(s), indent=2))
 
     def load_smx(self, s: str):
-        self.btstr = xslt_transform(templates.smx2btj_xslt, s)
+        self.btstr = xslt_transform(templates.smx2btj_xslt.encode(), s.encode())
         self.bttree = None
 
     def load_cii(self, s: str):
-        self.btstr = xslt_transform(templates.cii2btj_xslt, s)
+        self.btstr = xslt_transform(templates.cii2btj_xslt.encode(), s.encode())
         self.bttree = None
 
     def load(self, s: str, format=""):
@@ -81,16 +83,24 @@ class Gaul:
         else:
             ValueError(f"Unknown input format '{format}'")
 
+    def extract_zugferd(self, f):
+        reader = PdfReader(f)
+        if not "factur-x.xml" in reader.attachments:
+            RuntimeError("No attachment named 'factur-x.xml' in PDF")
+        content_list = reader.attachments["factur-x.xml"]
+        if len(content_list) != 1:
+            RuntimeError("Multiple attachments named 'factur-x.xml' in PDF")
+        self.load_cii(content_list[0].decode())
 
 
     def dump_as_btj(self) -> str:
         if self.btstr == None:
-            self.btstr = yaml.dump(self.bttree)
+            self.btstr = json.dump(self.bttree, indent=2)
         return self.btstr
 
     def dump_as_smj(self) -> str:
         if not self.btstr:
-            self.btstr = yaml.dump(self.bttree)
+            self.btstr = json.dump(self.bttree, indent=2)
 
         # replace BT??? with semantic model name
         s = re.sub("|".join(templates.replace_bt2sm.keys()),

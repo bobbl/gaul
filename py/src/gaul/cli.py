@@ -58,6 +58,8 @@ def main():
                 format_from = sys.argv[i].upper()
                 if format_from == "AUTO":
                     format_from = ""
+                elif format_from == "ZUGFERD":
+                    pass
                 elif not Gaul.format_supported(format_from):
                     sys.exit(f"Unknown input format {format_from}")
                 #print(f"Set input format to {format_from}")
@@ -82,8 +84,11 @@ def main():
         else:
             no_input = False
             with open_inputfile(arg) as f:
-                input_content = f.read()
-                g.load(input_content, format=format_from)
+                if format_from == "ZUGFERD":
+                    g.extract_zugferd(f)
+                else:
+                    input_content = f.read()
+                    g.load(input_content, format=format_from)
 
         i += 1
 
