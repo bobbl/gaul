@@ -26,7 +26,7 @@ def open_inputfile(filename):
     if filename == "-":
         return sys.stdin
     else:
-        return open(filename, "r")
+        return open(filename, "rb")
 
 def open_outputfile(filename):
     if filename == "-":

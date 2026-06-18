@@ -15,7 +15,7 @@ from . import templates
 
 
 # Use an XSLT file to transform the given string
-def xslt_transform(xslt_string: str, xml_string: str) -> str:
+def xslt_transform(xslt_string: bytes, xml_string: bytes) -> str:
     parsed = etree.fromstring(xslt_string)
     transform = etree.XSLT(parsed)
     xml = etree.fromstring(xml_string)
@@ -53,21 +53,22 @@ class Gaul:
         # sort from longer to shorter names to avoid partial replacement
         self.btstr = re.sub("|".join(sorted(sm2bt, key=len, reverse=True)),
                             lambda x: sm2bt[x.group(0)],
-                            s)
+                            s.decode("utf-8"))
         self.bttree = None
 
-    def load_smt(self, s: str):
-        self.load_smj(json.dumps(tomllib.loads(s), indent=2))
+    def load_smt(self, s: bytes):
+        self.load_smj(json.dumps(tomllib.loads(s.decode("utf-8")), indent=2)
+            .encode("utf-8"))
 
-    def load_smx(self, s: str):
-        self.btstr = xslt_transform(templates.smx2btj_xslt.encode(), s.encode())
+    def load_smx(self, s: bytes):
+        self.btstr = xslt_transform(templates.smx2btj_xslt.encode("utf-8"), s)
         self.bttree = None
 
-    def load_cii(self, s: str):
-        self.btstr = xslt_transform(templates.cii2btj_xslt.encode(), s.encode())
+    def load_cii(self, s: bytes):
+        self.btstr = xslt_transform(templates.cii2btj_xslt.encode("utf-8"), s)
         self.bttree = None
 
-    def load(self, s: str, format=""):
+    def load(self, s: bytes, format=""):
         if format == "BTJ":
             self.load_btj(s)
         elif format == "SMJ":
@@ -90,7 +91,7 @@ class Gaul:
         content_list = reader.attachments["factur-x.xml"]
         if len(content_list) != 1:
             RuntimeError("Multiple attachments named 'factur-x.xml' in PDF")
-        self.load_cii(content_list[0].decode())
+        self.load_cii(content_list[0])
 
 
     def dump_as_btj(self) -> str:

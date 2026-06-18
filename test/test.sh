@@ -96,6 +96,24 @@ copy_invoices () {
 }
 
 
+test_cli () {
+    back=$(pwd)
+    cd ../py
+    cp ../test/examples/i003.cii.xml .
+
+    uv run gaul -f CII i003.cii.xml -t BTJ -o i003.btj
+    uv run gaul -f CII i003.cii.xml -t SMJ -o i003.smj
+    uv run gaul -f CII i003.cii.xml -t SMT -o i003.smt
+    uv run gaul -f CII i003.cii.xml -t SMX -o i003.smx
+
+    uv run gaul -f BTJ i003.btj -t CII -o i003.cii2
+    uv run gaul -f SMJ i003.smj -t SMX -o i003.smx2
+    uv run gaul -f SMT i003.smt -t SMJ -o i003.smj2
+    uv run gaul -f SMX i003.smx -t SMT -o i003.smt2
+    cd "$back"
+}
+
+
 test_cii_btj_cii () {
     mkdir -p btj
     rm -f btj/*
@@ -191,6 +209,7 @@ cd ../templates
 uv run gen.py
 cd "$back"
 
+test_cli
 test_cii_btj_cii
 test_btj_smx_btj
 test_kosit_smx
