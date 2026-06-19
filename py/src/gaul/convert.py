@@ -1,3 +1,4 @@
+import io
 import json
 import os
 import re
@@ -32,19 +33,19 @@ class Gaul:
         self.bttree = None
 
 
-    SUPPORTED_FORMATS = ["BTJ", "SMJ", "SMT", "SMX", "CII"]
+    SUPPORTED_FORMATS = ["BTJ", "SMJ", "SMT", "SMX", "CII", "ZUGFERD"]
 
     def format_supported(format_str: str) -> bool:
         return format_str in Gaul.SUPPORTED_FORMATS
 
 
 
-    def load_btj(self, s: str):
+    def load_btj(self, s: bytes):
         self.btstr = s
         self.bttree = None
         #self.bttree = yaml.safe_load(s)
 
-    def load_smj(self, s: str):
+    def load_smj(self, s: bytes):
 
         # swap keys and values
         sm2bt = dict( (sm, bt) for bt, sm in templates.replace_bt2sm.items() )
@@ -68,6 +69,15 @@ class Gaul:
         self.btstr = xslt_transform(templates.cii2btj_xslt.encode("utf-8"), s)
         self.bttree = None
 
+    def load_zugferd(self, s: bytes):
+        reader = PdfReader(io.BytesIO(s))
+        if not "factur-x.xml" in reader.attachments:
+            RuntimeError("No attachment named 'factur-x.xml' in PDF")
+        content_list = reader.attachments["factur-x.xml"]
+        if len(content_list) != 1:
+            RuntimeError("Multiple attachments named 'factur-x.xml' in PDF")
+        self.load_cii(content_list[0])
+
     def load(self, s: bytes, format=""):
         if format == "BTJ":
             self.load_btj(s)
@@ -79,19 +89,12 @@ class Gaul:
             self.load_smx(s)
         elif format == "CII":
             self.load_cii(s)
+        elif format == "ZUGFERD":
+            self.load_zugferd(s)
         #elif format == "":
         #   self.load_auto(s)
         else:
             ValueError(f"Unknown input format '{format}'")
-
-    def extract_zugferd(self, f):
-        reader = PdfReader(f)
-        if not "factur-x.xml" in reader.attachments:
-            RuntimeError("No attachment named 'factur-x.xml' in PDF")
-        content_list = reader.attachments["factur-x.xml"]
-        if len(content_list) != 1:
-            RuntimeError("Multiple attachments named 'factur-x.xml' in PDF")
-        self.load_cii(content_list[0])
 
 
     def dump_as_btj(self) -> str:

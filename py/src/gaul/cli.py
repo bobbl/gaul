@@ -84,11 +84,8 @@ def main():
         else:
             no_input = False
             with open_inputfile(arg) as f:
-                if format_from == "ZUGFERD":
-                    g.extract_zugferd(f)
-                else:
-                    input_content = f.read()
-                    g.load(input_content, format=format_from)
+                input_content = f.read()
+                g.load(input_content, format=format_from)
 
         i += 1
 

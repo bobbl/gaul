@@ -2,6 +2,26 @@
 # Run several tests to check if conversion templates work
 
 
+help() {
+    echo "Usage: $0 <task> ..."
+    echo
+    echo "  tool    Test command line tool (written in python)"
+    echo "  cii     Test convertion to and from CII"
+    echo "  smx     Test conversion to and from SMX"
+    echo "  kosit   Compare with KoSIT SMX conversion"
+    echo "  all     Run all tests"
+}
+
+if [ $# -eq 0 ]
+then
+    help
+    exit 1
+fi
+
+
+
+
+
 # Escape sequences for colored output
 esc_white="\033[1;37m"
 esc_green="\033[32m"
@@ -57,6 +77,8 @@ fetch_git () {
     #try_git_clone https://github.com/itplr-kosit/xrechnung-visualization.git
     try_git_clone https://projekte.kosit.org/xrechnung/xrechnung-visualization.git
 
+    try_git_clone https://github.com/ZUGFeRD/corpus.git
+
     #try_git_clone git@github.com:phax/en16931-cii2ubl.git
 }
 
@@ -100,6 +122,7 @@ test_cli () {
     back=$(pwd)
     cd ../py
     cp ../test/examples/i003.cii.xml .
+    cp ../test/examples/i004.pdf .
 
     uv run gaul -f CII i003.cii.xml -t BTJ -o i003.btj
     uv run gaul -f CII i003.cii.xml -t SMJ -o i003.smj
@@ -110,6 +133,10 @@ test_cli () {
     uv run gaul -f SMJ i003.smj -t SMX -o i003.smx2
     uv run gaul -f SMT i003.smt -t SMJ -o i003.smj2
     uv run gaul -f SMX i003.smx -t SMT -o i003.smt2
+
+    uv run gaul -f ZUGFeRD i004.pdf -t BTJ -o i004.btj
+    uv run gaul -f ZUGFeRD i004.pdf -t CII -o i004.cii
+
     cd "$back"
 }
 
@@ -209,10 +236,29 @@ cd ../templates
 uv run gen.py
 cd "$back"
 
-test_cli
-test_cii_btj_cii
-test_btj_smx_btj
-test_kosit_smx
+while [ $# -ne 0 ]
+do
+    case $1 in
+        help)   help ;;
+        tool)   test_cli ;;
+        cii)    test_cii_btj_cii ;;
+        smx)    test_btj_smx_btj ;;
+        kosit)  test_kosit_smx ;;
+
+        all)
+            test_cli
+            test_cii_btj_cii
+            test_btj_smx_btj
+            test_kosit_smx
+            ;;
+
+        *)
+            echo "Unknown task $1. Stop."
+            exit 1
+            ;;
+    esac
+    shift
+done
+
 
 # SPDX-License-Identifier: ISC
-
