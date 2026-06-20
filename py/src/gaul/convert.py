@@ -78,6 +78,26 @@ class Gaul:
             RuntimeError("Multiple attachments named 'factur-x.xml' in PDF")
         self.load_cii(content_list[0])
 
+    """ Alternative: accept any filename
+    def load_zugferd(self, s: bytes):
+        reader = PdfReader(io.BytesIO(s))
+        a = reader.attachments
+        if len(a) == 1:
+            # WARNING if name is not factur-x.xml
+            content_list = list(a.values())[0]
+        elif "factur-x.xml" in reader.attachments:
+            content_list = reader.attachments["factur-x.xml"]
+        #elif "xrechnung.xml" in reader.attachments:
+        #    content_list = reader.attachments["xrechnung.xml"]
+        #elif "ZUGFeRD-invoice.xml" in reader.attachments:
+        #    content_list = reader.attachments["ZUGFeRD-invoice.xml"]
+        else:
+            RuntimeError("Multiple embedded files in PDF. Which one is the invoice?")
+        if len(content_list) != 1:
+            RuntimeError("Embedded filename in PDF refers to multiple file objects. Which one is the invoice?")
+        self.load_cii(content_list[0])
+    """
+
     def load(self, s: bytes, format=""):
         if format == "BTJ":
             self.load_btj(s)

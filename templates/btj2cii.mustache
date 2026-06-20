@@ -606,68 +606,75 @@
           <ram:AccountName>{{.}}</ram:AccountName>
           {{/BT085}}
         </ram:PayeePartyCreditorFinancialAccount>
-        {{#BT086}}
+          {{#BT086}}
         <ram:PayeeSpecifiedCreditorFinancialInstitution>
           <ram:BICID>{{.}}</ram:BICID>
         </ram:PayeeSpecifiedCreditorFinancialInstitution>
-        {{/BT086}}
+          {{/BT086}}
       </ram:SpecifiedTradeSettlementPaymentMeans>
-      {{/BG017}}
-      {{#BG018}}
+        {{/BG017}}
+        {{#BG018}}
       <ram:SpecifiedTradeSettlementPaymentMeans>
-        {{#BT081}}
+          {{#BT081}}
         <ram:TypeCode>{{.}}</ram:TypeCode>
-        {{/BT081}}
-        {{#BT082}}
+          {{/BT081}}
+          {{#BT082}}
         <ram:Information>{{.}}</ram:Information>
-        {{/BT082}}
+          {{/BT082}}
         <ram:ApplicableTradeSettlementFinancialCard>
-        {{#BT087}}
+          {{#BT087}}
           <ram:ID>{{.}}</ram:ID>
-        {{/BT087}}
-        {{#BT088}}
+          {{/BT087}}
+          {{#BT088}}
           <ram:CardholderName>{{.}}</ram:CardholderName>
-        {{/BT088}}
+          {{/BT088}}
         </ram:ApplicableTradeSettlementFinancialCard>
       </ram:SpecifiedTradeSettlementPaymentMeans>
-      {{/BG018}}
-      {{#BG019}}
+        {{/BG018}}
+        {{#BG019}}
       <ram:SpecifiedTradeSettlementPaymentMeans>
-        {{#BT081}}
+          {{#BT081}}
         <ram:TypeCode>{{.}}</ram:TypeCode>
-        {{/BT081}}
-        {{#BT082}}
+          {{/BT081}}
+          {{#BT082}}
         <ram:Information>{{.}}</ram:Information>
-        {{/BT082}}
-        {{#BT091}}
+          {{/BT082}}
+          {{#BT091}}
         <ram:PayerPartyDebtorFinancialAccount>
           <ram:IBANID>{{.}}</ram:IBANID>
         </ram:PayerPartyDebtorFinancialAccount>
-        {{/BT091}}
+          {{/BT091}}
       </ram:SpecifiedTradeSettlementPaymentMeans>
-      {{/BG019}}
-      {{!
+        {{/BG019}}
+        {{!
 
 
-            special case if BG-16 has neither BG-17, BG-18 nor BG-19,
-            because BT-81 is mandatory
-      }}
-      {{^BG017}}
-        {{^BG018}}
-          {{^BG019}}
+              special case if BG-16 has neither BG-17, BG-18 nor BG-19,
+              because BT-81 is mandatory
+        }}
+        {{^BG017}}
+          {{^BG018}}
+            {{^BG019}}
+              {{#BT081}}
       <ram:SpecifiedTradeSettlementPaymentMeans>
-        <ram:TypeCode>{{BT081}}</ram:TypeCode>
-            {{#BT082}}
+        <ram:TypeCode>{{.}}</ram:TypeCode>
+                {{#BT082}}
         <ram:Information>{{.}}</ram:Information>
-            {{/BT082}}
+                {{/BT082}}
       </ram:SpecifiedTradeSettlementPaymentMeans>
-          {{/BG019}}
-        {{/BG018}}
-      {{/BG017}}
-      {{! end
+              {{/BT081}}
+              {{#BT082}}
+      <ram:SpecifiedTradeSettlementPaymentMeans>
+        <ram:Information>{{.}}</ram:Information>
+      </ram:SpecifiedTradeSettlementPaymentMeans>
+              {{/BT082}}
+            {{/BG019}}
+          {{/BG018}}
+        {{/BG017}}
+        {{! end
 
 
-      }}
+        }}
       {{/BG016}}
       {{#BG023}}
       <ram:ApplicableTradeTax>

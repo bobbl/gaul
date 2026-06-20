@@ -86,8 +86,28 @@ fetch_git () {
 # Copy and lint invoice examples to uniform directories
 copy_invoices () {
 
+    mkdir -p zugferd
+    rm -f zugferd/*.pdf
     mkdir -p cii
     rm -f cii/*.xml
+
+
+    # Recursevly copy all *.pdf files to zugferd/
+    find download/corpus/ZUGFeRDv2/correct/  -type f -name "*.pdf" -exec sh -c '
+        for filename in "$@"
+        do
+            cp "$filename" "zugferd/$(basename "$filename")"
+        done
+    ' sh {} +
+
+    # Recursevly copy all *.xml files to cii/
+    find download/corpus/ZUGFeRDv2/correct/  -type f -name "*.xml" -exec sh -c '
+        for f in "$@"
+        do
+            xsltproc pretty.xslt "$f" > cii/$(basename "$f")
+        done
+    ' sh {} +
+
     for f in download/xrechnung-testsuite/src/test/business-cases/extension/*_uncefact.xml \
              download/xrechnung-testsuite/src/test/business-cases/standard/*_uncefact.xml \
              download/xrechnung-testsuite/src/test/technical-cases/cius/*_uncefact.xml \
@@ -181,7 +201,8 @@ test_btj_smx_btj () {
         smx=smx/$(basename "$f" .btj).smx
         btj2=btj2/$(basename "$f")
 
-        mustache "$f" ../templates/gen/btj2smx.mustache > "$smx"
+        mustache "$f" ../templates/gen/btj2smx.mustache > tmp.smx
+        xsltproc pretty.xslt tmp.smx > "$smx"
         xsltproc ../templates/gen/smx2btj.xslt "$smx" > "$btj2"
     done
     if diff --color btj/ btj2/

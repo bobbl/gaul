@@ -487,6 +487,11 @@ diff cii/CII_example5.xml cii_from_btj/CII_example5.xml
 >       <ram:SpecifiedTradeSettlementPaymentMeans>
 >         <ram:TypeCode>58</ram:TypeCode>
 >         <ram:Information>Half prepaid</ram:Information>
+diff cii/hate1.xml cii_from_btj/hate1.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
 diff cii/included-notes-bg-1-uncefact.xml cii_from_btj/included-notes-bg-1-uncefact.xml
 275c275
 <           <ram:ClassCode listID="IB">0721-880X</ram:ClassCode>
@@ -932,6 +937,95 @@ diff cii/issue38-bad.xml cii_from_btj/issue38-bad.xml
 >         <ram:ID>6754238987643</ram:ID>
 385a386
 >       <ram:CreditorReferenceID/>
+diff cii/testout-XR-Edge.xml cii_from_btj/testout-XR-Edge.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+diff cii/testout-XR.xml cii_from_btj/testout-XR.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+diff cii/testout-ZF2PushAllowances.xml cii_from_btj/testout-ZF2PushAllowances.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+diff cii/testout-ZF2PushChargesAllowances.xml cii_from_btj/testout-ZF2PushChargesAllowances.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+diff cii/testout-ZF2PushCorrection.xml cii_from_btj/testout-ZF2PushCorrection.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+168a169
+>       <ram:SpecifiedTradePaymentTerms/>
+diff cii/testout-ZF2PushCreditNote.xml cii_from_btj/testout-ZF2PushCreditNote.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+diff cii/testout-ZF2PushEdge.xml cii_from_btj/testout-ZF2PushEdge.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+diff cii/testout-ZF2PushItemChargesAllowances.xml cii_from_btj/testout-ZF2PushItemChargesAllowances.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+70,71d69
+<             <ram:CalculationPercent>50.00</ram:CalculationPercent>
+<             <ram:BasisAmount>3.00</ram:BasisAmount>
+108c106
+<               <udt:Indicator>true</udt:Indicator>
+---
+>               <udt:Indicator>false</udt:Indicator>
+150,155d147
+<           <ram:AppliedTradeAllowanceCharge>
+<             <ram:ChargeIndicator>
+<               <udt:Indicator>true</udt:Indicator>
+<             </ram:ChargeIndicator>
+<             <ram:ActualAmount>1.0000</ram:ActualAmount>
+<           </ram:AppliedTradeAllowanceCharge>
+199,201d190
+<           <ram:FaxUniversalCommunication>
+<             <ram:CompleteNumber>0911623562</ram:CompleteNumber>
+<           </ram:FaxUniversalCommunication>
+diff cii/testout-ZF2PushRelativeChargesAllowances.xml cii_from_btj/testout-ZF2PushRelativeChargesAllowances.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+94c94
+<               <udt:Indicator>true</udt:Indicator>
+---
+>               <udt:Indicator>false</udt:Indicator>
+96,97d95
+<             <ram:CalculationPercent>50.00</ram:CalculationPercent>
+<             <ram:BasisAmount>3.00</ram:BasisAmount>
+diff cii/testout-ZF2PushReverseCharge.xml cii_from_btj/testout-ZF2PushReverseCharge.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+40d39
+<           <ram:ExemptionReason>Reverse Charge</ram:ExemptionReason>
+73d71
+<           <ram:ExemptionReason>Reverse Charge</ram:ExemptionReason>
+106d103
+<           <ram:ExemptionReason>Reverse Charge</ram:ExemptionReason>
+139d135
+<           <ram:ExemptionReason>Reverse Charge</ram:ExemptionReason>
+171,173d166
+<           <ram:FaxUniversalCommunication>
+<             <ram:CompleteNumber>0911623562</ram:CompleteNumber>
+<           </ram:FaxUniversalCommunication>
 diff cii/wrong-date-with-text-uncefact.xml cii_from_btj/wrong-date-with-text-uncefact.xml
 15c15
 <       <udt:DateTimeString format="102">Dies ist kein Datum</udt:DateTimeString>
@@ -946,3 +1040,13 @@ diff cii/wrong-date-with-zeros-uncefact.xml cii_from_btj/wrong-date-with-zeros-u
 <           <ram:ClassCode listID="IB">0721-880X</ram:ClassCode>
 ---
 >           <ram:ClassCode>0721-880X</ram:ClassCode>
+diff cii/ZUGFeRD-invoice_rabatte_3_abschlag_duepayableamount.xml cii_from_btj/ZUGFeRD-invoice_rabatte_3_abschlag_duepayableamount.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:a="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:10" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+diff cii/ZUGFeRD-invoice_rabatte_4_abschlag_taxbasistotalamount.xml cii_from_btj/ZUGFeRD-invoice_rabatte_4_abschlag_taxbasistotalamount.xml
+2c2
+< <rsm:CrossIndustryInvoice xmlns:a="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:10" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
+---
+> <rsm:CrossIndustryInvoice xmlns:rsm="urn:un:unece:uncefact:data:standard:CrossIndustryInvoice:100" xmlns:ram="urn:un:unece:uncefact:data:standard:ReusableAggregateBusinessInformationEntity:100" xmlns:qdt="urn:un:unece:uncefact:data:standard:QualifiedDataType:100" xmlns:udt="urn:un:unece:uncefact:data:standard:UnqualifiedDataType:100">
