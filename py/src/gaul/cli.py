@@ -11,6 +11,7 @@ Usage: gaul [options] [input files]
 Options:
   -f FORMAT     specify input format ('auto' for auto detection)
   -t FORMAT     specify output format (default BTJ)
+  -z PDFFILE    add PDF file and generate ZUGFeRD invoice
   -o FILENAME   write to file, according to output format
 
 Supported formats:
@@ -32,7 +33,7 @@ def open_outputfile(filename):
     if filename == "-":
         return sys.stdout
     else:
-        return open(filename, "w")
+        return open(filename, "wb")
 
 
 
@@ -42,6 +43,8 @@ def main():
 
     no_input = True
     no_output = True
+    output_filename = ""
+    zugferd_filename = ""
     format_from = "auto"
     format_to = "BTJ"
     g = Gaul()
@@ -53,30 +56,41 @@ def main():
             if arg == "-h" or arg == "--help":
                 help()
 
-            elif arg[1] == 'f':
+            elif arg == "-f" or arg == "--from":
                 i += 1
+                if i >= argc:
+                    sys.exit("Input format expected")
                 format_from = sys.argv[i].upper()
                 if format_from == "AUTO":
                     format_from = ""
-                elif format_from == "ZUGFERD":
-                    pass
                 elif not Gaul.format_supported(format_from):
                     sys.exit(f"Unknown input format {format_from}")
                 #print(f"Set input format to {format_from}")
 
-            elif arg[1] == 't':
+            elif arg == "-t" or arg == "--to":
                 i += 1
+                if i >= argc:
+                    sys.exit("Output format expected")
                 format_to = sys.argv[i].upper()
+                if format_to == "ZUGFERD":
+                    sys.exit("Use -z to add PDF and generate ZUGFeRD invoice")
                 if not Gaul.format_supported(format_to):
                     sys.exit(f"Unknown output format {format_to}")
                 #print(f"Set output format to {format_to}")
 
-            elif arg[1] == 'o':
-                no_output = False
-                transformed = g.dump(format_to)
+            elif arg == "-z" or arg == "--zugferd":
                 i += 1
-                with open_outputfile(sys.argv[i]) as f:
-                    f.write(transformed)
+                if i >= argc:
+                    sys.exit("PDF filename for ZUGFeRD invoice expected")
+                zugferd_filename = sys.argv[i]
+                format_to = "ZUGFERD"
+
+            elif arg == "-o" or arg == "--output":
+                i += 1
+                if i >= argc:
+                    sys.exit("Output filename expected")
+                output_filename = sys.argv[i]
+                no_output = False
 
             else:
                 sys.exit(f"Unknown option {arg}")
@@ -95,6 +109,13 @@ def main():
         sys.exit("No input files")
     if no_output:
         sys.exit("No output file specified. Use '-o -' for stdout.")
+
+    if format_to == "ZUGFERD":
+        transformed = g.dump_as_zugferd(zugferd_filename)
+    else:
+        transformed = g.dump(format_to)
+    with open_outputfile(output_filename) as f:
+        f.write(transformed)
 
 
 

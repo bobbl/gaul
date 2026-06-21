@@ -6,7 +6,7 @@ import tomllib                  # toml read
 
 import chevron                  # mustache
 from lxml import etree          # xslt
-from pypdf import PdfReader
+from pypdf import PdfReader, PdfWriter
 import tomli_w                  # toml write
 import yaml
 
@@ -117,12 +117,12 @@ class Gaul:
             ValueError(f"Unknown input format '{format}'")
 
 
-    def dump_as_btj(self) -> str:
+    def dump_as_btj(self) -> bytes:
         if self.btstr == None:
             self.btstr = json.dump(self.bttree, indent=2)
-        return self.btstr
+        return self.btstr.encode("utf-8")
 
-    def dump_as_smj(self) -> str:
+    def dump_as_smj(self) -> bytes:
         if not self.btstr:
             self.btstr = json.dump(self.bttree, indent=2)
 
@@ -130,24 +130,24 @@ class Gaul:
         s = re.sub("|".join(templates.replace_bt2sm.keys()),
                    lambda x: templates.replace_bt2sm[x.group(0)],
                    self.btstr)
-        return s
+        return s.encode("utf-8")
 
-    def dump_as_smt(self) -> str:
+    def dump_as_smt(self) -> bytes:
         s = self.dump_as_smj()  # BT JSON string -> SM JSON string
         d = yaml.safe_load(s)   #                -> SM Python dict
-        return tomli_w.dumps(d) #                -> SM TOML string
+        return tomli_w.dumps(d).encode("utf-8") #                -> SM TOML string
 
-    def dump_as_smx(self) -> str:
+    def dump_as_smx(self) -> bytes:
         if not self.bttree:
             self.bttree = yaml.safe_load(self.btstr)
-        return chevron.render(templates.btj2smx_mustache, self.bttree)
+        return chevron.render(templates.btj2smx_mustache, self.bttree).encode("utf-8")
 
-    def dump_as_cii(self) -> str:
+    def dump_as_cii(self) -> bytes:
         if not self.bttree:
             self.bttree = yaml.safe_load(self.btstr)
-        return chevron.render(templates.btj2cii_mustache, self.bttree)
+        return chevron.render(templates.btj2cii_mustache, self.bttree).encode("utf-8")
 
-    def dump(self, format):
+    def dump(self, format) -> bytes:
         if format == "BTJ":
             return self.dump_as_btj()
         if format == "SMJ":
@@ -162,5 +162,22 @@ class Gaul:
         #    return self.dump_auto(s)
         else:
             ValueError(f"Unknown input format '{format}'")
+
+    def dump_as_zugferd(self, pdf_filename: str) -> bytes:
+        r = PdfReader(pdf_filename)
+        w = PdfWriter()
+
+        w._header = "%PDF-1.6\r\n%\xc7\xec\x8f\xa2".encode()
+        w.append_pages_from_reader(r)
+
+        buf = io.BytesIO()
+        w.write(buf)
+        buf.seek(0)
+        return buf.read()
+
+
+
+
+
 
 
