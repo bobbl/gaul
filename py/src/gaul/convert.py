@@ -6,12 +6,12 @@ import tomllib                  # toml read
 
 import chevron                  # mustache
 from lxml import etree          # xslt
-from pypdf import PdfReader, PdfWriter
+import pypdf
 import tomli_w                  # toml write
 import yaml
 
 from . import templates
-
+from . import zugferd
 
 
 
@@ -70,7 +70,7 @@ class Gaul:
         self.bttree = None
 
     def load_zugferd(self, s: bytes):
-        reader = PdfReader(io.BytesIO(s))
+        reader = pypdf.PdfReader(io.BytesIO(s))
         if not "factur-x.xml" in reader.attachments:
             RuntimeError("No attachment named 'factur-x.xml' in PDF")
         content_list = reader.attachments["factur-x.xml"]
@@ -80,7 +80,7 @@ class Gaul:
 
     """ Alternative: accept any filename
     def load_zugferd(self, s: bytes):
-        reader = PdfReader(io.BytesIO(s))
+        reader = pypdf.PdfReader(io.BytesIO(s))
         a = reader.attachments
         if len(a) == 1:
             # WARNING if name is not factur-x.xml
@@ -164,17 +164,16 @@ class Gaul:
             ValueError(f"Unknown input format '{format}'")
 
     def dump_as_zugferd(self, pdf_filename: str) -> bytes:
-        r = PdfReader(pdf_filename)
-        w = PdfWriter()
-
-        w._header = "%PDF-1.6\r\n%\xc7\xec\x8f\xa2".encode()
-        w.append_pages_from_reader(r)
-
-        buf = io.BytesIO()
-        w.write(buf)
-        buf.seek(0)
-        return buf.read()
-
+        return zugferd.create_zugferd_pdf(
+            pdf_filename,
+            self.dump_as_cii(),
+            self.bttree.get('BG004', {}).get('BT027', ""),
+                # seller name as metadata author
+            "ZUGFeRD Rechnung",
+                # metadata title
+            self.bttree.get('BT001', "")
+                # invoice number as metadata subject
+        )
 
 
 
