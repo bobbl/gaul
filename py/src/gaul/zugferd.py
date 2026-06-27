@@ -4,7 +4,7 @@ import io
 import pypdf
 
 
-template_xmp = """
+TEMPLATE_XMP = """
 <?xpacket begin="\ufeff" id="W5M0MpCehiHzreSzNTczkc9d"?>
 <x:xmpmeta xmlns:x="adobe:ns:meta/">
   <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -60,7 +60,7 @@ template_xmp = """
     <rdf:Description rdf:about="" xmlns:dc="http://purl.org/dc/elements/1.1/">
       <dc:title>
         <rdf:Alt>
-          <rdf:li xml:lang="x-default">{title}</rdf:li>
+          <rdf:li xml:lang="x-default">ZUGFeRD Rechnung</rdf:li>
         </rdf:Alt>
       </dc:title>
     </rdf:Description>
@@ -68,7 +68,7 @@ template_xmp = """
       <pdf:Producer>pypdf</pdf:Producer>
     </rdf:Description>
     <rdf:Description rdf:about="" xmlns:xmp="http://ns.adobe.com/xap/1.0/">
-      <xmp:CreatorTool>{creator}</xmp:CreatorTool>
+      <xmp:CreatorTool>Gaul</xmp:CreatorTool>
       <xmp:CreateDate>{timestamp}</xmp:CreateDate>
       <xmp:ModifyDate>{timestamp}</xmp:ModifyDate>
     </rdf:Description>
@@ -113,11 +113,7 @@ def read_cii_from_zugferd(pdf_file):
 
 def create_zugferd_pdf(
     undecorated_pdf_file,
-    cii: bytes,
-    metadata_author: str,                       # used once
-    metadata_title: str = "ZUGFeRD Rechnung",   # used twice
-    metadata_subject: str = "",                 # used once
-    metadata_creator: str = "Gaul"              # used twice
+    cii: bytes
 ) -> bytes:
 
     r = pypdf.PdfReader(undecorated_pdf_file)
@@ -126,32 +122,25 @@ def create_zugferd_pdf(
     w.append_pages_from_reader(r)
 
     now = datetime.datetime.now(tz=datetime.timezone.utc)
-    timestamp_xmp     = now.strftime("%Y-%m-%dT%H:%M:%S+00:00")
-    timestamp_prop    = now.strftime("D:%Y%m%d%H%M%SZ")
-    obj_timestamp     = pypdf.generic.create_string_object(timestamp_prop)
-    obj_filename      = pypdf.generic.create_string_object("factur-x.xml")
+    timestamp_xmp  = now.strftime("%Y-%m-%dT%H:%M:%S+00:00")
+    timestamp_prop = now.strftime("D:%Y%m%d%H%M%SZ")
+    obj_timestamp  = pypdf.generic.create_string_object(timestamp_prop)
+    obj_filename   = pypdf.generic.create_string_object("factur-x.xml")
 
     # metadata for the document properties section
     metadata_document_properties =  {
-        "/Author":       metadata_author,
         "/CreationDate": timestamp_prop,
-        "/Creator":      metadata_creator,
-        "/Keywords":     "",
+        "/Creator":      "Gaul",
         "/ModDate":      timestamp_prop,
-        "/Subject":      metadata_subject,
-        "/Title":        metadata_title,
+        "/Title":        "ZUGFeRD Rechnung",
     }
     w.add_metadata(metadata_document_properties)
 
     # metadata for the xmp section
-    metadata_xml_str = template_xmp.format(
-        title       = metadata_title,
-        creator     = metadata_creator,
-        timestamp   = timestamp_xmp,
-    ).encode("utf-8")
+    xmp_str = TEMPLATE_XMP.format(timestamp=timestamp_xmp).encode("utf-8")
 
     stream_metadata = pypdf.generic.DecodedStreamObject()
-    stream_metadata.set_data(metadata_xml_str)
+    stream_metadata.set_data(xmp_str)
     stream_metadata.update({
         pypdf.generic.NameObject("/Subtype"):
             pypdf.generic.NameObject("/XML"),

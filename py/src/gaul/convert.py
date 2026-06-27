@@ -48,7 +48,7 @@ class Gaul:
     def load_smj(self, s: bytes):
 
         # swap keys and values
-        sm2bt = dict( (sm, bt) for bt, sm in templates.replace_bt2sm.items() )
+        sm2bt = dict( (sm, bt) for bt, sm in templates.REPLACE_BT2SM.items() )
 
         # replace semantic model names with BT???
         # sort from longer to shorter names to avoid partial replacement
@@ -62,11 +62,11 @@ class Gaul:
             .encode("utf-8"))
 
     def load_smx(self, s: bytes):
-        self.btstr = xslt_transform(templates.smx2btj_xslt.encode("utf-8"), s)
+        self.btstr = xslt_transform(templates.SMX2BTJ_XSLT.encode("utf-8"), s)
         self.bttree = None
 
     def load_cii(self, s: bytes):
-        self.btstr = xslt_transform(templates.cii2btj_xslt.encode("utf-8"), s)
+        self.btstr = xslt_transform(templates.CII2BTJ_XSLT.encode("utf-8"), s)
         self.bttree = None
 
     def load_zugferd(self, s: bytes):
@@ -127,8 +127,8 @@ class Gaul:
             self.btstr = json.dump(self.bttree, indent=2)
 
         # replace BT??? with semantic model name
-        s = re.sub("|".join(templates.replace_bt2sm.keys()),
-                   lambda x: templates.replace_bt2sm[x.group(0)],
+        s = re.sub("|".join(templates.REPLACE_BT2SM.keys()),
+                   lambda x: templates.REPLACE_BT2SM[x.group(0)],
                    self.btstr)
         return s.encode("utf-8")
 
@@ -140,12 +140,12 @@ class Gaul:
     def dump_as_smx(self) -> bytes:
         if not self.bttree:
             self.bttree = yaml.safe_load(self.btstr)
-        return chevron.render(templates.btj2smx_mustache, self.bttree).encode("utf-8")
+        return chevron.render(templates.BTJ2SMX_MUSTACHE, self.bttree).encode("utf-8")
 
     def dump_as_cii(self) -> bytes:
         if not self.bttree:
             self.bttree = yaml.safe_load(self.btstr)
-        return chevron.render(templates.btj2cii_mustache, self.bttree).encode("utf-8")
+        return chevron.render(templates.BTJ2CII_MUSTACHE, self.bttree).encode("utf-8")
 
     def dump(self, format) -> bytes:
         if format == "BTJ":
@@ -166,13 +166,7 @@ class Gaul:
     def dump_as_zugferd(self, pdf_filename: str) -> bytes:
         return zugferd.create_zugferd_pdf(
             pdf_filename,
-            self.dump_as_cii(),
-            self.bttree.get('BG004', {}).get('BT027', ""),
-                # seller name as metadata author
-            "ZUGFeRD Rechnung",
-                # metadata title
-            self.bttree.get('BT001', "")
-                # invoice number as metadata subject
+            self.dump_as_cii()
         )
 
 

@@ -141,21 +141,21 @@ copy_invoices () {
 test_cli () {
     back=$(pwd)
     cd ../py
-    cp ../test/examples/i003.cii.xml .
-    cp ../test/examples/i004.pdf .
+    xrechnung=../test/other/en16931-cii2ubl/CII_example1.xml
+    zugferd=../test/examples/i004.pdf
 
-    uv run gaul -f CII i003.cii.xml -t BTJ -o i003.btj
-    uv run gaul -f CII i003.cii.xml -t SMJ -o i003.smj
-    uv run gaul -f CII i003.cii.xml -t SMT -o i003.smt
-    uv run gaul -f CII i003.cii.xml -t SMX -o i003.smx
+    uv run gaul -f CII $xrechnung -t BTJ -o ../test/tmp.i001.btj
+    uv run gaul -f CII $xrechnung -t SMJ -o ../test/tmp.i001.smj
+    uv run gaul -f CII $xrechnung -t SMT -o ../test/tmp.i001.smt
+    uv run gaul -f CII $xrechnung -t SMX -o ../test/tmp.i001.smx
 
-    uv run gaul -f BTJ i003.btj -t CII -o i003.cii2
-    uv run gaul -f SMJ i003.smj -t SMX -o i003.smx2
-    uv run gaul -f SMT i003.smt -t SMJ -o i003.smj2
-    uv run gaul -f SMX i003.smx -t SMT -o i003.smt2
+    uv run gaul -f BTJ ../test/tmp.i001.btj -t CII -o ../test/tmp.i001.cii2
+    uv run gaul -f SMJ ../test/tmp.i001.smj -t SMX -o ../test/tmp.i001.smx2
+    uv run gaul -f SMT ../test/tmp.i001.smt -t SMJ -o ../test/tmp.i001.smj2
+    uv run gaul -f SMX ../test/tmp.i001.smx -t SMT -o ../test/tmp.i001.smt2
 
-    uv run gaul -f ZUGFeRD i004.pdf -t BTJ -o i004.btj
-    uv run gaul -f ZUGFeRD i004.pdf -t CII -o i004.cii
+    uv run gaul -f ZUGFeRD $zugferd -t BTJ -o ../test/tmp.i002.btj
+    uv run gaul -f ZUGFeRD $zugferd -t CII -o ../test/tmp.i002.cii
 
     cd "$back"
 }
