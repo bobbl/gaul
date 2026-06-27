@@ -19,8 +19,9 @@ then
 fi
 
 
-
-
+# Mustang 2.24
+mustang_download_url="https://github.com/ZUGFeRD/mustangproject/releases/download/core-2.24.0/Mustang-CLI-2.24.0.jar"
+mustang_jar=$(basename $mustang_download_url)
 
 # Escape sequences for colored output
 esc_white="\033[1;37m"
@@ -60,6 +61,22 @@ try_git_clone () {
 }
 
 
+# Check if file was already downloaded
+# $1 URL of file
+try_download () {
+    cd download
+    name=$(basename "$1")
+    if [ -f $name ]
+    then
+        echo "Found '$name'"
+    else
+        echo "Downloading '$1'"
+        wget "$1"
+    fi
+    cd ..
+}
+
+
 # Check if package dependencies are installed
 check_dependencies () {
     check_package xsltproc xsltproc
@@ -80,6 +97,8 @@ fetch_git () {
     try_git_clone https://github.com/ZUGFeRD/corpus.git
 
     #try_git_clone git@github.com:phax/en16931-cii2ubl.git
+
+    try_download "$mustang_download_url"
 }
 
 
@@ -137,6 +156,21 @@ copy_invoices () {
     echo "Found $count_ubl UBL invoices"
 }
 
+# $1 filename of ZUGFeRD invoice
+zugferd_validation () {
+    java -Xmx1G -Dfile.encoding=UTF-8 -jar \
+        ../test/download/$mustang_jar --action validate \
+        --source ../test/tmp.i001.pdf >tmp.xml 2>tmp.err
+    msg=$(awk '/<messages>/,/<\/messages>/' tmp.xml)
+    if [ "$msg"="" -o "$msg" = "<messages></messages>" ]
+    then
+        echo "$1"
+    else
+        echo "${esc_red}ZUGFeRD validation failed${esc}"
+        echo $msg
+        exit
+    fi
+}
 
 test_cli () {
     back=$(pwd)
@@ -156,6 +190,11 @@ test_cli () {
 
     uv run gaul -f ZUGFeRD $zugferd -t BTJ -o ../test/tmp.i002.btj
     uv run gaul -f ZUGFeRD $zugferd -t CII -o ../test/tmp.i002.cii
+
+    uv run gaul -f SMT ../test/examples/minimal.toml \
+        -z ../test/examples/latex_pdfa3.pdf \
+        -o ../test/tmp.i001.pdf
+    zugferd_validation ../test/tmp.i001.pdf 
 
     cd "$back"
 }

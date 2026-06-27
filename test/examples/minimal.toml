@@ -1,0 +1,109 @@
+Invoice_number = "123456XX"
+Invoice_type_code = "380"
+Invoice_currency_code = "EUR"
+Buyer_reference = "04011000-12345-03"
+Payment_terms = "Zahlbar sofort ohne Abzug."
+
+[Invoice_issue_date]
+YYYY = "2026"
+MM = "04"
+DD = "04"
+
+[PROCESS_CONTROL]
+Business_process_type = "urn:fdc:peppol.eu:2017:poacc:billing:01:1.0"
+Specification_identifier = "urn:cen.eu:en16931:2017#compliant#urn:xeinkauf.de:kosit:xrechnung_3.0"
+
+
+
+[SELLER]
+Seller_name = "Verena Verkäuferin"
+#Seller_vat_identifier = "DE123456789" # not accepted by valitool
+Seller_vat_identifier = "DE303688021"
+Seller_electronic_address = "allgemein@verkaeuferin.de"
+
+[SELLER.SELLER_POSTAL_ADDRESS]
+#Seller_address_line_1 = "Firmenweg 1"
+Seller_city = "Villingen"
+Seller_post_code = "12345"
+Seller_country_code = "DE"
+
+[SELLER.SELLER_CONTACT]
+Seller_contact_point = "Ansprechpartner"
+Seller_contact_telephone_number = "+49 1234-5678"
+Seller_contact_email_address = "kontakt@verkaeuferin.de"
+
+
+
+[BUYER]
+Buyer_name = "Karl Käufer"
+Buyer_electronic_address = "kaeufer@email.de"
+
+[BUYER.BUYER_POSTAL_ADDRESS]
+#Buyer_address_line_1 = "Hauptstraße 17"
+Buyer_city = "Kempten"
+Buyer_post_code = "98765"
+Buyer_country_code = "DE"
+
+
+
+[DELIVERY_INFORMATION.Actual_delivery_date]
+YYYY = "2026"
+MM = "04"
+DD = "03"
+
+
+
+[PAYMENT_INSTRUCTIONS]
+Payment_means_type_code = "58"
+CREDIT_TRANSFER = [
+    { Payment_account_identifier = "DE75512108001245126199" },
+]
+
+[DOCUMENT_TOTALS]
+Sum_of_invoice_line_net_amount = "100.00"
+Invoice_total_amount_without_vat = "100.00"
+Invoice_total_vat_amount = "19.00"
+Invoice_total_amount_with_vat = "119.00"
+Amount_due_for_payment = "119.00"
+
+[[VAT_BREAKDOWN]]
+Vat_category_taxable_amount = "100.00"
+Vat_category_tax_amount = "19.00"
+Vat_category_code = "S"
+Vat_category_rate = "19"
+
+
+
+[[INVOICE_LINE]]
+Invoice_line_identifier = "1"
+Invoiced_quantity = "3"
+Invoiced_quantity_unit_of_measure_code = "HUR"
+Invoice_line_net_amount = "90.00"
+
+[INVOICE_LINE.PRICE_DETAILS]
+Item_net_price = "30.00"
+
+[INVOICE_LINE.LINE_VAT_INFORMATION]
+Invoiced_item_vat_category_code = "S"
+Invoiced_item_vat_rate = "19"
+
+[INVOICE_LINE.ITEM_INFORMATION]
+Item_name = "Reparaturarbeiten"
+
+
+
+[[INVOICE_LINE]]
+Invoice_line_identifier = "2"
+Invoiced_quantity = "1"
+Invoiced_quantity_unit_of_measure_code = "C92"
+Invoice_line_net_amount = "10.00"
+
+[INVOICE_LINE.PRICE_DETAILS]
+Item_net_price = "10.00"
+
+[INVOICE_LINE.LINE_VAT_INFORMATION]
+Invoiced_item_vat_category_code = "S"
+Invoiced_item_vat_rate = "19"
+
+[INVOICE_LINE.ITEM_INFORMATION]
+Item_name = "Porto + Versandkosten"

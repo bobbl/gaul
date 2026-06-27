@@ -1,0 +1,84 @@
+% PDF/A-3 invoice
+
+% for PDF/A-3
+\pdfminorversion=7
+\begin{filecontents*}[overwrite]{\jobname.xmpdata}
+\Title{Document’s title}
+\Author{Author’s name}
+\Language{en-GB}
+\Subject{The abstract or short description.}
+\Keywords{keyword1\sep keyword2\sep keyword3}
+\end{filecontents*}
+
+
+\documentclass[version=last,fontsize=12pt]{scrlttr2}
+\LoadLetterOption{DINmtext}
+
+
+% for PDF/A-3
+\usepackage{colorprofiles}
+\usepackage[a-3b,mathxmp]{pdfx}[2018/12/22]
+\hypersetup{pdfstartview=}
+
+
+\usepackage[ngerman]{babel}
+%\usepackage[english]{babel}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+
+
+\setkomavar{firsthead}{%
+  \raggedleft{\Huge\selectfont\scshape 
+    Dr.-Ing.Jörg Mische
+  }
+}
+
+\newcommand{\R}{\rule{0pt}{12pt}}
+
+
+\begin{document}
+%  \setkomavar{fromname}{Dr.-Ing. Jörg Mische}
+%  \setkomavar{fromaddress}{Neuschwansteinstr. 16\\86163 Augsburg}
+  \setkomavar{yourref}[Ihre Bestellung vom]{31. November 2020}
+  \setkomavar{invoice}{17967}
+  \setkomavar{date}[Datum]{24. Dezember 2020}
+  \setkomavar{subject}{Rechnung}
+  \setkomavar{signature}{Jörg Mische}
+
+
+  \begin{letter}{Thomas Rott\\
+    Neustraße 7\\
+    86143 Augsburg
+  }
+    \opening{Sehr geehrter Herr Rott,}
+
+    ich bedanke mich für Ihr Vertrauen und berechne folgende
+    Leistungen, die bis zum 23. Dezember 2020 erbracht wurden:
+
+    \vspace{5mm}
+    \begin{tabular}{|c|p{70mm}|c|c|rl|}
+      \hline\R%
+      Pos. & Beschreibung & Stunden & Satz & \multicolumn{2}{c|}{Gesamtpreis} \\
+      \hline\R%
+        1 &
+        Erstellung eines Regenbogens &
+        20 & 50 EUR & 1000,00 & EUR\\
+      \hline
+      \multicolumn{4}{|l}{\R\textbf{Nettosumme}} & 
+        \textbf{1000,00} & \textbf{EUR} \\
+      \multicolumn{4}{|l}{\R%
+      zzgl. 19\% MwSt.} & 190,00 & EUR \\
+      \multicolumn{4}{|l}{\R%
+      Gesamtsumme inkl. MwSt.} & 1190,00 & EUR \\
+    \hline
+    \end{tabular}
+
+
+    \vspace{5mm}
+    \noindent Bitte überweisen Sie den Rechnungsbetrag ohne Abzüge auf mein
+     unten angegebenes Konto.
+    \closing{Mit freundlichen Grüßen}
+
+  \end{letter}
+\end{document}
