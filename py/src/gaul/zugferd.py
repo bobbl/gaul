@@ -1,4 +1,4 @@
-import datetime                 # now()
+import datetime
 import io
 
 import pypdf
@@ -128,19 +128,17 @@ def create_zugferd_pdf(
     obj_filename   = pypdf.generic.create_string_object("factur-x.xml")
 
     # metadata for the document properties section
-    metadata_document_properties =  {
+    w.add_metadata({
         "/CreationDate": timestamp_prop,
         "/Creator":      "Gaul",
         "/ModDate":      timestamp_prop,
         "/Title":        "ZUGFeRD Rechnung",
-    }
-    w.add_metadata(metadata_document_properties)
+    })
 
     # metadata for the xmp section
-    xmp_str = TEMPLATE_XMP.format(timestamp=timestamp_xmp).encode("utf-8")
-
+    xmp_section = TEMPLATE_XMP.format(timestamp=timestamp_xmp)
     stream_metadata = pypdf.generic.DecodedStreamObject()
-    stream_metadata.set_data(xmp_str)
+    stream_metadata.set_data(xmp_section.encode("utf-8"))
     stream_metadata.update({
         pypdf.generic.NameObject("/Subtype"):
             pypdf.generic.NameObject("/XML"),
@@ -199,7 +197,6 @@ def create_zugferd_pdf(
             pypdf.generic.NameObject("/UseAttachments"),
     })
 
-
     # deep copy of /OutputIntents
     if "/Root" in r.trailer:
         root = r.trailer["/Root"]
@@ -220,7 +217,6 @@ def create_zugferd_pdf(
                 pypdf.generic.NameObject("/OutputIntents"):
                     pypdf.generic.ArrayObject(modified)
             })
-
 
     w.generate_file_identifiers()
         # /ID is required by PDF/A validators

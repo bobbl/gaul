@@ -6,7 +6,6 @@ import tomllib                  # toml read
 
 import chevron                  # mustache
 from lxml import etree          # xslt
-import pypdf
 import tomli_w                  # toml write
 import yaml
 
@@ -70,33 +69,7 @@ class Gaul:
         self.bttree = None
 
     def load_zugferd(self, s: bytes):
-        reader = pypdf.PdfReader(io.BytesIO(s))
-        if not "factur-x.xml" in reader.attachments:
-            RuntimeError("No attachment named 'factur-x.xml' in PDF")
-        content_list = reader.attachments["factur-x.xml"]
-        if len(content_list) != 1:
-            RuntimeError("Multiple attachments named 'factur-x.xml' in PDF")
-        self.load_cii(content_list[0])
-
-    """ Alternative: accept any filename
-    def load_zugferd(self, s: bytes):
-        reader = pypdf.PdfReader(io.BytesIO(s))
-        a = reader.attachments
-        if len(a) == 1:
-            # WARNING if name is not factur-x.xml
-            content_list = list(a.values())[0]
-        elif "factur-x.xml" in reader.attachments:
-            content_list = reader.attachments["factur-x.xml"]
-        #elif "xrechnung.xml" in reader.attachments:
-        #    content_list = reader.attachments["xrechnung.xml"]
-        #elif "ZUGFeRD-invoice.xml" in reader.attachments:
-        #    content_list = reader.attachments["ZUGFeRD-invoice.xml"]
-        else:
-            RuntimeError("Multiple embedded files in PDF. Which one is the invoice?")
-        if len(content_list) != 1:
-            RuntimeError("Embedded filename in PDF refers to multiple file objects. Which one is the invoice?")
-        self.load_cii(content_list[0])
-    """
+        self.load_cii(zugferd.read_cii_from_zugferd(io.BytesIO(s)))
 
     def load(self, s: bytes, format=""):
         if format == "BTJ":
@@ -158,19 +131,12 @@ class Gaul:
             return self.dump_as_smx()
         if format == "CII":
             return self.dump_as_cii()
-        #lif format == "":
-        #    return self.dump_auto(s)
         else:
-            ValueError(f"Unknown input format '{format}'")
+            ValueError(f"Unknown output format '{format}'")
 
     def dump_as_zugferd(self, pdf_filename: str) -> bytes:
         return zugferd.create_zugferd_pdf(
             pdf_filename,
             self.dump_as_cii()
         )
-
-
-
-
-
 
