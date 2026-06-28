@@ -22,6 +22,71 @@ def xslt_transform(xslt_string: bytes, xml_string: bytes) -> str:
     return str(transform(xml))
 
 
+def try_format_json(s: bytes) -> str:
+    try:
+        root = yaml.safe_load(s)
+    except:
+        return ""
+
+    if "BT001" in root:
+        return "BTJ"
+    if "Invoice_number" in root:
+        return "SMJ"
+    return "Unknown JSON"
+
+
+def try_format_toml(s: bytes) -> str:
+    try:
+        root = tomllib.loads(s.decode("utf-8"))
+    except:
+        return ""
+
+    if "BT001" in root:
+        return "BTT"
+    if "Invoice_number" in root:
+        return "SMT"
+    return "Unknown TOML"
+
+
+def try_format_xml(s: bytes):
+    try:
+        root = etree.fromstring(s)
+    except:
+        return ""
+
+    if root.tag.startswith("{"):
+        t = root.tag.split("}", 1)
+        namespace = t[0][1:]
+        tag = t[1]
+    else:
+        namespace = ""
+        tag = root.tag
+
+    if tag == "Invoice":
+        return "UBL"
+    #if tag == "CreditNote":
+    #    return "UBLCreditNote" # what is it?
+    if tag == "CrossIndustryInvoice":
+        return "CII"
+    if tag == "invoice":
+        return "SMX"
+    return "Unknown XML"
+
+
+def guess_format(s: bytes):
+    if s.startswith(b"%PDF"):
+        format = "ZUGFERD"
+    else:
+        format = try_format_json(s)
+        if not format:
+            format = try_format_toml(s)
+            if not format:
+                format = try_format_xml(s)
+                if not format:
+                    format = "Unknown"
+    return format
+
+
 
 
 
@@ -36,6 +101,7 @@ class Gaul:
 
     def format_supported(format_str: str) -> bool:
         return format_str in Gaul.SUPPORTED_FORMATS
+
 
 
 

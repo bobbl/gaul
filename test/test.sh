@@ -188,6 +188,13 @@ test_cli () {
     uv run gaul -f SMT ../test/tmp.i001.smt -t SMJ -o ../test/tmp.i001.smj2
     uv run gaul -f SMX ../test/tmp.i001.smx -t SMT -o ../test/tmp.i001.smt2
 
+    uv run gaul -g $zugferd
+    uv run gaul -g $xrechnung
+    uv run gaul -g ../test/tmp.i001.smx
+    uv run gaul -g ../test/tmp.i001.smj
+    uv run gaul -g ../test/tmp.i001.btj
+    uv run gaul -g ../test/examples/minimal.toml
+
     uv run gaul -f ZUGFeRD $zugferd -t BTJ -o ../test/tmp.i002.btj
     uv run gaul -f ZUGFeRD $zugferd -t CII -o ../test/tmp.i002.cii
 

@@ -1,6 +1,6 @@
 import sys
 
-from .convert import Gaul
+from .convert import Gaul, guess_format
 
 
 def help():
@@ -13,6 +13,7 @@ Options:
   -t FORMAT     specify output format (default BTJ)
   -z PDFFILE    add PDF file and generate ZUGFeRD invoice
   -o FILENAME   write to file, according to output format
+  -g FILENAME   guess invoice format of the file
 
 Supported formats:
   CII   Cross-Industry Invoice
@@ -92,6 +93,14 @@ def main():
                 output_filename = sys.argv[i]
                 no_output = False
 
+            elif arg == "-g" or arg == "--guess":
+                i += 1
+                if i >= argc:
+                    sys.exit("Filename expected")
+                with open_inputfile(sys.argv[i]) as f:
+                    content = f.read()
+                print(guess_format(content))
+
             else:
                 sys.exit(f"Unknown option {arg}")
 
@@ -104,18 +113,23 @@ def main():
         i += 1
 
 
-    if no_input:
-        help()
-        sys.exit("No input files")
     if no_output:
-        sys.exit("No output file specified. Use '-o -' for stdout.")
-
-    if format_to == "ZUGFERD":
-        transformed = g.dump_as_zugferd(zugferd_filename)
+        if no_input:
+            # nothing to do
+            pass
+        else:
+            sys.exit("No output file specified. Use '-o -' for stdout.")
     else:
-        transformed = g.dump(format_to)
-    with open_outputfile(output_filename) as f:
-        f.write(transformed)
+        if no_input:
+            help()
+            sys.exit("No input files")
+        else:
+            if format_to == "ZUGFERD":
+                transformed = g.dump_as_zugferd(zugferd_filename)
+            else:
+                transformed = g.dump(format_to)
+            with open_outputfile(output_filename) as f:
+                f.write(transformed)
 
 
 
