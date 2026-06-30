@@ -15,8 +15,8 @@ from . import zugferd
 
 
 # Use an XSLT file to transform the given string
-def xslt_transform(xslt_string: bytes, xml_string: bytes) -> str:
-    parsed = etree.fromstring(xslt_string)
+def xslt_transform(xslt_string: str, xml_string: bytes) -> str:
+    parsed = etree.fromstring(xslt_string.encode("utf-8"))
     transform = etree.XSLT(parsed)
     xml = etree.fromstring(xml_string)
     return str(transform(xml))
@@ -93,7 +93,6 @@ def guess_format(s: bytes):
 class Gaul:
 
     def __init__(self):
-        self.btstr = None
         self.bttree = None
 
 
@@ -102,13 +101,11 @@ class Gaul:
     def format_supported(format_str: str) -> bool:
         return format_str in Gaul.SUPPORTED_FORMATS
 
-
-
+    def update_by_json(self, s: str):
+        self.bttree = yaml.safe_load(s)
 
     def load_btj(self, s: bytes):
-        self.btstr = s
-        self.bttree = None
-        #self.bttree = yaml.safe_load(s)
+        self.update_by_json(s)
 
     def load_smj(self, s: bytes):
 
@@ -117,22 +114,20 @@ class Gaul:
 
         # replace semantic model names with BT???
         # sort from longer to shorter names to avoid partial replacement
-        self.btstr = re.sub("|".join(sorted(sm2bt, key=len, reverse=True)),
-                            lambda x: sm2bt[x.group(0)],
-                            s.decode("utf-8"))
-        self.bttree = None
+        json_str = re.sub("|".join(sorted(sm2bt, key=len, reverse=True)),
+                          lambda x: sm2bt[x.group(0)],
+                          s.decode("utf-8"))
+        self.update_by_json(json_str)
 
     def load_smt(self, s: bytes):
-        self.load_smj(json.dumps(tomllib.loads(s.decode("utf-8")), indent=2)
+        self.load_smj(json.dumps(tomllib.loads(s.decode("utf-8")))
             .encode("utf-8"))
 
     def load_smx(self, s: bytes):
-        self.btstr = xslt_transform(templates.SMX2BTJ_XSLT.encode("utf-8"), s)
-        self.bttree = None
+        self.update_by_json(xslt_transform(templates.SMX2BTJ_XSLT, s))
 
     def load_cii(self, s: bytes):
-        self.btstr = xslt_transform(templates.CII2BTJ_XSLT.encode("utf-8"), s)
-        self.bttree = None
+        self.update_by_json(xslt_transform(templates.CII2BTJ_XSLT, s))
 
     def load_zugferd(self, s: bytes):
         self.load_cii(zugferd.read_cii_from_zugferd(io.BytesIO(s)))
@@ -157,34 +152,30 @@ class Gaul:
 
 
     def dump_as_btj(self) -> bytes:
-        if self.btstr == None:
-            self.btstr = json.dump(self.bttree, indent=2)
-        return self.btstr.encode("utf-8")
+        r = json.dumps(self.bttree, indent=2)
+        return r.encode("utf-8")
 
     def dump_as_smj(self) -> bytes:
-        if not self.btstr:
-            self.btstr = json.dump(self.bttree, indent=2)
+        json_str = json.dumps(self.bttree)
 
         # replace BT??? with semantic model name
-        s = re.sub("|".join(templates.REPLACE_BT2SM.keys()),
+        r = re.sub("|".join(templates.REPLACE_BT2SM.keys()),
                    lambda x: templates.REPLACE_BT2SM[x.group(0)],
-                   self.btstr)
-        return s.encode("utf-8")
+                   json_str)
+        return r.encode("utf-8")
 
     def dump_as_smt(self) -> bytes:
-        s = self.dump_as_smj()  # BT JSON string -> SM JSON string
-        d = yaml.safe_load(s)   #                -> SM Python dict
-        return tomli_w.dumps(d).encode("utf-8") #                -> SM TOML string
+        s = self.dump_as_smj()                  # BT dict -> SM JSON string
+        d = yaml.safe_load(s)                   #         -> SM dict
+        return tomli_w.dumps(d).encode("utf-8") #         -> SM TOML string
 
     def dump_as_smx(self) -> bytes:
-        if not self.bttree:
-            self.bttree = yaml.safe_load(self.btstr)
-        return chevron.render(templates.BTJ2SMX_MUSTACHE, self.bttree).encode("utf-8")
+        return chevron.render(templates.BTJ2SMX_MUSTACHE, self.bttree
+                             ).encode("utf-8")
 
     def dump_as_cii(self) -> bytes:
-        if not self.bttree:
-            self.bttree = yaml.safe_load(self.btstr)
-        return chevron.render(templates.BTJ2CII_MUSTACHE, self.bttree).encode("utf-8")
+        return chevron.render(templates.BTJ2CII_MUSTACHE, self.bttree
+                             ).encode("utf-8")
 
     def dump(self, format) -> bytes:
         if format == "BTJ":
