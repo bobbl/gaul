@@ -88,6 +88,37 @@ def guess_format(s: bytes):
 
 
 
+# Combine the nested dictionaries d and u
+# Assumption: both apply to the same schema
+# If a key exists in both dictionary trees, take the value in u
+# or concatenate the values if both are lists.
+def deep_update(d, u):
+    for k, v in u.items():
+        if k in d:
+            if isinstance(v, dict):
+                d[k] = deep_update(d[k], v)
+            elif isinstance(v, list):
+                d[k] += v
+            else:
+                d[k] = v        # overwrite
+        else:
+            d[k] = v
+    return d
+
+
+"""
+# check if there are keys that appear in both nested dictionaries
+def check_collision(d, u):
+    for k, v in u.items():
+        if k in d:
+            if isinstance(v, dict):
+                if check_collision(d[k], v):
+                    return True
+            elif not isinstance(v, list):
+                return True
+    return False
+"""
+
 
 
 class Gaul:
@@ -101,8 +132,13 @@ class Gaul:
     def format_supported(format_str: str) -> bool:
         return format_str in Gaul.SUPPORTED_FORMATS
 
+    # return True if successful
     def update_by_json(self, s: str):
-        self.bttree = yaml.safe_load(s)
+        d = yaml.safe_load(s)
+        if self.bttree:
+            self.bttree = deep_update(self.bttree, d)
+        else:
+            self.bttree = d
 
     def load_btj(self, s: bytes):
         self.update_by_json(s)

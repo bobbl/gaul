@@ -6,7 +6,7 @@ from .convert import Gaul, guess_format
 def help():
     print("""Gaul converter between electronic invoice formats
 
-Usage: gaul [options] [input files]
+Usage: gaul [options] [input files ...]
 
 Options:
   -f FORMAT     specify input format ('auto' for auto detection)
